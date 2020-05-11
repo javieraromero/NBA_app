@@ -1,0 +1,38 @@
+<h1> NBA Scores </h1>
+
+<div class="container mt-3">
+    <span> Scores for {{ longDate }} </span>
+    <div *ngIf="games.length === 0; else elseBlock">
+        <h3>No NBA Games Today!</h3>
+    </div>
+    <ng-template #elseBlock>
+        <table style="width:70%" id="t01">
+            <tr>
+                <th width="40%"> Away Team </th>
+                <th width="20%"> Score </th>
+                <th width="40%"> Home Team </th>
+            </tr>
+            <tr *ngFor="let game of games">
+                <td> 
+                    <a [routerLink]="['/team', game['visitingTeamId']]"> {{ game["visitingTeam"] }} </a>
+                    <br>
+                    {{ game["visitingRecord"] }} 
+                </td>
+                <td> 
+                    {{ game["label"] }} 
+                    <br> 
+                    {{ game["visitingScore"] }} - {{ game["homeScore"] }}
+                    <br>
+                    <a [routerLink]="['/date', date, game['game_Id']]"> Boxscore </a>
+                </td>
+                <td>
+                    <a [routerLink]="['/team', game['homeTeamId']]"> {{ game["homeTeam"] }} </a>
+                    <br>
+                    {{ game["homeRecord"] }} 
+                </td>
+            </tr>
+        </table>
+    </ng-template>
+    <a href="/date/{{ previousDate }}"> Previous Day </a>
+    <a href="/date/{{ nextDate }}"> Next Day </a>
+</div>

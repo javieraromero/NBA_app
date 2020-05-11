@@ -1,0 +1,39 @@
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { HttpClientModule } from '@angular/common/http';
+
+import { HomeComponent } from './pages/home/home.component';
+import { DateComponent } from './pages/date/date.component';
+import { GameComponent } from './pages/game/game.component';
+import { PlayerComponent } from './pages/player/player.component';
+import { TeamComponent } from './pages/team/team.component';
+
+import { TeamInfo } from 'src/app/assets/team_info';
+import { PlayersList } from 'src/app/assets/players_list';
+import { DateCalculator } from 'src/app/assets/date_calculator';
+
+@NgModule({
+  declarations: [
+    AppComponent,
+    HomeComponent,
+    DateComponent,
+    GameComponent,
+    PlayerComponent,
+    TeamComponent
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule
+  ],
+  providers: [
+    TeamInfo,
+    PlayersList,
+    DateCalculator
+  ],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }

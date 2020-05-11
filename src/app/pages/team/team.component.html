@@ -1,0 +1,43 @@
+<h1> {{ teamName }} Roster and Schedule </h1>
+
+<div class="container mt-3">
+    <span> Roster </span>
+    <table style="width:70%" id="t01">
+        <tr>
+            <th> Name </th>
+        </tr>
+        <tr *ngFor="let player of roster">
+            <td>
+                <a [routerLink]="['/player', player['playerId']]"> {{ player["firstName"] }} {{ player["lastName"] }} </a>
+            </td>
+        </tr>
+    </table>
+
+    <span> Schedule </span>
+    <table style="width:70%" id="t01">
+        <tr>
+            <th width="10%"> Date </th>
+            <th width="35%"> Away Team </th>
+            <th width="20%"> Score </th>
+            <th width="35%"> Home Team </th>
+        </tr>
+        <tr *ngFor="let game of list_of_games">
+            <td>
+                {{ game["longDate"] }}
+            </td>
+            <td> 
+                <a href="/team/{{ game['vTeamId'] }}"> {{ game["vTeamName"] }} </a>
+            </td>
+            <td>
+                <div *ngIf="game['seasonStageId'] === 1"><span>Preseason</span></div>
+                <br> 
+                {{ game["vTeamScore"] }} - {{ game["hTeamScore"] }}
+                <br>
+                <a [routerLink]="['/date', game['startDateEastern'], game['gameId']]"> Boxscore </a>
+            </td>
+            <td>
+                <a href="/team/{{ game['hTeamId'] }}"> {{ game["hTeamName"] }} </a>
+            </td>
+        </tr>
+    </table>
+</div>

@@ -1,0 +1,273 @@
+<h1> NBA Game </h1>
+
+<div class="container mt-3">
+    <span>Game Information</span>
+    <table style="width:70%" id="t01">
+        <tr>
+            <th width="50%"></th>
+            <th width="50%"></th>
+        </tr>
+        <tr>
+            <td width="50%"> Arena Name </td>
+            <td width="50%"> {{ game_data["arena_name"] }} </td>
+        </tr>
+        <tr>
+            <td width="50%"> Location </td>
+            <td width="50%"> {{ game_data["arena_location"] }} </td>
+        </tr>
+        <tr>
+            <td width="50%"> Visiting Team </td>
+            <td width="50%"> {{ game_data["vTeamName"] }} </td>
+        </tr>
+        <tr>
+            <td width="50%"> Record </td>
+            <td width="50%"> {{ game_data["vTeamRecord"] }} </td>
+        </tr>
+        <tr>
+            <td width="50%"> Series Record </td>
+            <td width="50%"> {{ game_data["vTeamSeriesRecord"] }} </td>
+        </tr>
+        <tr>
+            <td width="50%"> Home Team </td>
+            <td width="50%"> {{ game_data["hTeamName"] }} </td>
+        </tr>
+        <tr>
+            <td width="50%"> Record </td>
+            <td width="50%"> {{ game_data["hTeamRecord"] }} </td>
+        </tr>
+        <tr>
+            <td width="50%"> Series Record </td>
+            <td width="50%"> {{ game_data["hTeamSeriesRecord"] }} </td>
+        </tr>
+    </table>
+    <span>Team Totals</span>
+    <table style="width:75%" id="t01">
+        <tr>
+            <th width="50%"> Stat </th>
+            <th width="25%"> {{ visiting_team }} </th>
+            <th width="25%"> {{ home_team }} </th>
+        </tr>
+        <tr>
+            <td> Fast Break Points </td>
+            <td> {{ visiting_team_stats["fastBreakPoints"] }} </td>
+            <td> {{ home_team_stats["fastBreakPoints"] }} </td>
+        </tr>
+        <tr>
+            <td> Points in the Paint </td>
+            <td> {{ visiting_team_stats["pointsInPaint"] }} </td>
+            <td> {{ home_team_stats["pointsInPaint"] }} </td>
+        </tr>
+        <tr>
+            <td> Second Chance Points </td>
+            <td> {{ visiting_team_stats["secondChancePoints"] }} </td>
+            <td> {{ home_team_stats["secondChancePoints"] }} </td>
+        </tr>
+        <tr>
+            <td> Points Off Turnovers </td>
+            <td> {{ visiting_team_stats["pointsOffTurnovers"] }} </td>
+            <td> {{ home_team_stats["pointsOffTurnovers"] }} </td>
+        </tr>
+        <tr>
+            <td> Points </td>
+            <td> {{ visiting_team_stats["points"] }} </td>
+            <td> {{ home_team_stats["points"] }} </td>
+        </tr>
+        <tr>
+            <td> Field Goals Made </td>
+            <td> {{ visiting_team_stats["fgm"] }} </td>
+            <td> {{ home_team_stats["fgm"] }} </td>
+        </tr>
+        <tr>
+            <td> Field Goals Attempted </td>
+            <td> {{ visiting_team_stats["fga"] }} </td>
+            <td> {{ home_team_stats["fga"] }} </td>
+        </tr>
+        <tr>
+            <td> Field Goal % </td>
+            <td> {{ visiting_team_stats["fgp"] }} </td>
+            <td> {{ home_team_stats["fgp"] }} </td>
+        </tr>
+        <tr>
+            <td> Free Throws Made </td>
+            <td> {{ visiting_team_stats["ftm"] }} </td>
+            <td> {{ home_team_stats["ftm"] }} </td>
+        </tr>
+        <tr>
+            <td> Free Throws Attempted </td>
+            <td> {{ visiting_team_stats["fta"] }} </td>
+            <td> {{ home_team_stats["fta"] }} </td>
+        </tr>
+        <tr>
+            <td> Free Throw % </td>
+            <td> {{ visiting_team_stats["ftp"] }} </td>
+            <td> {{ home_team_stats["ftp"] }} </td>
+        </tr>
+        <tr>
+            <td> Three Pointers Made </td>
+            <td> {{ visiting_team_stats["tpm"] }} </td>
+            <td> {{ home_team_stats["tpm"] }} </td>
+        </tr>
+        <tr>
+            <td> Three Pointers Attempted </td>
+            <td> {{ visiting_team_stats["tpa"] }} </td>
+            <td> {{ home_team_stats["tpa"] }} </td>
+        </tr>
+        <tr>
+            <td> Three Point % </td>
+            <td> {{ visiting_team_stats["tpp"] }} </td>
+            <td> {{ home_team_stats["tpp"] }} </td>
+        </tr>
+        <tr>
+            <td> Offensive Rebounds </td>
+            <td> {{ visiting_team_stats["offReb"] }} </td>
+            <td> {{ home_team_stats["offReb"] }} </td>
+        </tr>
+        <tr>
+            <td> Defensive Rebounds </td>
+            <td> {{ visiting_team_stats["defReb"] }} </td>
+            <td> {{ home_team_stats["defReb"] }} </td>
+        </tr>
+        <tr>
+            <td> Total Rebounds </td>
+            <td> {{ visiting_team_stats["totReb"] }} </td>
+            <td> {{ home_team_stats["totReb"] }} </td>
+        </tr>
+        <tr>
+            <td> Assists </td>
+            <td> {{ visiting_team_stats["assists"] }} </td>
+            <td> {{ home_team_stats["assists"] }} </td>
+        </tr>
+        <tr>
+            <td> Personal Fouls </td>
+            <td> {{ visiting_team_stats["pFouls"] }} </td>
+            <td> {{ home_team_stats["pFouls"] }} </td>
+        </tr>
+        <tr>
+            <td> Steals </td>
+            <td> {{ visiting_team_stats["steals"] }} </td>
+            <td> {{ home_team_stats["steals"] }} </td>
+        </tr>
+        <tr>
+            <td> Turnovers </td>
+            <td> {{ visiting_team_stats["turnovers"] }} </td>
+            <td> {{ home_team_stats["turnovers"] }} </td>
+        </tr>
+        <tr>
+            <td> Blocks </td>
+            <td> {{ visiting_team_stats["blocks"] }} </td>
+            <td> {{ home_team_stats["blocks"] }} </td>
+        </tr>
+        <tr>
+            <td> Total Fouls </td>
+            <td> {{ visiting_team_stats["team_fouls"] }} </td>
+            <td> {{ home_team_stats["team_fouls"] }} </td>
+        </tr>
+    </table>
+    <span>Boxscore</span>
+    <table style="width:100%" id="t01">
+        <tr>
+            <th>{{ visiting_team }}</th>
+        </tr>
+        <tr>
+            <th> Player </th>
+            <th> Pos </th>
+            <th> Pts </th>
+            <th> Mins </th>
+            <th> FGM </th>
+            <th> FGA </th>
+            <th> FG% </th>
+            <th> FTM </th>
+            <th> FTA </th>
+            <th> FT% </th>
+            <th> 3PM </th>
+            <th> 3PA </th>
+            <th> 3P% </th>
+            <th> Off Reb </th>
+            <th> Def Reb </th>
+            <th> Tot Reb </th>
+            <th> Ast </th>
+            <th> Fouls </th>
+            <th> Stls </th>
+            <th> TO </th>
+            <th> Blk </th>
+            <th> +/- </th>
+        </tr>
+        <tr *ngFor="let player of visiting_players">
+            <td><a [routerLink]="['/player', player['personId']]"> {{ player["firstName"] }} {{ player["lastName"] }} </a></td>
+            <td> {{ player["pos"] }} </td>
+            <td> {{ player["points"] }} </td>
+            <td> {{ player["min"] }} </td>
+            <td> {{ player["fgm"] }} </td>
+            <td> {{ player["fga"] }} </td>
+            <td> {{ player["fgp"] }} </td>
+            <td> {{ player["ftm"] }} </td>
+            <td> {{ player["fta"] }} </td>
+            <td> {{ player["ftp"] }} </td>
+            <td> {{ player["tpm"] }} </td>
+            <td> {{ player["tpa"] }} </td>
+            <td> {{ player["tpp"] }} </td>
+            <td> {{ player["offReb"] }} </td>
+            <td> {{ player["defReb"] }} </td>
+            <td> {{ player["totReb"] }} </td>
+            <td> {{ player["assists"] }} </td>
+            <td> {{ player["pFouls"] }} </td>
+            <td> {{ player["steals"] }} </td>
+            <td> {{ player["turnovers"] }} </td>
+            <td> {{ player["blocks"] }} </td>
+            <td> {{ player["plusMinus"] }} </td>
+        </tr>
+    </table>
+    <table style="width:100%" id="t01">
+        <tr>
+            <th>{{ home_team }}</th>
+        </tr>
+        <tr>
+            <th> Player </th>
+            <th> Pos </th>
+            <th> Pts </th>
+            <th> Mins </th>
+            <th> FGM </th>
+            <th> FGA </th>
+            <th> FG% </th>
+            <th> FTM </th>
+            <th> FTA </th>
+            <th> FT% </th>
+            <th> 3PM </th>
+            <th> 3PA </th>
+            <th> 3P% </th>
+            <th> Off Reb </th>
+            <th> Def Reb </th>
+            <th> Tot Reb </th>
+            <th> Ast </th>
+            <th> Fouls </th>
+            <th> Stls </th>
+            <th> TO </th>
+            <th> Blk </th>
+            <th> +/- </th>
+        </tr>
+        <tr *ngFor="let player of home_players">
+            <td><a [routerLink]="['/player', player['personId']]"> {{ player["firstName"] }} {{ player["lastName"] }} </a></td>
+            <td> {{ player["pos"] }} </td>
+            <td> {{ player["points"] }} </td>
+            <td> {{ player["min"] }} </td>
+            <td> {{ player["fgm"] }} </td>
+            <td> {{ player["fga"] }} </td>
+            <td> {{ player["fgp"] }} </td>
+            <td> {{ player["ftm"] }} </td>
+            <td> {{ player["fta"] }} </td>
+            <td> {{ player["ftp"] }} </td>
+            <td> {{ player["tpm"] }} </td>
+            <td> {{ player["tpa"] }} </td>
+            <td> {{ player["tpp"] }} </td>
+            <td> {{ player["offReb"] }} </td>
+            <td> {{ player["defReb"] }} </td>
+            <td> {{ player["totReb"] }} </td>
+            <td> {{ player["assists"] }} </td>
+            <td> {{ player["pFouls"] }} </td>
+            <td> {{ player["steals"] }} </td>
+            <td> {{ player["turnovers"] }} </td>
+            <td> {{ player["blocks"] }} </td>
+            <td> {{ player["plusMinus"] }} </td>
+        </tr>
+    </table>
+</div>
