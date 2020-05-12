@@ -2,10 +2,10 @@
 
 <div class="container mt-3">
     <span>Game Information</span>
-    <table style="width:70%" id="t01">
+    <table style="width:70%" id="info">
         <tr>
-            <th width="50%"></th>
-            <th width="50%"></th>
+            <td width="50%"> Date </td>
+            <td width="50%"> {{ longDate }} </td>
         </tr>
         <tr>
             <td width="50%"> Arena Name </td>
@@ -41,11 +41,11 @@
         </tr>
     </table>
     <span>Team Totals</span>
-    <table style="width:75%" id="t01">
+    <table style="width:75%" id="totals">
         <tr>
-            <th width="50%"> Stat </th>
-            <th width="25%"> {{ visiting_team }} </th>
-            <th width="25%"> {{ home_team }} </th>
+            <th width="50%" style="visibility: hidden">  </th>
+            <th width="25%" style="text-align: center;"> {{ visiting_team }} </th>
+            <th width="25%" style="text-align: center;"> {{ home_team }} </th>
         </tr>
         <tr>
             <td> Fast Break Points </td>
@@ -164,9 +164,9 @@
         </tr>
     </table>
     <span>Boxscore</span>
-    <table style="width:100%" id="t01">
+    <table style="width:100%" id="visiting_team">
         <tr>
-            <th>{{ visiting_team }}</th>
+            <th colspan="22" style="text-align: center;">{{ visiting_team }}</th>
         </tr>
         <tr>
             <th> Player </th>
@@ -194,32 +194,35 @@
         </tr>
         <tr *ngFor="let player of visiting_players">
             <td><a [routerLink]="['/player', player['personId']]"> {{ player["firstName"] }} {{ player["lastName"] }} </a></td>
-            <td> {{ player["pos"] }} </td>
-            <td> {{ player["points"] }} </td>
-            <td> {{ player["min"] }} </td>
-            <td> {{ player["fgm"] }} </td>
-            <td> {{ player["fga"] }} </td>
-            <td> {{ player["fgp"] }} </td>
-            <td> {{ player["ftm"] }} </td>
-            <td> {{ player["fta"] }} </td>
-            <td> {{ player["ftp"] }} </td>
-            <td> {{ player["tpm"] }} </td>
-            <td> {{ player["tpa"] }} </td>
-            <td> {{ player["tpp"] }} </td>
-            <td> {{ player["offReb"] }} </td>
-            <td> {{ player["defReb"] }} </td>
-            <td> {{ player["totReb"] }} </td>
-            <td> {{ player["assists"] }} </td>
-            <td> {{ player["pFouls"] }} </td>
-            <td> {{ player["steals"] }} </td>
-            <td> {{ player["turnovers"] }} </td>
-            <td> {{ player["blocks"] }} </td>
-            <td> {{ player["plusMinus"] }} </td>
+            <td colspan="21" *ngIf="player['dnp']; else elseBlock"> {{ player["dnp"] }} </td>
+            <ng-template #elseBlock>
+                <td> {{ player["pos"] }} </td>
+                <td> {{ player["points"] }} </td>
+                <td> {{ player["min"] }} </td>
+                <td> {{ player["fgm"] }} </td>
+                <td> {{ player["fga"] }} </td>
+                <td> {{ player["fgp"] }} </td>
+                <td> {{ player["ftm"] }} </td>
+                <td> {{ player["fta"] }} </td>
+                <td> {{ player["ftp"] }} </td>
+                <td> {{ player["tpm"] }} </td>
+                <td> {{ player["tpa"] }} </td>
+                <td> {{ player["tpp"] }} </td>
+                <td> {{ player["offReb"] }} </td>
+                <td> {{ player["defReb"] }} </td>
+                <td> {{ player["totReb"] }} </td>
+                <td> {{ player["assists"] }} </td>
+                <td> {{ player["pFouls"] }} </td>
+                <td> {{ player["steals"] }} </td>
+                <td> {{ player["turnovers"] }} </td>
+                <td> {{ player["blocks"] }} </td>
+                <td> {{ player["plusMinus"] }} </td>
+            </ng-template>
         </tr>
     </table>
-    <table style="width:100%" id="t01">
+    <table style="width:100%" id="home_team">
         <tr>
-            <th>{{ home_team }}</th>
+            <th colspan="22" style="text-align: center;">{{ home_team }}</th>
         </tr>
         <tr>
             <th> Player </th>

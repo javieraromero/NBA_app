@@ -3,7 +3,7 @@ th {
 }
 
 th, td {
-    padding: 15px;
+    padding: 12px;
 }
 
 td {
@@ -15,15 +15,16 @@ table, th, td {
     border-collapse: collapse;
 }
 
-table#t01 tr:nth-child(even) {
+table#player_table tr:nth-child(even) {
     background-color: #eee;
 }
 
-table#t01 tr:nth-child(odd) {
+table#player_table tr:nth-child(odd) {
    background-color: #fff;
 }
 
-table#t01 th {
-    background-color: black;
-    color: white;
+table#player_table th {
+    background-color: var(--team_primary);
+    color: var(--team_secondary);
+    text-align: center;
 }

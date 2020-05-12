@@ -1,8 +1,8 @@
-<h1> {{ teamName }} Roster and Schedule </h1>
+<h1><img src="{{ teamPrimaryLogoLocation }}" height="35px"> {{ teamName }} Roster and Schedule </h1>
 
 <div class="container mt-3">
     <span> Roster </span>
-    <table style="width:70%" id="t01">
+    <table style="width:30%" id="team_table">
         <tr>
             <th> Name </th>
         </tr>
@@ -14,7 +14,7 @@
     </table>
 
     <span> Schedule </span>
-    <table style="width:70%" id="t01">
+    <table style="width:70%" id="team_table">
         <tr>
             <th width="10%"> Date </th>
             <th width="35%"> Away Team </th>
@@ -23,10 +23,14 @@
         </tr>
         <tr *ngFor="let game of list_of_games">
             <td>
-                {{ game["longDate"] }}
+                <a href="/date/{{ game['startDateEastern'] }}"> {{ game["longDate"] }} </a>
             </td>
             <td> 
-                <a href="/team/{{ game['vTeamId'] }}"> {{ game["vTeamName"] }} </a>
+                <a href="/team/{{ game['vTeamId'] }}">
+                    <img src="{{ game['vTeamLogoLocation'] }}" height="35px">
+                    <br>
+                    {{ game["vTeamName"] }}
+                </a>
             </td>
             <td>
                 <div *ngIf="game['seasonStageId'] === 1"><span>Preseason</span></div>
@@ -36,7 +40,11 @@
                 <a [routerLink]="['/date', game['startDateEastern'], game['gameId']]"> Boxscore </a>
             </td>
             <td>
-                <a href="/team/{{ game['hTeamId'] }}"> {{ game["hTeamName"] }} </a>
+                <a href="/team/{{ game['hTeamId'] }}">
+                    <img src="{{ game['hTeamLogoLocation'] }}" height="35px">
+                    <br>
+                    {{ game["hTeamName"] }}
+                </a>
             </td>
         </tr>
     </table>

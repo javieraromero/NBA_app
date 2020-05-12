@@ -18,6 +18,9 @@ export class PlayerComponent implements OnInit {
   first_name;
   last_name;
   current_team;
+  primaryColor: string;
+  secondaryColor: string;
+  teamLogoLocation: string;
 
   constructor(
     private route: ActivatedRoute,
@@ -49,18 +52,23 @@ export class PlayerComponent implements OnInit {
             this.first_name = player["firstName"];
             this.last_name = player["lastName"];
             current_teamId = player["teamId"];
-          }
-          if(this.first_name && this.last_name && current_teamId)
             break;
+          }
         }
 
         for(let i in team_list)
         {
           var team = team_list[i];
           if(team["teamId"] == current_teamId)
+          {
             this.current_team = team["teamName"];
-          if(this.current_team)
+            this.primaryColor = team["primaryColor"];
+            this.secondaryColor = team["secondaryColor"];
+            document.documentElement.style.setProperty('--team_primary', this.primaryColor);
+            document.documentElement.style.setProperty('--team_secondary', this.secondaryColor);
+            this.teamLogoLocation = team["secondaryLogoLocation"];
             break;
+          }
         }
 
         var stats = response["league"]["standard"]["stats"];
@@ -114,9 +122,10 @@ export class PlayerComponent implements OnInit {
           {
             var team = team_list[j];
             if(team["teamId"] == seasonTeamId)
+            {
               seasonTeamShort = team["abbreviation"];
-            if(seasonTeamShort)
               break;
+            }
           }
 
           var totals = season["total"]

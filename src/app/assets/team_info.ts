@@ -6,210 +6,330 @@ export class TeamInfo
       "abbreviation": "ATL",
       "teamName": "Atlanta Hawks",
       "simpleName": "Hawks",
-      "location": "Atlanta"
+      "location": "Atlanta",
+      "primaryColor": "#E03A3E",
+      "secondaryColor": "#C1D32F",
+      "primaryLogoLocation": "assets/images/team_logos/hawks_primary.png",
+      "secondaryLogoLocation": "assets/images/team_logos/hawks_secondary.png"
     },
     {
       "teamId": 1610612738,
       "abbreviation": "BOS",
       "teamName": "Boston Celtics",
       "simpleName": "Celtics",
-      "location": "Boston"
+      "location": "Boston",
+      "primaryColor": "#007A33",
+      "secondaryColor": "#BA9653",
+      "primaryLogoLocation": "assets/images/team_logos/celtics_primary.png",
+      "secondaryLogoLocation": "assets/images/team_logos/celtics_secondary.png"
     },
     {
       "teamId": 1610612751,
       "abbreviation": "BKN",
       "teamName": "Brooklyn Nets",
       "simpleName": "Nets",
-      "location": "Brooklyn"
+      "location": "Brooklyn",
+      "primaryColor": "#000000",
+      "secondaryColor": "#FFFFFF",
+      "primaryLogoLocation": "assets/images/team_logos/nets_primary.png",
+      "secondaryLogoLocation": "assets/images/team_logos/nets_secondary.png"
     },
     {
       "teamId": 1610612766,
       "abbreviation": "CHA",
       "teamName": "Charlotte Hornets",
       "simpleName": "Hornets",
-      "location": "Charlotte"
+      "location": "Charlotte",
+      "primaryColor": "#1D1160",
+      "secondaryColor": "#00788C",
+      "primaryLogoLocation": "assets/images/team_logos/hornets_primary.png",
+      "secondaryLogoLocation": "assets/images/team_logos/hornets_secondary.png"
     },
     {
       "teamId": 1610612741,
       "abbreviation": "CHI",
       "teamName": "Chicago Bulls",
       "simpleName": "Bulls",
-      "location": "Chicago"
+      "location": "Chicago",
+      "primaryColor": "#CE1141",
+      "secondaryColor": "#000000",
+      "primaryLogoLocation": "assets/images/team_logos/bulls_primary.png",
+      "secondaryLogoLocation": "assets/images/team_logos/bulls_secondary.png"
     },
     {
       "teamId": 1610612739,
       "abbreviation": "CLE",
       "teamName": "Cleveland Cavaliers",
       "simpleName": "Cavaliers",
-      "location": "Cleveland"
+      "location": "Cleveland",
+      "primaryColor": "#860038",
+      "secondaryColor": "#FDBB30",
+      "primaryLogoLocation": "assets/images/team_logos/cavaliers_primary.png",
+      "secondaryLogoLocation": "assets/images/team_logos/cavaliers_secondary.png"
     },
     {
       "teamId": 1610612742,
       "abbreviation": "DAL",
       "teamName": "Dallas Mavericks",
       "simpleName": "Mavericks",
-      "location": "Dallas"
+      "location": "Dallas",
+      "primaryColor": "#00538C",
+      "secondaryColor": "#B8C4CA",
+      "primaryLogoLocation": "assets/images/team_logos/mavericks_primary.png",
+      "secondaryLogoLocation": "assets/images/team_logos/mavericks_secondary.png"
     },
     {
       "teamId": 1610612743,
       "abbreviation": "DEN",
       "teamName": "Denver Nuggets",
       "simpleName": "Nuggets",
-      "location": "Denver"
+      "location": "Denver",
+      "primaryColor": "#0E2240",
+      "secondaryColor": "#FEC524",
+      "primaryLogoLocation": "assets/images/team_logos/nuggets_primary.png",
+      "secondaryLogoLocation": "assets/images/team_logos/nuggets_secondary.png"
     },
     {
       "teamId": 1610612765,
       "abbreviation": "DET",
       "teamName": "Detroit Pistons",
       "simpleName": "Pistons",
-      "location": "Detroit"
+      "location": "Detroit",
+      "primaryColor": "#C8102E",
+      "secondaryColor": "#1D42BA",
+      "primaryLogoLocation": "assets/images/team_logos/pistons_primary.png",
+      "secondaryLogoLocation": "assets/images/team_logos/pistons_secondary.gif"
     },
     {
       "teamId": 1610612744,
       "abbreviation": "GSW",
       "teamName": "Golden State Warriors",
       "simpleName": "Warriors",
-      "location": "Golden State"
+      "location": "Golden State",
+      "primaryColor": "#1D428A",
+      "secondaryColor": "#FFC72C",
+      "primaryLogoLocation": "assets/images/team_logos/warriors_primary.png",
+      "secondaryLogoLocation": "assets/images/team_logos/warriors_secondary.png"
     },
     {
       "teamId": 1610612745,
       "abbreviation": "HOU",
       "teamName": "Houston Rockets",
       "simpleName": "Rockets",
-      "location": "Houston"
+      "location": "Houston",
+      "primaryColor": "#CE1141",
+      "secondaryColor": "#C4CED4",
+      "primaryLogoLocation": "assets/images/team_logos/rockets_primary.png",
+      "secondaryLogoLocation": "assets/images/team_logos/rockets_secondary.png"
     },
     {
       "teamId": 1610612754,
       "abbreviation": "IND",
       "teamName": "Indiana Pacers",
       "simpleName": "Pacers",
-      "location": "Indiana"
+      "location": "Indiana",
+      "primaryColor": "#002D62",
+      "secondaryColor": "#FDBB30",
+      "primaryLogoLocation": "assets/images/team_logos/pacers_primary.png",
+      "secondaryLogoLocation": "assets/images/team_logos/pacers_secondary.gif"
     },
     {
       "teamId": 1610612746,
       "abbreviation": "LAC",
       "teamName": "Los Angeles Clippers",
       "simpleName": "Clippers",
-      "location": "Los Angeles"
+      "location": "Los Angeles",
+      "primaryColor": "#C8102E",
+      "secondaryColor": "#1D428A",
+      "primaryLogoLocation": "assets/images/team_logos/clippers_primary.png",
+      "secondaryLogoLocation": "assets/images/team_logos/clippers_secondary.png"
     },
     {
       "teamId": 1610612747,
       "abbreviation": "LAL",
       "teamName": "Los Angeles Lakers",
       "simpleName": "Lakers",
-      "location": "Los Angeles"
+      "location": "Los Angeles",
+      "primaryColor": "#552583",
+      "secondaryColor": "#FDB927",
+      "primaryLogoLocation": "assets/images/team_logos/lakers_primary.png",
+      "secondaryLogoLocation": "assets/images/team_logos/lakers_secondary.png"
     },
     {
       "teamId": 1610612763,
       "abbreviation": "MEM",
       "teamName": "Memphis Grizzlies",
       "simpleName": "Grizzlies",
-      "location": "Memphis"
+      "location": "Memphis",
+      "primaryColor": "#5D76A9",
+      "secondaryColor": "#12173F",
+      "primaryLogoLocation": "assets/images/team_logos/grizzlies_primary.png",
+      "secondaryLogoLocation": "assets/images/team_logos/grizzlies_secondary.png"
     },
     {
       "teamId": 1610612748,
       "abbreviation": "MIA",
       "teamName": "Miami Heat",
       "simpleName": "Heat",
-      "location": "Miami"
+      "location": "Miami",
+      "primaryColor": "#98002E",
+      "secondaryColor": "#F9A01B",
+      "primaryLogoLocation": "assets/images/team_logos/heat_primary.gif",
+      "secondaryLogoLocation": "assets/images/team_logos/heat_secondary.gif"
     },
     {
       "teamId": 1610612749,
       "abbreviation": "MIL",
       "teamName": "Milwaukee Bucks",
       "simpleName": "Bucks",
-      "location": "Milwaukee"
+      "location": "Milwaukee",
+      "primaryColor": "#00471B",
+      "secondaryColor": "#EEE1C6",
+      "primaryLogoLocation": "assets/images/team_logos/bucks_primary.png",
+      "secondaryLogoLocation": "assets/images/team_logos/bucks_secondary.png"
     },
     {
       "teamId": 1610612750,
       "abbreviation": "MIN",
       "teamName": "Minnesota Timberwolves",
       "simpleName": "Timberwolves",
-      "location": "Minnesota"
+      "location": "Minnesota",
+      "primaryColor": "#0C2340",
+      "secondaryColor": "#9EA2A2",
+      "primaryLogoLocation": "assets/images/team_logos/timberwolves_primary.png",
+      "secondaryLogoLocation": "assets/images/team_logos/timberwolves_secondary.png"
     },
     {
       "teamId": 1610612740,
       "abbreviation": "NOP",
       "teamName": "New Orleans Pelicans",
       "simpleName": "Pelicans",
-      "location": "New Orleans"
+      "location": "New Orleans",
+      "primaryColor": "#0C2340",
+      "secondaryColor": "#85714D",
+      "primaryLogoLocation": "assets/images/team_logos/pelicans_primary.png",
+      "secondaryLogoLocation": "assets/images/team_logos/pelicans_secondary.png"
     },
     {
       "teamId": 1610612752,
       "abbreviation": "NYK",
       "teamName": "New York Knicks",
       "simpleName": "Knicks",
-      "location": "New York"
+      "location": "New York",
+      "primaryColor": "#006BB6",
+      "secondaryColor": "#F58426",
+      "primaryLogoLocation": "assets/images/team_logos/knicks_primary.gif",
+      "secondaryLogoLocation": "assets/images/team_logos/knicks_secondary.gif"
     },
     {
       "teamId": 1610612760,
       "abbreviation": "OKC",
       "teamName": "Oklahoma City Thunder",
       "simpleName": "Thunder",
-      "location": "Oklahoma City"
+      "location": "Oklahoma City",
+      "primaryColor": "#007AC1",
+      "secondaryColor": "#EF3B24",
+      "primaryLogoLocation": "assets/images/team_logos/thunder_primary.png",
+      "secondaryLogoLocation": "assets/images/team_logos/thunder_secondary.gif"
     },
     {
       "teamId": 1610612753,
       "abbreviation": "ORL",
       "teamName": "Orlando Magic",
       "simpleName": "Magic",
-      "location": "Orlando"
+      "location": "Orlando",
+      "primaryColor": "#0077C0",
+      "secondaryColor": "#C4CED4",
+      "primaryLogoLocation": "assets/images/team_logos/magic_primary.gif",
+      "secondaryLogoLocation": "assets/images/team_logos/magic_secondary.gif"
     },
     {
       "teamId": 1610612755,
       "abbreviation": "PHI",
       "teamName": "Philadelphia 76ers",
       "simpleName": "76ers",
-      "location": "Philadelphia"
+      "location": "Philadelphia",
+      "primaryColor": "#006BB6",
+      "secondaryColor": "#ED174C",
+      "primaryLogoLocation": "assets/images/team_logos/76ers_primary.png",
+      "secondaryLogoLocation": "assets/images/team_logos/76ers_secondary.png"
     },
     {
       "teamId": 1610612756,
       "abbreviation": "PHX",
       "teamName": "Phoenix Suns",
       "simpleName": "Suns",
-      "location": "Phoenix"
+      "location": "Phoenix",
+      "primaryColor": "#1D1160",
+      "secondaryColor": "#E56020",
+      "primaryLogoLocation": "assets/images/team_logos/suns_primary.png",
+      "secondaryLogoLocation": "assets/images/team_logos/suns_secondary.png"
     },
     {
       "teamId": 1610612757,
       "abbreviation": "POR",
       "teamName": "Portland Trail Blazers",
       "simpleName": "Trail Blazers",
-      "location": "Portland"
+      "location": "Portland",
+      "primaryColor": "#E03A3E",
+      "secondaryColor": "#000000",
+      "primaryLogoLocation": "assets/images/team_logos/trail_blazers_primary.png",
+      "secondaryLogoLocation": "assets/images/team_logos/trail_blazers_secondary.gif"
     },
     {
       "teamId": 1610612758,
       "abbreviation": "SAC",
       "teamName": "Sacramento Kings",
       "simpleName": "Kings",
-      "location": "Sacramento"
+      "location": "Sacramento",
+      "primaryColor": "#5A2D81",
+      "secondaryColor": "#63727A",
+      "primaryLogoLocation": "assets/images/team_logos/kings_primary.png",
+      "secondaryLogoLocation": "assets/images/team_logos/kings_secondary.png"
     },
     {
       "teamId": 1610612759,
       "abbreviation": "SAS",
       "teamName": "San Antonio Spurs",
       "simpleName": "Spurs",
-      "location": "San Antonio"
+      "location": "San Antonio",
+      "primaryColor": "#C4CED4",
+      "secondaryColor": "#000000",
+      "primaryLogoLocation": "assets/images/team_logos/spurs_primary.png",
+      "secondaryLogoLocation": "assets/images/team_logos/spurs_secondary.gif"
     },
     {
       "teamId": 1610612761,
       "abbreviation": "TOR",
       "teamName": "Toronto Raptors",
       "simpleName": "Raptors",
-      "location": "Toronto"
+      "location": "Toronto",
+      "primaryColor": "#CE1141",
+      "secondaryColor": "#000000",
+      "primaryLogoLocation": "assets/images/team_logos/raptors_primary.png",
+      "secondaryLogoLocation": "assets/images/team_logos/raptors_secondary.png"
     },
     {
       "teamId": 1610612762,
       "abbreviation": "UTA",
       "teamName": "Utah Jazz",
       "simpleName": "Jazz",
-      "location": "Utah"
+      "location": "Utah",
+      "primaryColor": "#002B5C",
+      "secondaryColor": "#F9A01B",
+      "primaryLogoLocation": "assets/images/team_logos/jazz_primary.png",
+      "secondaryLogoLocation": "assets/images/team_logos/jazz_secondary.png"
     },
     {
       "teamId": 1610612764,
       "abbreviation": "WAS",
       "teamName": "Washington Wizards",
       "simpleName": "Wizards",
-      "location": "Washington"
+      "location": "Washington",
+      "primaryColor": "#002B5C",
+      "secondaryColor": "#E31837",
+      "primaryLogoLocation": "assets/images/team_logos/wizards_primary.gif",
+      "secondaryLogoLocation": "assets/images/team_logos/wizards_secondary.png"
     }
   ]
 }

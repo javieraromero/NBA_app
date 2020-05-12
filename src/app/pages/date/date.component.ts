@@ -53,15 +53,23 @@ export class DateComponent implements OnInit
           var homeId = Number(game["hTeam"]["teamId"]);
 
           var visiting_team = undefined;
+          var visiting_team_logo = undefined;
           var home_team = undefined;
+          var home_team_logo = undefined;
 
           for(let i in team_list)
           {
             var team = team_list[i];
             if(team["teamId"] == visitingId)
+            {
               visiting_team = team["teamName"];
+              visiting_team_logo = team["secondaryLogoLocation"];
+            }
             if(team["teamId"] == homeId)
+            {
               home_team = team["teamName"];
+              home_team_logo = team["secondaryLogoLocation"];
+            }
             if(visiting_team && home_team)
               break;
           }
@@ -87,13 +95,15 @@ export class DateComponent implements OnInit
             game_Id: gameId,
             visitingTeam: visiting_team,
             visitingTeamId: visitingId,
+            visitingTeamLogoLocation: visiting_team_logo,
+            visitingRecord: visiting_record,
+            visitingScore: visiting_score,
             homeTeam: home_team,
             homeTeamId: homeId,
-            visitingRecord: visiting_record,
+            homeTeamLogoLocation: home_team_logo,
             homeRecord: home_record,
+            homeScore: home_score,
             label: printable_label,
-            visitingScore: visiting_score,
-            homeScore: home_score
           }
 
           this.games.push(game_info);

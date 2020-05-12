@@ -5,7 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 
 import { TeamInfo } from '../../assets/team_info';
 import { PlayersList } from '../../assets/players_list';
-import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+//import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
 @Component({
   selector: 'app-team',
@@ -19,6 +19,8 @@ export class TeamComponent implements OnInit {
   list_of_games: Object[] = [];
   roster: Object[] = [];
   lastGamePlayedIndex;
+  teamPrimaryLogoLocation;
+  teamSecondaryLogoLocation;
 
   constructor(
     private http: HttpClient,
@@ -30,9 +32,15 @@ export class TeamComponent implements OnInit {
   ngOnInit() {
     this.teamId = this.route.snapshot.paramMap.get('teamId');
     this.getRoster(this.teamId);
-    console.log(this.roster);
     this.getSchedule(this.teamId);
-    this.teamName = this.getTeamName(this.teamId);
+    var teamAttributes = this.getTeamAttributes(this.teamId);
+    this.teamName = teamAttributes["teamName"];
+    this.teamPrimaryLogoLocation = teamAttributes["teamPrimaryLogoLocation"];
+    this.teamSecondaryLogoLocation = teamAttributes["teamSecondaryLogoLocation"];
+    var primaryColor = teamAttributes["teamPrimaryColor"];
+    var secondaryColor = teamAttributes["teamSecondaryColor"];
+    document.documentElement.style.setProperty('--team_primary', primaryColor);
+    document.documentElement.style.setProperty('--team_secondary', secondaryColor);
   }
 
   getRoster(teamId: String)
@@ -66,8 +74,6 @@ export class TeamComponent implements OnInit {
             lastName: last_name
           }
 
-          console.log(playerId + " " + first_name + " " + last_name);
-
           this.roster.push(player_info);
         }
       });
@@ -85,17 +91,22 @@ export class TeamComponent implements OnInit {
         {
           var game = games[i];
 
+          var vTeamId = game["vTeam"]["teamId"];
+          var hTeamId = game["hTeam"]["teamId"];
+
           const game_info = {
             seasonStageId: game["seasonStageId"],
             gameId: game["gameId"],
             startTimeEastern: game["startTimeEastern"],
             startDateEastern: game["startDateEastern"],
             longDate: this.getLongDate(game["startDateEastern"]),
-            vTeamId: game["vTeam"]["teamId"],
-            vTeamName: this.getTeamName(game["vTeam"]["teamId"]),
+            vTeamId: vTeamId,
+            vTeamName: vTeamId == this.teamId ? this.teamName : this.getTeamAttributes(vTeamId)["teamName"],
+            vTeamLogoLocation: vTeamId == this.teamId ? this.teamSecondaryLogoLocation : this.getTeamAttributes(vTeamId)["teamSecondaryLogoLocation"],
             vTeamScore: game["vTeam"]["score"],
-            hTeamId: game["hTeam"]["teamId"],
-            hTeamName: this.getTeamName(game["hTeam"]["teamId"]),
+            hTeamId: hTeamId,
+            hTeamName: hTeamId == this.teamId ? this.teamName : this.getTeamAttributes(hTeamId)["teamName"],
+            hTeamLogoLocation: hTeamId == this.teamId ? this.teamSecondaryLogoLocation : this.getTeamAttributes(hTeamId)["teamSecondaryLogoLocation"],
             hTeamScore: game["hTeam"]["score"]
           }
 
@@ -104,24 +115,41 @@ export class TeamComponent implements OnInit {
       });
   }
 
-  getTeamName(teamId: String)
+  getTeamAttributes(teamId: String)
   {
     var team_list = this.teamInfo.teams;
 
     var teamId_int = Number(teamId);
 
     var teamName;
+    var teamPrimaryColor;
+    var teamSecondaryColor;
+    var teamPrimaryLogoLocation;
+    var teamSecondaryLogoLocation;
 
     for(let i in team_list)
     {
       var team = team_list[i];
       if(team["teamId"] == teamId_int)
+      {
         teamName = team["teamName"];
-      if(teamName)
+        teamPrimaryColor = team["primaryColor"];
+        teamSecondaryColor = team["secondaryColor"];
+        teamPrimaryLogoLocation = team["primaryLogoLocation"];
+        teamSecondaryLogoLocation = team["secondaryLogoLocation"];
         break;
+      }
     }
 
-    return teamName;
+    const team_attributes = {
+      teamName: teamName,
+      teamPrimaryColor: teamPrimaryColor,
+      teamSecondaryColor: teamSecondaryColor,
+      teamPrimaryLogoLocation: teamPrimaryLogoLocation,
+      teamSecondaryLogoLocation: teamSecondaryLogoLocation
+    }
+
+    return team_attributes;
   }
 
   getLongDate(date: String)

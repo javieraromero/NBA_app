@@ -19,6 +19,7 @@ export class GameComponent implements OnInit {
   home_team_stats;
   visiting_players: Object[] = [];
   home_players: Object[] = [];
+  longDate: String;
 
   constructor(
     private route: ActivatedRoute,
@@ -30,6 +31,7 @@ export class GameComponent implements OnInit {
     const date = this.route.snapshot.paramMap.get('date');
     const gameId = this.route.snapshot.paramMap.get('gameId');
     this.getGameData(date, gameId);
+    this.setLongDate(date);
   }
 
   getGameData(date: String, gameId: String)
@@ -54,9 +56,17 @@ export class GameComponent implements OnInit {
           {
             var team = team_list[i];
             if(team["teamId"] == visiting_team_id)
+            {
               this.visiting_team = team["teamName"];
+              document.documentElement.style.setProperty('--visiting_team_primary', team["primaryColor"]);
+              document.documentElement.style.setProperty('--visiting_team_secondary', team["secondaryColor"]);
+            }
             if(team["teamId"] == home_team_id)
+            {
               this.home_team = team["teamName"];
+              document.documentElement.style.setProperty('--home_team_primary', team["primaryColor"]);
+              document.documentElement.style.setProperty('--home_team_secondary', team["secondaryColor"]);
+            }
             if(this.visiting_team && this.home_team)
               break;
           }
@@ -185,4 +195,14 @@ export class GameComponent implements OnInit {
       })
   }
 
+  setLongDate(date: String)
+  {
+    var year = Number(date.slice(0, 4));
+    var month = Number(date.slice(4, 6)) - 1;
+    var day = Number(date.slice(6, ));
+
+    var newDate = new Date(year, month, day);
+
+    this.longDate = newDate.toDateString();
+  }
 }

@@ -3,7 +3,7 @@ th {
 }
 
 th, td {
-    padding: 15px;
+    padding: 8px;
 }
 
 td {
@@ -15,15 +15,63 @@ table, th, td {
     border-collapse: collapse;
 }
 
-table#t01 tr:nth-child(even) {
+table#info tr:nth-child(even) {
     background-color: #eee;
 }
 
-table#t01 tr:nth-child(odd) {
+table#info tr:nth-child(odd) {
    background-color: #fff;
 }
 
-table#t01 th {
-    background-color: black;
-    color: white;
+table#totals th:nth-child(even) {
+    background-color: var(--visiting_team_primary);
+    color: var(--visiting_team_secondary);
+}
+
+table#totals th:nth-child(odd) {
+    background-color: var(--home_team_primary);
+    color: var(--home_team_secondary);
+}
+
+table#totals tr:nth-child(even) {
+    background-color: #eee;
+}
+
+table#totals tr:nth-child(odd) {
+   background-color: #fff;
+}
+
+
+
+table#visiting_team th {
+    background-color: var(--visiting_team_primary);
+    color: var(--visiting_team_secondary);
+}
+
+table#visiting_team tr:nth-child(even) {
+    background-color: #eee;
+}
+
+table#visiting_team tr:nth-child(odd) {
+   background-color: #fff;
+}
+
+th#visiting_team {
+    background-color: var(--visiting_team_primary);
+    color: var(--visiting_team_secondary);
+}
+
+
+
+table#home_team th {
+    background-color: var(--home_team_primary);
+    color: var(--home_team_secondary);
+}
+
+table#home_team tr:nth-child(even) {
+    background-color: #eee;
+}
+
+table#home_team tr:nth-child(odd) {
+   background-color: #fff;
 }

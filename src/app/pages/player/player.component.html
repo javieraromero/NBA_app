@@ -1,8 +1,8 @@
-<h1> Stats for {{ first_name }} {{ last_name }} ({{ current_team }}) </h1>
+<h1> Stats for {{ first_name }} {{ last_name }} - {{ current_team }} <img src="{{ teamLogoLocation }}" height="35px"></h1>
 
 <div class="container mt-3">
     <span>Career Averages</span>
-    <table id="t01">
+    <table id="player_table">
         <tr>
             <th> Season </th>
             <th> Team </th>
@@ -70,8 +70,7 @@
             <td> {{ season["min"] }} </td>
         </tr>
         <tr>
-            <td> Career </td>
-            <td></td>
+            <td colspan="2"> Career </td>
             <td> {{ careerSummary["ppg"] }} </td>
             <td> {{ careerSummary["rpg"] }} </td>
             <td> {{ careerSummary["apg"] }} </td>

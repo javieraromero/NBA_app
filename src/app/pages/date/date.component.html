@@ -14,7 +14,11 @@
             </tr>
             <tr *ngFor="let game of games">
                 <td> 
-                    <a [routerLink]="['/team', game['visitingTeamId']]"> {{ game["visitingTeam"] }} </a>
+                    <a [routerLink]="['/team', game['visitingTeamId']]">
+                        <img src="{{ game['visitingTeamLogoLocation'] }}" height="35px">
+                        <br>
+                        {{ game["visitingTeam"] }}
+                    </a>
                     <br>
                     {{ game["visitingRecord"] }} 
                 </td>
@@ -26,7 +30,11 @@
                     <a [routerLink]="['/date', date, game['game_Id']]"> Boxscore </a>
                 </td>
                 <td>
-                    <a [routerLink]="['/team', game['homeTeamId']]"> {{ game["homeTeam"] }} </a>
+                    <a [routerLink]="['/team', game['homeTeamId']]">
+                        <img src="{{ game['homeTeamLogoLocation'] }}" height="35px">
+                        <br>
+                        {{ game["homeTeam"] }}
+                    </a>
                     <br>
                     {{ game["homeRecord"] }} 
                 </td>
