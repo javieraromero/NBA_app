@@ -7,6 +7,8 @@ import { TeamInfo } from '../../assets/team_info';
 import { PlayersList } from '../../assets/players_list';
 //import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
+import { TeamsSearchPipe } from '../../pipes/teams-search.pipe';
+
 @Component({
   selector: 'app-team',
   templateUrl: './team.component.html',
@@ -21,6 +23,7 @@ export class TeamComponent implements OnInit {
   lastGamePlayedIndex;
   teamPrimaryLogoLocation;
   teamSecondaryLogoLocation;
+  search: String;
 
   constructor(
     private http: HttpClient,
@@ -94,6 +97,30 @@ export class TeamComponent implements OnInit {
           var vTeamId = game["vTeam"]["teamId"];
           var hTeamId = game["hTeam"]["teamId"];
 
+          var isPlayoffs = game["seasonStageId"] == 4;
+          var playoff_info;
+
+          if(isPlayoffs)
+          {
+            var playoff_stats = game["playoffs"];
+            playoff_info = {
+              roundNum: playoff_stats["roundNum"],
+              confName: playoff_stats["confName"],
+              seriesSummaryText: playoff_stats["seriesSummaryText"],
+              isSeriesCompleted: playoff_stats["isSeriesCompleted"],
+              gameNumInSeries: playoff_stats["gameNumInSeries"],
+              vTeamSeed: playoff_stats["vTeam"]["seedNum"],
+              vTeamSeriesWins: playoff_stats["vTeam"]["seriesWin"],
+              vTeamIsSeriesWinner: playoff_stats["vTeam"]["isSeriesWinner"],
+              hTeamSeed: playoff_stats["hTeam"]["seedNum"],
+              hTeamSeriesWins: playoff_stats["hTeam"]["seriesWin"],
+              hTeamIsSeriesWinner: playoff_stats["hTeam"]["isSeriesWinner"],
+            }
+          }
+
+          var vTeamAttributes = this.getTeamAttributes(vTeamId);
+          var hTeamAttributes = this.getTeamAttributes(hTeamId);
+
           const game_info = {
             seasonStageId: game["seasonStageId"],
             gameId: game["gameId"],
@@ -101,13 +128,20 @@ export class TeamComponent implements OnInit {
             startDateEastern: game["startDateEastern"],
             longDate: this.getLongDate(game["startDateEastern"]),
             vTeamId: vTeamId,
-            vTeamName: vTeamId == this.teamId ? this.teamName : this.getTeamAttributes(vTeamId)["teamName"],
-            vTeamLogoLocation: vTeamId == this.teamId ? this.teamSecondaryLogoLocation : this.getTeamAttributes(vTeamId)["teamSecondaryLogoLocation"],
+            vTeamName: vTeamId == this.teamId ? this.teamName : vTeamAttributes["teamName"],
+            vTeamAbbreviation: vTeamAttributes["teamAbbreviation"],
+            vTeamLocation: vTeamAttributes["teamLocation"],
+            vTeamSimpleName: vTeamAttributes["teamSimpleName"],
+            vTeamLogoLocation: vTeamId == this.teamId ? this.teamSecondaryLogoLocation : vTeamAttributes["teamSecondaryLogoLocation"],
             vTeamScore: game["vTeam"]["score"],
             hTeamId: hTeamId,
-            hTeamName: hTeamId == this.teamId ? this.teamName : this.getTeamAttributes(hTeamId)["teamName"],
-            hTeamLogoLocation: hTeamId == this.teamId ? this.teamSecondaryLogoLocation : this.getTeamAttributes(hTeamId)["teamSecondaryLogoLocation"],
-            hTeamScore: game["hTeam"]["score"]
+            hTeamName: hTeamId == this.teamId ? this.teamName : hTeamAttributes["teamName"],
+            hTeamAbbreviation: hTeamAttributes["teamAbbreviation"],
+            hTeamLocation: hTeamAttributes["teamLocation"],
+            hTeamSimpleName: hTeamAttributes["teamSimpleName"],
+            hTeamLogoLocation: hTeamId == this.teamId ? this.teamSecondaryLogoLocation : hTeamAttributes["teamSecondaryLogoLocation"],
+            hTeamScore: game["hTeam"]["score"],
+            playoff_info: playoff_info
           }
 
           this.list_of_games.push(game_info);
@@ -122,6 +156,9 @@ export class TeamComponent implements OnInit {
     var teamId_int = Number(teamId);
 
     var teamName;
+    var teamAbbreviation;
+    var teamLocation;
+    var teamSimpleName;
     var teamPrimaryColor;
     var teamSecondaryColor;
     var teamPrimaryLogoLocation;
@@ -133,6 +170,9 @@ export class TeamComponent implements OnInit {
       if(team["teamId"] == teamId_int)
       {
         teamName = team["teamName"];
+        teamAbbreviation = team["abbreviation"];
+        teamLocation = team["location"];
+        teamSimpleName = team["simpleName"];
         teamPrimaryColor = team["primaryColor"];
         teamSecondaryColor = team["secondaryColor"];
         teamPrimaryLogoLocation = team["primaryLogoLocation"];
@@ -143,6 +183,9 @@ export class TeamComponent implements OnInit {
 
     const team_attributes = {
       teamName: teamName,
+      teamAbbreviation: teamAbbreviation,
+      teamLocation: teamLocation,
+      teamSimpleName: teamSimpleName,
       teamPrimaryColor: teamPrimaryColor,
       teamSecondaryColor: teamSecondaryColor,
       teamPrimaryLogoLocation: teamPrimaryLogoLocation,

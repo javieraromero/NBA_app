@@ -56,12 +56,6 @@ table#visiting_team tr:nth-child(odd) {
    background-color: #fff;
 }
 
-th#visiting_team {
-    background-color: var(--visiting_team_primary);
-    color: var(--visiting_team_secondary);
-}
-
-
 
 table#home_team th {
     background-color: var(--home_team_primary);

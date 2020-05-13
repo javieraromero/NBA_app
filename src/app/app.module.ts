@@ -4,16 +4,20 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 import { HomeComponent } from './pages/home/home.component';
 import { DateComponent } from './pages/date/date.component';
 import { GameComponent } from './pages/game/game.component';
 import { PlayerComponent } from './pages/player/player.component';
 import { TeamComponent } from './pages/team/team.component';
+import { HeaderComponent } from './pages/header/header.component';
 
 import { TeamInfo } from 'src/app/assets/team_info';
 import { PlayersList } from 'src/app/assets/players_list';
 import { DateCalculator } from 'src/app/assets/date_calculator';
+
+import { TeamsSearchPipe } from './pipes/teams-search.pipe';
 
 @NgModule({
   declarations: [
@@ -22,12 +26,15 @@ import { DateCalculator } from 'src/app/assets/date_calculator';
     DateComponent,
     GameComponent,
     PlayerComponent,
-    TeamComponent
+    TeamComponent,
+    HeaderComponent,
+    TeamsSearchPipe
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [
     TeamInfo,

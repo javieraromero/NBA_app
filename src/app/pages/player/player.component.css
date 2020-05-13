@@ -3,7 +3,7 @@ th {
 }
 
 th, td {
-    padding: 12px;
+    padding: 8px;
 }
 
 td {
@@ -27,4 +27,13 @@ table#player_table th {
     background-color: var(--team_primary);
     color: var(--team_secondary);
     text-align: center;
+}
+
+#table-wrapper {
+    position: relative;
+}
+
+#table-scroll {
+    overflow: auto;  
+    margin-top: 15px;
 }
