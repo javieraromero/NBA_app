@@ -1,0 +1,61 @@
+<h1> Current Conference Standings </h1>
+
+<div class="container mt-3">
+    <table style="width: 90%" id="conf_west">
+        <tr>
+            <th colspan="7" style="text-align: center;"> Western Conference </th>
+        </tr>
+        <tr>
+            <th> Seed </th>
+            <th> Team </th>
+            <th> Record </th>
+            <th> Win Pct. </th>
+            <th> Games Behind </th>
+            <th> L10 </th>
+            <th> Streak </th>
+        </tr>
+        <tr *ngFor="let team of western_standings">
+            <td> {{ team["confRank"] }} </td>
+            <td>
+                <a [routerLink]="['/team', team['teamId'], seasonYear]">
+                    {{ team["teamName"] }} {{ team["teamNickname"] }}
+                </a>
+            </td>
+            <td> {{ team["win"] }} - {{ team["loss"] }} </td>
+            <td> {{ team["winPct"] }} </td>
+            <td> {{ team["gamesBehind"] }} </td>
+            <td> {{ team["lastTenWin"] }}  - {{ team["lastTenLoss"] }} </td>
+            <td> {{ team["streak"] }} </td>
+        </tr>
+    </table>
+
+    <br>
+
+    <table style="width: 90%" id="conf_east">
+        <tr>
+            <th colspan="7" style="text-align: center;"> Eastern Conference </th>
+        </tr>
+        <tr>
+            <th> Seed </th>
+            <th> Team </th>
+            <th> Record </th>
+            <th> Win Pct. </th>
+            <th> Games Behind </th>
+            <th> L10 </th>
+            <th> Streak </th>
+        </tr>
+        <tr *ngFor="let team of eastern_standings">
+            <td> {{ team["confRank"] }} </td>
+            <td>
+                <a [routerLink]="['/team', team['teamId'], seasonYear]">
+                    {{ team["teamName"] }} {{ team["teamNickname"] }}
+                </a>
+            </td>
+            <td> {{ team["win"] }} - {{ team["loss"] }} </td>
+            <td> {{ team["winPct"] }} </td>
+            <td> {{ team["gamesBehind"] }} </td>
+            <td> {{ team["lastTenWin"] }}  - {{ team["lastTenLoss"] }} </td>
+            <td> {{ team["streak"] }} </td>
+        </tr>
+    </table>
+</div>

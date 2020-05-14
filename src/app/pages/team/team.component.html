@@ -1,15 +1,112 @@
 <h1><img src="{{ teamPrimaryLogoLocation }}" height="35px"> {{ teamName }} Roster and Schedule </h1>
 
 <div class="container mt-3">
-    <span> Roster </span>
     <table style="width:30%" id="team_table">
         <tr>
-            <th> Name </th>
+            <th> Roster </th>
         </tr>
         <tr *ngFor="let player of roster">
             <td>
-                <a [routerLink]="['/player', player['playerId']]"> {{ player["firstName"] }} {{ player["lastName"] }} </a>
+                <a [routerLink]="['/player', player['playerId'], year]"> {{ player["firstName"] }} {{ player["lastName"] }} </a>
             </td>
+        </tr>
+    </table>
+
+    <br>
+
+    <table style="width:80%" id="team_table">
+        <tr>
+            <th colspan="3"> Team Leaders </th>
+        </tr>
+        <tr>
+            <td> Points Per Game </td>
+            <td>
+                <a [routerLink]="['/player', team_leaders['ppgPlayerId'], year]">
+                    {{ team_leaders["ppgPlayerName"] }}
+                </a>
+            </td>
+            <td> {{ team_leaders["ppgValue"] }} </td>
+        </tr>
+        <tr>
+            <td> Rebounds Per Game </td>
+            <td>
+                <a [routerLink]="['/player', team_leaders['trpgPlayerId'], year]">
+                    {{ team_leaders["trpgPlayerName"] }}
+                </a>
+            </td>
+            <td> {{ team_leaders["trpgValue"] }} </td>
+        </tr>
+        <tr>
+            <td> Assists Per Game </td>
+            <td>
+                <a [routerLink]="['/player', team_leaders['apgPlayerId'], year]">
+                    {{ team_leaders["apgPlayerName"] }}
+                </a>
+            </td>
+            <td> {{ team_leaders["apgValue"] }} </td>
+        </tr>
+        <tr>
+            <td> Field Goal Percentage </td>
+            <td>
+                <a [routerLink]="['/player', team_leaders['fgpPlayerId'], year]">
+                    {{ team_leaders["fgpPlayerName"] }}
+                </a>
+            </td>
+            <td> {{ team_leaders["fgpValue"] }} </td>
+        </tr>
+        <tr>
+            <td> Three Point Percentage </td>
+            <td>
+                <a [routerLink]="['/player', team_leaders['tppPlayerId'], year]">
+                    {{ team_leaders["tppPlayerName"] }}
+                </a>
+            </td>
+            <td> {{ team_leaders["tppValue"] }} </td>
+        </tr>
+        <tr>
+            <td> Free Throw Percentage </td>
+            <td>
+                <a [routerLink]="['/player', team_leaders['ftpPlayerId'], year]">
+                    {{ team_leaders["ftpPlayerName"] }}
+                </a>
+            </td>
+            <td> {{ team_leaders["ftpValue"] }} </td>
+        </tr>
+        <tr>
+            <td> Blocks Per Game </td>
+            <td>
+                <a [routerLink]="['/player', team_leaders['bpgPlayerId'], year]">
+                    {{ team_leaders["bpgPlayerName"] }}
+                </a>
+            </td>
+            <td> {{ team_leaders["bpgValue"] }} </td>
+        </tr>
+        <tr>
+            <td> Steals Per Game </td>
+            <td>
+                <a [routerLink]="['/player', team_leaders['spgPlayerId'], year]">
+                    {{ team_leaders["spgPlayerName"] }}
+                </a>
+            </td>
+            <td> {{ team_leaders["spgValue"] }} </td>
+        </tr>
+        <tr>
+            <td> Turnovers Per Game </td>
+            <td>
+                <a [routerLink]="['/player', team_leaders['tpgPlayerId'], year]">
+                    {{ team_leaders["tpgPlayerName"] }}
+                </a>
+            </td>
+            <td> {{ team_leaders["tpgValue"] }} </td>
+        </tr>
+        <tr>
+            <td> Personal Fouls Per Game </td>
+            <td>
+                <a [routerLink]="['/player', team_leaders['pfpgPlayerId'], year]">
+                    {{ team_leaders["pfpgPlayerName"] }}
+                </a>
+            </td>
+            <td> {{ team_leaders["pfpgValue"] }} </td>
         </tr>
     </table>
 
@@ -30,7 +127,7 @@
                 <a href="/date/{{ game['startDateEastern'] }}"> {{ game["longDate"] }} </a>
             </td>
             <td> 
-                <a href="/team/{{ game['vTeamId'] }}">
+                <a href="/team/{{ game['vTeamId'] }}/{{ year }}">
                     <img src="{{ game['vTeamLogoLocation'] }}" height="35px">
                     <br>
                     {{ game["vTeamName"] }}
@@ -47,7 +144,7 @@
                 <a [routerLink]="['/date', game['startDateEastern'], game['gameId']]"> Boxscore </a>
             </td>
             <td>
-                <a href="/team/{{ game['hTeamId'] }}">
+                <a href="/team/{{ game['hTeamId'] }}/{{ year }}">
                     <img src="{{ game['hTeamLogoLocation'] }}" height="35px">
                     <br>
                     {{ game["hTeamName"] }}

@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 
 import { TeamInfo } from 'src/app/assets/team_info';
+import { DateCalculator } from 'src/app/assets/date_calculator';
 
 @Component({
   selector: 'app-header',
@@ -14,16 +15,22 @@ export class HeaderComponent implements OnInit {
 
   date;
   games: Object[] = [];
+  previousDate;
+  nextDate;
+  longDate;
 
   constructor(
     private http: HttpClient,
     private teamInfo: TeamInfo,
     private route: ActivatedRoute,
+    private dateCalcuator: DateCalculator
   ) { }
 
   ngOnInit() {
     this.date = this.route.snapshot.paramMap.get('date');
     this.getData(this.date);
+    this.setPreviousAndNextDate(this.date);
+    this.setLongDate(this.date);
   }
 
   getData(date: String)
@@ -91,5 +98,44 @@ export class HeaderComponent implements OnInit {
           this.games.push(game_info);
         }
       })
+  }
+
+  gotoPreviousDate()
+  {
+    this.games = [];
+    this.date = this.previousDate;
+    this.setPreviousAndNextDate(this.date);
+    this.setLongDate(this.date);
+    this.getData(this.date);
+  }
+
+  gotoNextDate()
+  {
+    this.games = [];
+    this.date = this.nextDate;
+    this.setPreviousAndNextDate(this.date);
+    this.setLongDate(this.date);
+    this.getData(this.date);
+  }
+
+  setPreviousAndNextDate(date: String)
+  {
+    this.dateCalcuator.setDate(date);
+    this.dateCalcuator.previousDay();
+    this.previousDate = this.dateCalcuator.getDate();
+    this.dateCalcuator.setDate(date);
+    this.dateCalcuator.nextDay();
+    this.nextDate = this.dateCalcuator.getDate();
+  }
+
+  setLongDate(date: String)
+  {
+    var year = Number(date.slice(0, 4));
+    var month = Number(date.slice(4, 6)) - 1;
+    var day = Number(date.slice(6, ));
+
+    var newDate = new Date(year, month, day);
+
+    this.longDate = newDate.toDateString();
   }
 }

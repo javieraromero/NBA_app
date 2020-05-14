@@ -47,6 +47,7 @@ export class DateComponent implements OnInit
         {
           var game = list_of_games[i];
 
+          var seasonYear = game["seasonYear"];
           var gameId = game["gameId"];
 
           var visitingId = Number(game["vTeam"]["teamId"]);
@@ -89,9 +90,10 @@ export class DateComponent implements OnInit
           printable_label = "Final";
           var quarters_elapsed = game["period"]["current"];
           if(quarters_elapsed > 4)
-            printable_label += " (" + (quarters_elapsed > 5? String(quarters_elapsed - 4) : "") + "OT)";
+            printable_label += " (" + (quarters_elapsed > 5 ? String(quarters_elapsed - 4) : "") + "OT)";
 
           const game_info = {
+            seasonYear: seasonYear,
             game_Id: gameId,
             visitingTeam: visiting_team,
             visitingTeamId: visitingId,

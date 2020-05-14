@@ -72,6 +72,7 @@ export class GameComponent implements OnInit {
           }
 
           this.game_data = {
+            seasonYear: basicGameData["seasonYear"],
             arena_name: basicGameData["arena"]["name"],
             arena_location: basicGameData["arena"]["city"] + ", " + basicGameData["arena"]["stateAbbr"],
             isGameActivated: basicGameData["isGameActivated"],
@@ -192,7 +193,7 @@ export class GameComponent implements OnInit {
               this.home_players.push(player);
             }
           }
-      })
+      });
   }
 
   setLongDate(date: String)

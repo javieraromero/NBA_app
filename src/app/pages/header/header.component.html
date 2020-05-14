@@ -1,5 +1,8 @@
+<button (click)="gotoPreviousDate()"> Previous Date </button>
+<span> Games for {{ longDate }} </span>
+<button (click)="gotoNextDate()"> Next Date </button>
 <div class="scrolling-wrapper">
-    <div class="no_games_card" *ngIf="games.length === 0; else elseBlock" style="width:100%">
+    <div *ngIf="games.length === 0; else elseBlock" style="width:100%">
         <div class="container">
             <div style="text-align: left;">
                 <h3>No NBA Games Today!</h3>

@@ -1,0 +1,38 @@
+th {
+    text-align: left;
+}
+
+th, td {
+    padding: 8px;
+}
+
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+table#conf_west tr:nth-child(even) {
+    background-color: #eee;
+}
+
+table#conf_west tr:nth-child(odd) {
+   background-color: #fff;
+}
+
+table#conf_west th {
+    background-color: #C9082A;
+    color: white;
+}
+
+table#conf_east tr:nth-child(even) {
+    background-color: #eee;
+}
+
+table#conf_east tr:nth-child(odd) {
+   background-color: #fff;
+}
+
+table#conf_east th {
+    background-color: #17408B;
+    color: white;
+}

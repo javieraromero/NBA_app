@@ -1,0 +1,18 @@
+<h1> Play-by-play </h1>
+
+<div class="container mt-3">
+    <table style="width: 80%" id="pbp">
+        <tr>
+            <th> Quarter </th>
+            <th> Clock </th>
+            <th> Play </th>
+            <th width="12%"> Score </th>
+        </tr>
+        <tr *ngFor="let play of pbp">
+            <td style="text-align: center;"> {{ play["period"] }} </td>
+            <td style="text-align: center;"> {{ play["clock"] }} </td>
+            <td style="text-align: left;"> {{ play["description"] }} </td>
+            <td style="text-align: center;"> {{ play["visitor_score"] }} - {{ play["home_score"] }} </td>
+        </tr>
+    </table>
+</div>

@@ -1,25 +1,26 @@
 .scrolling-wrapper {
-    overflow-x: scroll;
-    overflow-y: hidden;
-    white-space: nowrap;
-    width: 100%;
-    height: auto;
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+  width: 100%;
+  height: auto;
+  border-bottom-style: solid;
 }
-    .card {
-      display: inline-block;
-      box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-      transition: 0.3s;
-    border-radius: 5px; /* 5px rounded corners */
-    }
+.card {
+  display: inline-block;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  border-radius: 5px; /* 5px rounded corners */
+}
 
-    .card:hover {
-        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-        background-color: gainsboro;
-        cursor: pointer;
-    }
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  background-color: gainsboro;
+  cursor: pointer;
+}
 
-    .container {
-        padding: 2px 16px;
-      }
+.container {
+  padding: 2px 16px;
+}
 
       

@@ -12,6 +12,9 @@ import { GameComponent } from './pages/game/game.component';
 import { PlayerComponent } from './pages/player/player.component';
 import { TeamComponent } from './pages/team/team.component';
 import { HeaderComponent } from './pages/header/header.component';
+import { PbpComponent } from './pages/pbp/pbp.component';
+import { ConferenceStandingsComponent } from './pages/conference-standings/conference-standings.component';
+import { DivisionStandingsComponent } from './pages/division-standings/division-standings.component';
 
 import { TeamInfo } from 'src/app/assets/team_info';
 import { PlayersList } from 'src/app/assets/players_list';
@@ -28,7 +31,10 @@ import { TeamsSearchPipe } from './pipes/teams-search.pipe';
     PlayerComponent,
     TeamComponent,
     HeaderComponent,
-    TeamsSearchPipe
+    TeamsSearchPipe,
+    PbpComponent,
+    ConferenceStandingsComponent,
+    DivisionStandingsComponent
   ],
   imports: [
     BrowserModule,

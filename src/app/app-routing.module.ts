@@ -6,6 +6,8 @@ import { DateComponent } from './pages/date/date.component';
 import { GameComponent } from './pages/game/game.component';
 import { PlayerComponent } from './pages/player/player.component';
 import { TeamComponent } from './pages/team/team.component';
+import { PbpComponent } from './pages/pbp/pbp.component';
+import { ConferenceStandingsComponent } from './pages/conference-standings/conference-standings.component';
 
 const routes: Routes = [
   {
@@ -18,10 +20,16 @@ const routes: Routes = [
     path: 'date/:date/:gameId', component: GameComponent
   },
   {
-    path: 'player/:personId', component: PlayerComponent
+    path: 'date/:date/:gameId/pbp', component: PbpComponent
   },
   {
-    path: 'team/:teamId', component: TeamComponent
+    path: 'player/:personId/:year', component: PlayerComponent
+  },
+  {
+    path: 'team/:teamId/:year', component: TeamComponent
+  },
+  {
+    path: 'standings/conference', component: ConferenceStandingsComponent
   },
 ];
 

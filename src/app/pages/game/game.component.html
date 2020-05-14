@@ -39,6 +39,9 @@
             <td width="50%"> Series Record </td>
             <td width="50%"> {{ game_data["hTeamSeriesRecord"] }} </td>
         </tr>
+        <tr>
+            <td colspan="2"><a routerLink="pbp"> Play-by-play </a></td>
+        </tr>
     </table>
     <span>Team Totals</span>
     <table style="width:75%" id="totals">
@@ -193,7 +196,7 @@
             <th> +/- </th>
         </tr>
         <tr *ngFor="let player of visiting_players">
-            <td><a [routerLink]="['/player', player['personId']]"> {{ player["firstName"] }} {{ player["lastName"] }} </a></td>
+            <td><a [routerLink]="['/player', player['personId'], game_data['seasonYear']]"> {{ player["firstName"] }} {{ player["lastName"] }} </a></td>
             <td colspan="21" *ngIf="player['dnp']; else elseBlock"> {{ player["dnp"] }} </td>
             <ng-template #elseBlock>
                 <td> {{ player["pos"] }} </td>
@@ -249,7 +252,7 @@
             <th> +/- </th>
         </tr>
         <tr *ngFor="let player of home_players">
-            <td><a [routerLink]="['/player', player['personId']]"> {{ player["firstName"] }} {{ player["lastName"] }} </a></td>
+            <td><a [routerLink]="['/player', player['personId'], game_data['seasonYear']]"> {{ player["firstName"] }} {{ player["lastName"] }} </a></td>
             <td> {{ player["pos"] }} </td>
             <td> {{ player["points"] }} </td>
             <td> {{ player["min"] }} </td>

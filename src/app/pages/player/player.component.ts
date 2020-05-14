@@ -31,18 +31,17 @@ export class PlayerComponent implements OnInit {
 
   ngOnInit() {
     const personId = this.route.snapshot.paramMap.get('personId');
-    this.getPlayerData(personId);
+    const year = this.route.snapshot.paramMap.get('year');
+    this.getPlayerData(personId, year);
   }
 
-  getPlayerData(personId: String)
+  getPlayerData(personId: String, year: String)
   {
-    return this.http.get("http://data.nba.net/prod/v1/2019/players/" + personId + "_profile.json")
+    return this.http.get("http://data.nba.net/prod/v1/" + year + "/players/" + personId + "_profile.json")
     .subscribe(response => {
 
         var team_list = this.teamInfo.teams;
         var players_list = this.players.players;
-
-        var current_teamId;
 
         for(let i in players_list)
         {
@@ -51,10 +50,11 @@ export class PlayerComponent implements OnInit {
           {
             this.first_name = player["firstName"];
             this.last_name = player["lastName"];
-            current_teamId = player["teamId"];
             break;
           }
         }
+
+        var current_teamId = response["league"]["standard"]["teamId"];
 
         for(let i in team_list)
         {
