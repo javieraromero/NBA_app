@@ -213,6 +213,7 @@ export class TeamComponent implements OnInit {
             playoff_info = {
               roundNum: playoff_stats["roundNum"],
               confName: playoff_stats["confName"],
+              seriesId: playoff_stats["seriesId"],
               seriesSummaryText: playoff_stats["seriesSummaryText"],
               isSeriesCompleted: playoff_stats["isSeriesCompleted"],
               gameNumInSeries: playoff_stats["gameNumInSeries"],

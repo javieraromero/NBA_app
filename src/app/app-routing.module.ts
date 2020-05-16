@@ -8,6 +8,10 @@ import { PlayerComponent } from './pages/player/player.component';
 import { TeamComponent } from './pages/team/team.component';
 import { PbpComponent } from './pages/pbp/pbp.component';
 import { ConferenceStandingsComponent } from './pages/conference-standings/conference-standings.component';
+import { DivisionStandingsComponent } from './pages/division-standings/division-standings.component';
+import { OverallStandingsComponent } from './pages/overall-standings/overall-standings.component';
+import { SeriesComponent } from './pages/series/series.component';
+import { PlayoffBracketComponent } from './pages/playoff-bracket/playoff-bracket.component';
 
 const routes: Routes = [
   {
@@ -30,6 +34,18 @@ const routes: Routes = [
   },
   {
     path: 'standings/conference', component: ConferenceStandingsComponent
+  },
+  {
+    path: 'standings/division', component: DivisionStandingsComponent
+  },
+  {
+    path: 'standings/overall', component: OverallStandingsComponent
+  },
+  {
+    path: 'series/:seriesId/:year', component: SeriesComponent
+  },
+  {
+    path: 'playoff-bracket/:year', component: PlayoffBracketComponent
   },
 ];
 

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { HttpClient } from '@angular/common/http';
-import { getLocaleDateFormat } from '@angular/common';
+//import { getLocaleDateFormat } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 
 import { TeamInfo } from 'src/app/assets/team_info';

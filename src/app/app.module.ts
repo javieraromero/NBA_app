@@ -15,6 +15,9 @@ import { HeaderComponent } from './pages/header/header.component';
 import { PbpComponent } from './pages/pbp/pbp.component';
 import { ConferenceStandingsComponent } from './pages/conference-standings/conference-standings.component';
 import { DivisionStandingsComponent } from './pages/division-standings/division-standings.component';
+import { OverallStandingsComponent } from './pages/overall-standings/overall-standings.component';
+import { SeriesComponent } from './pages/series/series.component';
+import { PlayoffBracketComponent } from './pages/playoff-bracket/playoff-bracket.component';
 
 import { TeamInfo } from 'src/app/assets/team_info';
 import { PlayersList } from 'src/app/assets/players_list';
@@ -34,7 +37,10 @@ import { TeamsSearchPipe } from './pipes/teams-search.pipe';
     TeamsSearchPipe,
     PbpComponent,
     ConferenceStandingsComponent,
-    DivisionStandingsComponent
+    DivisionStandingsComponent,
+    OverallStandingsComponent,
+    SeriesComponent,
+    PlayoffBracketComponent
   ],
   imports: [
     BrowserModule,

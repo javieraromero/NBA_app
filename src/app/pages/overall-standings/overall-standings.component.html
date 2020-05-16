@@ -1,0 +1,34 @@
+<h1> Current Overall Standings </h1>
+
+<div class="container mt-3">
+    <table style="width: 90%" id="overall_table">
+        <tr>
+            <th> Rank </th>
+            <th> Team </th>
+            <th> Record </th>
+            <th> Win Pct. </th>
+            <th> Conf. Record </th>
+            <th> Div. Record </th>
+            <th> Home Record </th>
+            <th> Away Record </th>
+            <th> L10 </th>
+            <th> Streak </th>
+        </tr>
+        <tr *ngFor="let team of overall_standings; index as i">
+            <td> {{ i + 1 }} </td>
+            <td>
+                <a [routerLink]="['/team', team['teamId'], seasonYear]">
+                    {{ team["teamName"] }} {{ team["teamNickname"] }}
+                </a>
+            </td>
+            <td> {{ team["win"] }} - {{ team["loss"] }} </td>
+            <td> {{ team["winPct"] }} </td>
+            <td> {{ team["confWin"] }} - {{ team["confLoss"] }} </td>
+            <td> {{ team["divWin"] }} - {{ team["divLoss"] }} </td>
+            <td> {{ team["homeWin"] }} - {{ team["homeLoss"] }} </td>
+            <td> {{ team["awayWin"] }} - {{ team["awayLoss"] }} </td>
+            <td> {{ team["lastTenWin"] }} - {{ team["lastTenLoss"] }} </td>
+            <td> {{ team["streakText"] }} </td>
+        </tr>
+    </table>
+</div>

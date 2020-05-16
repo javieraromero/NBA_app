@@ -15,7 +15,7 @@ export class ConferenceStandingsComponent implements OnInit {
   seasonYear;
 
   constructor(
-    private http: HttpClient,
+    private http: HttpClient
   ) { }
 
   ngOnInit() {

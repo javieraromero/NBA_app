@@ -1,0 +1,44 @@
+th {
+    text-align: left;
+}
+
+th, td {
+    padding: 8px;
+}
+
+td {
+    text-align: center;
+}
+
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+table#team1_table tr:nth-child(even) {
+    background-color: #eee;
+}
+
+table#team1_table tr:nth-child(odd) {
+   background-color: #fff;
+}
+
+table#team1_table th {
+    background-color: var(--team1_primary);
+    color: var(--team1_secondary);
+    text-align: center;
+}
+
+table#team2_table tr:nth-child(even) {
+    background-color: #eee;
+}
+
+table#team2_table tr:nth-child(odd) {
+   background-color: #fff;
+}
+
+table#team2_table th {
+    background-color: var(--team2_primary);
+    color: var(--team2_secondary);
+    text-align: center;
+}
