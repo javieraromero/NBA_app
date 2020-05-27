@@ -1,29 +1,31 @@
 <h1> Current Conference Standings </h1>
 
 <div class="container mt-3">
-    <table style="width: 90%" id="conf_west">
+    <table style="width: 100%" id="conf_west">
         <tr>
-            <th colspan="7" style="text-align: center;"> Western Conference </th>
+            <th colspan="9" style="text-align: center;"> Western Conference </th>
         </tr>
         <tr>
-            <th> Seed </th>
-            <th> Team </th>
-            <th> Record </th>
-            <th> Win Pct. </th>
-            <th> Games Behind </th>
-            <th> L10 </th>
-            <th> Streak </th>
+            <th style="width: 5%"> Seed </th>
+            <th style="width: 25%"> Team </th>
+            <th style="width: 10%"> Record </th>
+            <th style="width: 10%"> Win Pct. </th>
+            <th style="width: 10%"> Games Behind </th>
+            <th style="width: 10%"> Home Record </th>
+            <th style="width: 10%"> Away Record </th>
+            <th style="width: 10%"> L10 </th>
+            <th style="width: 10%"> Streak </th>
         </tr>
         <tr *ngFor="let team of western_standings">
             <td> {{ team["confRank"] }} </td>
             <td>
-                <a [routerLink]="['/team', team['teamId'], seasonYear]">
-                    {{ team["teamName"] }} {{ team["teamNickname"] }}
-                </a>
+                {{ team["clinchedPlayoffsCode"] != "" ? team["clinchedPlayoffsCode"] + "-" : "" }}<a [routerLink]="['/team', team['teamId'], seasonYear]">{{ team["teamName"] }} {{ team["teamNickname"] }}</a>
             </td>
             <td> {{ team["win"] }} - {{ team["loss"] }} </td>
             <td> {{ team["winPct"] }} </td>
             <td> {{ team["gamesBehind"] }} </td>
+            <td> {{ team["homeWin"] }} - {{ team["homeLoss"] }} </td>
+            <td> {{ team["awayWin"] }} - {{ team["awayLoss"] }} </td>
             <td> {{ team["lastTenWin"] }} - {{ team["lastTenLoss"] }} </td>
             <td> {{ team["streak"] }} </td>
         </tr>
@@ -31,29 +33,31 @@
 
     <br>
 
-    <table style="width: 90%" id="conf_east">
+    <table style="width: 100%" id="conf_east">
         <tr>
-            <th colspan="7" style="text-align: center;"> Eastern Conference </th>
+            <th colspan="9" style="text-align: center;"> Eastern Conference </th>
         </tr>
         <tr>
-            <th> Seed </th>
-            <th> Team </th>
-            <th> Record </th>
-            <th> Win Pct. </th>
-            <th> Games Behind </th>
-            <th> L10 </th>
-            <th> Streak </th>
+            <th style="width: 5%"> Seed </th>
+            <th style="width: 25%"> Team </th>
+            <th style="width: 10%"> Record </th>
+            <th style="width: 10%"> Win Pct. </th>
+            <th style="width: 10%"> Games Behind </th>
+            <th style="width: 10%"> Home Record </th>
+            <th style="width: 10%"> Away Record </th>
+            <th style="width: 10%"> L10 </th>
+            <th style="width: 10%"> Streak </th>
         </tr>
         <tr *ngFor="let team of eastern_standings">
             <td> {{ team["confRank"] }} </td>
             <td>
-                <a [routerLink]="['/team', team['teamId'], seasonYear]">
-                    {{ team["teamName"] }} {{ team["teamNickname"] }}
-                </a>
+                {{ team["clinchedPlayoffsCode"] != "" ? team["clinchedPlayoffsCode"] + "-" : "" }}<a [routerLink]="['/team', team['teamId'], seasonYear]">{{ team["teamName"] }} {{ team["teamNickname"] }}</a>
             </td>
             <td> {{ team["win"] }} - {{ team["loss"] }} </td>
             <td> {{ team["winPct"] }} </td>
             <td> {{ team["gamesBehind"] }} </td>
+            <td> {{ team["homeWin"] }} - {{ team["homeLoss"] }} </td>
+            <td> {{ team["awayWin"] }} - {{ team["awayLoss"] }} </td>
             <td> {{ team["lastTenWin"] }}  - {{ team["lastTenLoss"] }} </td>
             <td> {{ team["streak"] }} </td>
         </tr>

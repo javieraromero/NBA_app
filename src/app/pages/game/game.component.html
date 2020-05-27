@@ -1,5 +1,20 @@
 <h1> NBA Game </h1>
 
+<h3>{{ recap_data["title"] }} </h3>
+<h5>{{ recap_data["author"] }}, {{ recap_data["authorTitle"] }} </h5>
+
+<p *ngFor="let paragraph of recap">
+    {{ paragraph }}
+</p>
+
+<br>
+
+<h3>{{ preview_data["title"] }} </h3>
+
+<p *ngFor="let paragraph of preview">
+    {{ paragraph }}
+</p>
+
 <div class="container mt-3">
     <span>Game Information</span>
     <table style="width:70%" id="info">

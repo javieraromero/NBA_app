@@ -12,6 +12,7 @@ import { DivisionStandingsComponent } from './pages/division-standings/division-
 import { OverallStandingsComponent } from './pages/overall-standings/overall-standings.component';
 import { SeriesComponent } from './pages/series/series.component';
 import { PlayoffBracketComponent } from './pages/playoff-bracket/playoff-bracket.component';
+import { AllStarComponent } from './pages/all-star/all-star.component';
 
 const routes: Routes = [
   {
@@ -46,6 +47,9 @@ const routes: Routes = [
   },
   {
     path: 'playoff-bracket/:year', component: PlayoffBracketComponent
+  },
+  {
+    path: 'all-star/:year', component: AllStarComponent
   },
 ];
 

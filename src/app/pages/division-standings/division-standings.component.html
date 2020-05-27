@@ -10,27 +10,23 @@
                 <th colspan="9"> Southwest Division </th>
             </tr>
             <tr>
-                <th> Div Rank </th>
-                <th> Team </th>
-                <th> Record </th>
-                <th> Div Record</th>
-                <th> Win Pct. </th>
-                <th> Games Behind </th>
-                <th> Div Games Behind </th>
-                <th> L10 </th>
-                <th> Streak </th>
+                <th style="width: 10%"> Div Rank </th>
+                <th style="width: 30%"> Team </th>
+                <th style="width: 10%"> Record </th>
+                <th style="width: 10%"> Win Pct. </th>
+                <th style="width: 10%"> Div Record</th>
+                <th style="width: 10%"> Div Games Behind </th>
+                <th style="width: 10%"> L10 </th>
+                <th style="width: 10%"> Streak </th>
             </tr>
             <tr *ngFor="let team of southwest_standings">
                 <td> {{ team["divRank"] }} </td>
                 <td>
-                    <a [routerLink]="['/team', team['teamId'], seasonYear]">
-                        {{ team["teamName"] }} {{ team["teamNickname"] }}
-                    </a>
+                    {{ team["clinchedPlayoffsCode"] != "" ? team["clinchedPlayoffsCode"] + "-" : "" }}<a [routerLink]="['/team', team['teamId'], seasonYear]">{{ team["teamName"] }} {{ team["teamNickname"] }}</a>
                 </td>
                 <td> {{ team["win"] }} - {{ team["loss"] }} </td>
-                <td> {{ team["divWin"] }} - {{ team["divLoss"] }} </td>
                 <td> {{ team["winPct"] }} </td>
-                <td> {{ team["gamesBehind"] }} </td>
+                <td> {{ team["divWin"] }} - {{ team["divLoss"] }} </td>
                 <td> {{ team["divGamesBehind"] }} </td>
                 <td> {{ team["lastTenWin"] }}  - {{ team["lastTenLoss"] }} </td>
                 <td> {{ team["streakText"] }} </td>
@@ -41,27 +37,23 @@
                 <th colspan="9"> Pacific Division </th>
             </tr>
             <tr>
-                <th> Div Rank </th>
-                <th> Team </th>
-                <th> Record </th>
-                <th> Div Record</th>
-                <th> Win Pct. </th>
-                <th> Games Behind </th>
-                <th> Div Games Behind </th>
-                <th> L10 </th>
-                <th> Streak </th>
+                <th style="width: 10%"> Div Rank </th>
+                <th style="width: 30%"> Team </th>
+                <th style="width: 10%"> Record </th>
+                <th style="width: 10%"> Win Pct. </th>
+                <th style="width: 10%"> Div Record</th>
+                <th style="width: 10%"> Div Games Behind </th>
+                <th style="width: 10%"> L10 </th>
+                <th style="width: 10%"> Streak </th>
             </tr>
             <tr *ngFor="let team of pacific_standings">
                 <td> {{ team["divRank"] }} </td>
                 <td>
-                    <a [routerLink]="['/team', team['teamId'], seasonYear]">
-                        {{ team["teamName"] }} {{ team["teamNickname"] }}
-                    </a>
+                    {{ team["clinchedPlayoffsCode"] != "" ? team["clinchedPlayoffsCode"] + "-" : "" }}<a [routerLink]="['/team', team['teamId'], seasonYear]">{{ team["teamName"] }} {{ team["teamNickname"] }}</a>
                 </td>
                 <td> {{ team["win"] }} - {{ team["loss"] }} </td>
-                <td> {{ team["divWin"] }} - {{ team["divLoss"] }} </td>
                 <td> {{ team["winPct"] }} </td>
-                <td> {{ team["gamesBehind"] }} </td>
+                <td> {{ team["divWin"] }} - {{ team["divLoss"] }} </td>
                 <td> {{ team["divGamesBehind"] }} </td>
                 <td> {{ team["lastTenWin"] }} - {{ team["lastTenLoss"] }} </td>
                 <td> {{ team["streakText"] }} </td>
@@ -72,27 +64,23 @@
                 <th colspan="9"> Northwest Division </th>
             </tr>
             <tr>
-                <th> Div Rank </th>
-                <th> Team </th>
-                <th> Record </th>
-                <th> Div Record</th>
-                <th> Win Pct. </th>
-                <th> Games Behind </th>
-                <th> Div Games Behind </th>
-                <th> L10 </th>
-                <th> Streak </th>
+                <th style="width: 10%"> Div Rank </th>
+                <th style="width: 30%"> Team </th>
+                <th style="width: 10%"> Record </th>
+                <th style="width: 10%"> Win Pct. </th>
+                <th style="width: 10%"> Div Record</th>
+                <th style="width: 10%"> Div Games Behind </th>
+                <th style="width: 10%"> L10 </th>
+                <th style="width: 10%"> Streak </th>
             </tr>
             <tr *ngFor="let team of northwest_standings">
                 <td> {{ team["divRank"] }} </td>
                 <td>
-                    <a [routerLink]="['/team', team['teamId'], seasonYear]">
-                        {{ team["teamName"] }} {{ team["teamNickname"] }}
-                    </a>
+                    {{ team["clinchedPlayoffsCode"] != "" ? team["clinchedPlayoffsCode"] + "-" : "" }}<a [routerLink]="['/team', team['teamId'], seasonYear]">{{ team["teamName"] }} {{ team["teamNickname"] }}</a>
                 </td>
                 <td> {{ team["win"] }} - {{ team["loss"] }} </td>
-                <td> {{ team["divWin"] }} - {{ team["divLoss"] }} </td>
                 <td> {{ team["winPct"] }} </td>
-                <td> {{ team["gamesBehind"] }} </td>
+                <td> {{ team["divWin"] }} - {{ team["divLoss"] }} </td>
                 <td> {{ team["divGamesBehind"] }} </td>
                 <td> {{ team["lastTenWin"] }}  - {{ team["lastTenLoss"] }} </td>
                 <td> {{ team["streakText"] }} </td>
@@ -111,27 +99,23 @@
                 <th colspan="9"> Southeast Division </th>
             </tr>
             <tr>
-                <th> Div Rank </th>
-                <th> Team </th>
-                <th> Record </th>
-                <th> Div Record</th>
-                <th> Win Pct. </th>
-                <th> Games Behind </th>
-                <th> Div Games Behind </th>
-                <th> L10 </th>
-                <th> Streak </th>
+                <th style="width: 10%"> Div Rank </th>
+                <th style="width: 30%"> Team </th>
+                <th style="width: 10%"> Record </th>
+                <th style="width: 10%"> Win Pct. </th>
+                <th style="width: 10%"> Div Record</th>
+                <th style="width: 10%"> Div Games Behind </th>
+                <th style="width: 10%"> L10 </th>
+                <th style="width: 10%"> Streak </th>
             </tr>
             <tr *ngFor="let team of southeast_standings">
                 <td> {{ team["divRank"] }} </td>
                 <td>
-                    <a [routerLink]="['/team', team['teamId'], seasonYear]">
-                        {{ team["teamName"] }} {{ team["teamNickname"] }}
-                    </a>
+                    {{ team["clinchedPlayoffsCode"] != "" ? team["clinchedPlayoffsCode"] + "-" : "" }}<a [routerLink]="['/team', team['teamId'], seasonYear]">{{ team["teamName"] }} {{ team["teamNickname"] }}</a>
                 </td>
                 <td> {{ team["win"] }} - {{ team["loss"] }} </td>
-                <td> {{ team["divWin"] }} - {{ team["divLoss"] }} </td>
                 <td> {{ team["winPct"] }} </td>
-                <td> {{ team["gamesBehind"] }} </td>
+                <td> {{ team["divWin"] }} - {{ team["divLoss"] }} </td>
                 <td> {{ team["divGamesBehind"] }} </td>
                 <td> {{ team["lastTenWin"] }}  - {{ team["lastTenLoss"] }} </td>
                 <td> {{ team["streakText"] }} </td>
@@ -142,27 +126,23 @@
                 <th colspan="9"> Atlantic Division </th>
             </tr>
             <tr>
-                <th> Div Rank </th>
-                <th> Team </th>
-                <th> Record </th>
-                <th> Div Record</th>
-                <th> Win Pct. </th>
-                <th> Games Behind </th>
-                <th> Div Games Behind </th>
-                <th> L10 </th>
-                <th> Streak </th>
+                <th style="width: 10%"> Div Rank </th>
+                <th style="width: 30%"> Team </th>
+                <th style="width: 10%"> Record </th>
+                <th style="width: 10%"> Win Pct. </th>
+                <th style="width: 10%"> Div Record</th>
+                <th style="width: 10%"> Div Games Behind </th>
+                <th style="width: 10%"> L10 </th>
+                <th style="width: 10%"> Streak </th>
             </tr>
             <tr *ngFor="let team of atlantic_standings">
                 <td> {{ team["divRank"] }} </td>
                 <td>
-                    <a [routerLink]="['/team', team['teamId'], seasonYear]">
-                        {{ team["teamName"] }} {{ team["teamNickname"] }}
-                    </a>
+                    {{ team["clinchedPlayoffsCode"] != "" ? team["clinchedPlayoffsCode"] + "-" : "" }}<a [routerLink]="['/team', team['teamId'], seasonYear]">{{ team["teamName"] }} {{ team["teamNickname"] }}</a>
                 </td>
                 <td> {{ team["win"] }} - {{ team["loss"] }} </td>
-                <td> {{ team["divWin"] }} - {{ team["divLoss"] }} </td>
                 <td> {{ team["winPct"] }} </td>
-                <td> {{ team["gamesBehind"] }} </td>
+                <td> {{ team["divWin"] }} - {{ team["divLoss"] }} </td>
                 <td> {{ team["divGamesBehind"] }} </td>
                 <td> {{ team["lastTenWin"] }}  - {{ team["lastTenLoss"] }} </td>
                 <td> {{ team["streakText"] }} </td>
@@ -173,27 +153,23 @@
                 <th colspan="9"> Central Division </th>
             </tr>
             <tr>
-                <th> Div Rank </th>
-                <th> Team </th>
-                <th> Record </th>
-                <th> Div Record</th>
-                <th> Win Pct. </th>
-                <th> Games Behind </th>
-                <th> Div Games Behind </th>
-                <th> L10 </th>
-                <th> Streak </th>
+                <th style="width: 10%"> Div Rank </th>
+                <th style="width: 30%"> Team </th>
+                <th style="width: 10%"> Record </th>
+                <th style="width: 10%"> Win Pct. </th>
+                <th style="width: 10%"> Div Record</th>
+                <th style="width: 10%"> Div Games Behind </th>
+                <th style="width: 10%"> L10 </th>
+                <th style="width: 10%"> Streak </th>
             </tr>
             <tr *ngFor="let team of central_standings">
                 <td> {{ team["divRank"] }} </td>
                 <td>
-                    <a [routerLink]="['/team', team['teamId'], seasonYear]">
-                        {{ team["teamName"] }} {{ team["teamNickname"] }}
-                    </a>
+                    {{ team["clinchedPlayoffsCode"] != "" ? team["clinchedPlayoffsCode"] + "-" : "" }}<a [routerLink]="['/team', team['teamId'], seasonYear]">{{ team["teamName"] }} {{ team["teamNickname"] }}</a>
                 </td>
                 <td> {{ team["win"] }} - {{ team["loss"] }} </td>
-                <td> {{ team["divWin"] }} - {{ team["divLoss"] }} </td>
                 <td> {{ team["winPct"] }} </td>
-                <td> {{ team["gamesBehind"] }} </td>
+                <td> {{ team["divWin"] }} - {{ team["divLoss"] }} </td>
                 <td> {{ team["divGamesBehind"] }} </td>
                 <td> {{ team["lastTenWin"] }}  - {{ team["lastTenLoss"] }} </td>
                 <td> {{ team["streakText"] }} </td>

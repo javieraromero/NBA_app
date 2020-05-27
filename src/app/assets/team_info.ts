@@ -131,7 +131,7 @@ export class TeamInfo
       "primaryColor": "#002D62",
       "secondaryColor": "#FDBB30",
       "primaryLogoLocation": "assets/images/team_logos/pacers_primary.png",
-      "secondaryLogoLocation": "assets/images/team_logos/pacers_secondary.gif"
+      "secondaryLogoLocation": "assets/images/team_logos/pacers_secondary.png"
     },
     {
       "teamId": 1610612746,
@@ -175,7 +175,7 @@ export class TeamInfo
       "primaryColor": "#98002E",
       "secondaryColor": "#F9A01B",
       "primaryLogoLocation": "assets/images/team_logos/heat_primary.gif",
-      "secondaryLogoLocation": "assets/images/team_logos/heat_secondary.gif"
+      "secondaryLogoLocation": "assets/images/team_logos/heat_secondary.png"
     },
     {
       "teamId": 1610612749,
@@ -219,7 +219,7 @@ export class TeamInfo
       "primaryColor": "#006BB6",
       "secondaryColor": "#F58426",
       "primaryLogoLocation": "assets/images/team_logos/knicks_primary.gif",
-      "secondaryLogoLocation": "assets/images/team_logos/knicks_secondary.gif"
+      "secondaryLogoLocation": "assets/images/team_logos/knicks_secondary.png"
     },
     {
       "teamId": 1610612760,
@@ -230,7 +230,7 @@ export class TeamInfo
       "primaryColor": "#007AC1",
       "secondaryColor": "#EF3B24",
       "primaryLogoLocation": "assets/images/team_logos/thunder_primary.png",
-      "secondaryLogoLocation": "assets/images/team_logos/thunder_secondary.gif"
+      "secondaryLogoLocation": "assets/images/team_logos/thunder_secondary.png"
     },
     {
       "teamId": 1610612753,
@@ -241,7 +241,7 @@ export class TeamInfo
       "primaryColor": "#0077C0",
       "secondaryColor": "#C4CED4",
       "primaryLogoLocation": "assets/images/team_logos/magic_primary.gif",
-      "secondaryLogoLocation": "assets/images/team_logos/magic_secondary.gif"
+      "secondaryLogoLocation": "assets/images/team_logos/magic_secondary.png"
     },
     {
       "teamId": 1610612755,

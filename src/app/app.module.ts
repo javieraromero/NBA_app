@@ -18,6 +18,7 @@ import { DivisionStandingsComponent } from './pages/division-standings/division-
 import { OverallStandingsComponent } from './pages/overall-standings/overall-standings.component';
 import { SeriesComponent } from './pages/series/series.component';
 import { PlayoffBracketComponent } from './pages/playoff-bracket/playoff-bracket.component';
+import { AllStarComponent } from './pages/all-star/all-star.component';
 
 import { TeamInfo } from 'src/app/assets/team_info';
 import { PlayersList } from 'src/app/assets/players_list';
@@ -40,7 +41,8 @@ import { TeamsSearchPipe } from './pipes/teams-search.pipe';
     DivisionStandingsComponent,
     OverallStandingsComponent,
     SeriesComponent,
-    PlayoffBracketComponent
+    PlayoffBracketComponent,
+    AllStarComponent
   ],
   imports: [
     BrowserModule,

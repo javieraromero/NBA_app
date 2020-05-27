@@ -13,6 +13,7 @@ import { TeamInfo } from '../../assets/team_info';
 export class PlayoffBracketComponent implements OnInit {
 
   year;
+  playoff_year;
   series_10; series_11; series_12; series_13; series_14; series_15; series_16; series_17;
   series_20; series_21; series_22; series_23;
   series_30; series_31;
@@ -26,6 +27,7 @@ export class PlayoffBracketComponent implements OnInit {
 
   ngOnInit() {
     this.year = this.route.snapshot.paramMap.get('year');
+    this.playoff_year = Number(this.year) + 1;
     this.getBracket(this.year);
   }
 

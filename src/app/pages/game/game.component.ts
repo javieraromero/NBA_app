@@ -20,6 +20,10 @@ export class GameComponent implements OnInit {
   visiting_players: Object[] = [];
   home_players: Object[] = [];
   longDate: String;
+  preview_data;
+  preview: String[] = [];
+  recap_data;
+  recap: String[] = [];
 
   constructor(
     private route: ActivatedRoute,
@@ -31,6 +35,8 @@ export class GameComponent implements OnInit {
     const date = this.route.snapshot.paramMap.get('date');
     const gameId = this.route.snapshot.paramMap.get('gameId');
     this.getGameData(date, gameId);
+    this.getPreview(date, gameId);
+    this.getRecap(date, gameId);
     this.setLongDate(date);
   }
 
@@ -193,6 +199,46 @@ export class GameComponent implements OnInit {
               this.home_players.push(player);
             }
           }
+      });
+  }
+
+  getPreview(date: String, gameId: String)
+  {
+    return this.http.get("http://data.nba.net/10s/prod/v1/" + date + "/" + gameId + "_preview_article.json")
+      .subscribe(response => {
+        this.preview_data = {
+          title: response["title"],
+          author: response["author"],
+          authorTitle: response["authorTitle"]
+        }
+
+        var article = response["paragraphs"];
+
+        for(var i = 0; i < article.length; i++)
+        {
+          var paragraph = article[i]["paragraph"];
+          this.preview.push(paragraph);
+        }
+      });
+  }
+
+  getRecap(date: String, gameId: String)
+  {
+    return this.http.get("http://data.nba.net/10s/prod/v1/" + date + "/" + gameId + "_recap_article.json")
+      .subscribe(response => {
+        this.recap_data = {
+          title: response["title"],
+          author: response["author"],
+          authorTitle: response["authorTitle"]
+        }
+
+        var article = response["paragraphs"];
+
+        for(var i = 0; i < article.length; i++)
+        {
+          var paragraph = article[i]["paragraph"];
+          this.recap.push(paragraph);
+        }
       });
   }
 

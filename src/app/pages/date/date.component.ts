@@ -50,6 +50,28 @@ export class DateComponent implements OnInit
           var seasonYear = game["seasonYear"];
           var gameId = game["gameId"];
 
+          var isPlayoffs = game["seasonStageId"] == 4;
+          var playoff_info;
+
+          if(isPlayoffs)
+          {
+            var playoff_stats = game["playoffs"];
+            playoff_info = {
+              roundNum: playoff_stats["roundNum"],
+              confName: playoff_stats["confName"],
+              seriesId: playoff_stats["seriesId"],
+              seriesSummaryText: playoff_stats["seriesSummaryText"],
+              isSeriesCompleted: playoff_stats["isSeriesCompleted"],
+              gameNumInSeries: playoff_stats["gameNumInSeries"],
+              vTeamSeed: playoff_stats["vTeam"]["seedNum"],
+              vTeamSeriesWins: playoff_stats["vTeam"]["seriesWin"],
+              vTeamIsSeriesWinner: playoff_stats["vTeam"]["isSeriesWinner"],
+              hTeamSeed: playoff_stats["hTeam"]["seedNum"],
+              hTeamSeriesWins: playoff_stats["hTeam"]["seriesWin"],
+              hTeamIsSeriesWinner: playoff_stats["hTeam"]["isSeriesWinner"],
+            }
+          }
+
           var visitingId = Number(game["vTeam"]["teamId"]);
           var homeId = Number(game["hTeam"]["teamId"]);
 
@@ -94,6 +116,7 @@ export class DateComponent implements OnInit
 
           const game_info = {
             seasonYear: seasonYear,
+            seasonStageId: game["seasonStageId"],
             game_Id: gameId,
             visitingTeam: visiting_team,
             visitingTeamId: visitingId,
@@ -106,6 +129,7 @@ export class DateComponent implements OnInit
             homeRecord: home_record,
             homeScore: home_score,
             label: printable_label,
+            playoff_info: playoff_info
           }
 
           this.games.push(game_info);

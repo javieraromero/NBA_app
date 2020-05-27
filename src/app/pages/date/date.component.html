@@ -24,7 +24,13 @@
                     <br>
                     {{ game["visitingRecord"] }} 
                 </td>
-                <td> 
+                <td>
+                    <div *ngIf="game['seasonStageId'] === 1"><span>Preseason</span></div>
+                    <div *ngIf="game['seasonStageId'] === 4">
+                        <span>Playoffs 
+                            <a [routerLink]="['/series', game['playoff_info']['seriesId'], game['seasonYear']]">(R{{ game["playoff_info"]["roundNum"] }}G{{ game["playoff_info"]["gameNumInSeries"] }})</a>
+                        </span>
+                    </div>
                     {{ game["label"] }} 
                     <br> 
                     {{ game["visitingScore"] }} - {{ game["homeScore"] }}

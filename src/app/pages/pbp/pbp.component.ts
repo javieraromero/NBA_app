@@ -28,10 +28,7 @@ export class PbpComponent implements OnInit {
     return this.http.get("http://data.nba.net/data/10s/json/cms/noseason/game/" + date + "/" + gameId + "/pbp_all.json")
     .subscribe(response => {
 
-      console.log(response);
       var plays = response["sports_content"]["game"]["play"];
-
-      console.log(plays);
 
       for(var i = 0; i < plays.length; i++)
       {
@@ -51,6 +48,8 @@ export class PbpComponent implements OnInit {
 
         this.pbp.push(pbp_play);
       }
+
+      this.pbp.reverse();
     });
   }
 

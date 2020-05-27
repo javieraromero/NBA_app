@@ -1,25 +1,23 @@
 <h1> Current Overall Standings </h1>
 
 <div class="container mt-3">
-    <table style="width: 90%" id="overall_table">
+    <table style="width: 100%" id="overall_table">
         <tr>
-            <th> Rank </th>
-            <th> Team </th>
-            <th> Record </th>
-            <th> Win Pct. </th>
-            <th> Conf. Record </th>
-            <th> Div. Record </th>
-            <th> Home Record </th>
-            <th> Away Record </th>
-            <th> L10 </th>
-            <th> Streak </th>
+            <th style="width: 5%"> Rank </th>
+            <th style="width: 20%"> Team </th>
+            <th style="width: 10%"> Record </th>
+            <th style="width: 5%"> Win Pct. </th>
+            <th style="width: 10%"> Conf. Record </th>
+            <th style="width: 10%"> Div. Record </th>
+            <th style="width: 10%"> Home Record </th>
+            <th style="width: 10%"> Away Record </th>
+            <th style="width: 10%"> L10 </th>
+            <th style="width: 10%"> Streak </th>
         </tr>
         <tr *ngFor="let team of overall_standings; index as i">
             <td> {{ i + 1 }} </td>
             <td>
-                <a [routerLink]="['/team', team['teamId'], seasonYear]">
-                    {{ team["teamName"] }} {{ team["teamNickname"] }}
-                </a>
+                {{ team["clinchedPlayoffsCode"] != "" ? team["clinchedPlayoffsCode"] + "-" : "" }}<a [routerLink]="['/team', team['teamId'], seasonYear]">{{ team["teamName"] }} {{ team["teamNickname"] }}</a>
             </td>
             <td> {{ team["win"] }} - {{ team["loss"] }} </td>
             <td> {{ team["winPct"] }} </td>
