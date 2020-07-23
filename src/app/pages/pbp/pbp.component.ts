@@ -35,7 +35,7 @@ export class PbpComponent implements OnInit {
         var play = plays[i];
 
         var period = Number(play["period"]);
-        var period_label = period > 4 ? (period > 5 ? period - 4 + "OT" : "OT") : period; 
+        var period_label = period > 4 ? (period > 5 ? period - 4 + "OT" : "OT") : period;
 
         const pbp_play = {
           clock: play["clock"],

@@ -50,7 +50,7 @@ const routes: Routes = [
   },
   {
     path: 'all-star/:year', component: AllStarComponent
-  },
+  }
 ];
 
 @NgModule({

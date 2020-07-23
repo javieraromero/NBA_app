@@ -114,25 +114,36 @@ export class PlayerComponent implements OnInit {
           var season = regularSeason[i];
           var year = season["seasonYear"];
           var teams = season["teams"];
+          var teamIds = [];
+          var teamShortNames = [];
 
-          var seasonTeamId = teams[0]["teamId"];
-          var seasonTeamShort = "";
-
-          for(let j in team_list)
+          if(teams.length <= 1)
+            teamIds.push(teams[0]["teamId"]);
+          else
           {
-            var team = team_list[j];
-            if(team["teamId"] == seasonTeamId)
+            for(var j = 1; j < teams.length; j++)
             {
-              seasonTeamShort = team["abbreviation"];
-              break;
+              teamIds.push(teams[j]["teamId"]);
             }
           }
+          
+          for(let k in team_list)
+          {
+            var team = team_list[k];
+            for(let l in teamIds)
+            {
+              var teamId = teamIds[l];
+              if(teamId == team["teamId"])
+                teamShortNames.push(team["abbreviation"]);
+            }
+          }
+
 
           var totals = season["total"]
 
           const seasonStats = {
             seasonYear: year,
-            seasonTeam: seasonTeamShort,
+            seasonTeams: teamShortNames,
             ppg: totals["ppg"],
             rpg: totals["rpg"],
             apg: totals["apg"],

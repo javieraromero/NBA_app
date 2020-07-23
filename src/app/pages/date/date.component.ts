@@ -5,13 +5,14 @@ import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 
 import { TeamInfo } from 'src/app/assets/team_info';
-import { DateCalculator } from 'src/app/assets/date_calculator';
+import { DateCalculator, MyDate } from 'src/app/assets/date_calculator';
 
 @Component({
   selector: 'app-home',
   templateUrl: './date.component.html',
   styleUrls: ['./date.component.css']
 })
+
 export class DateComponent implements OnInit
 {
   date;
@@ -100,19 +101,57 @@ export class DateComponent implements OnInit
           var visiting_record = "(" + game["vTeam"]["win"] + "-" + game["vTeam"]["loss"] + ")";
           var home_record = home_record = "(" + game["hTeam"]["win"] + "-" + game["hTeam"]["loss"] + ")";
 
-
-          var activated = game["isGameActivated"];
-          var start_time = game["startTimeEastern"].substring(0, 3);
+          var statusNum = game["statusNum"];
+          var start_time = game["startTimeEastern"];
           
-          var printable_label = "";
+          var top_label = "";
+          var bottom_label = "";
 
           var visiting_score = Number(game["vTeam"]["score"]);
           var home_score = Number(game["hTeam"]["score"]);
 
-          printable_label = "Final";
-          var quarters_elapsed = game["period"]["current"];
-          if(quarters_elapsed > 4)
-            printable_label += " (" + (quarters_elapsed > 5 ? String(quarters_elapsed - 4) : "") + "OT)";
+          if(statusNum == 1)
+          {
+            top_label = "Starting time";
+            bottom_label = start_time;
+          }
+          else if(statusNum == 2)
+          {
+            var quarters_elapsed = game["period"]["current"];
+            var clock = game["clock"];
+            var is_halftime = game["period"]["isHalftime"];
+            var is_end_of_period = game["period"]["isEndOfPeriod"];
+            if(is_halftime)
+            {
+              top_label = "Halftime";
+            }
+            else if(is_end_of_period)
+            {
+              if(quarters_elapsed > 4)
+                top_label = "End of " + (quarters_elapsed > 5 ? String(quarters_elapsed - 4) : "") + "OT";
+              else
+                top_label = "End of Q" + quarters_elapsed;
+            }
+            else
+            {
+              if(quarters_elapsed > 4)
+                top_label = (quarters_elapsed > 5 ? String(quarters_elapsed - 4) : "") + "OT";
+              else
+                top_label = "Q" + quarters_elapsed + " " + clock;
+            }
+            bottom_label = visiting_score + " - " + home_score;
+          }
+          else if(statusNum == 3)
+          {
+            top_label = "Final";
+            var quarters_elapsed = game["period"]["current"];
+            if(quarters_elapsed > 4)
+              top_label += " (" + (quarters_elapsed > 5 ? String(quarters_elapsed - 4) : "") + "OT)";
+            bottom_label = visiting_score + " - " + home_score;
+          }
+          /*
+          else if(statuNum == 4) could be postponed game, not sure
+          */
 
           const game_info = {
             seasonYear: seasonYear,
@@ -128,7 +167,8 @@ export class DateComponent implements OnInit
             homeTeamLogoLocation: home_team_logo,
             homeRecord: home_record,
             homeScore: home_score,
-            label: printable_label,
+            top_label: top_label,
+            bottom_label: bottom_label,
             playoff_info: playoff_info
           }
 
@@ -140,59 +180,38 @@ export class DateComponent implements OnInit
   setLongDate(date: String)
   {
     var year = Number(date.slice(0, 4));
-    var month = Number(date.slice(4, 6)) - 1;
+    var month = Number(date.slice(4, 6));
     var day = Number(date.slice(6, ));
 
-    var newDate = new Date(year, month, day);
+    var newDate = new MyDate(month, day, year);
 
-    this.longDate = newDate.toDateString();
+    this.longDate = newDate.getDayOfWeekName() + ", " + newDate.getMonthName() + " " + newDate.getDay() + " " + newDate.getYear();
   }
 
   setPreviousAndNextDate(date: String)
   {
-    this.dateCalcuator.setDate(date);
-    this.dateCalcuator.previousDay();
-    this.previousDate = this.dateCalcuator.getDate();
-    this.dateCalcuator.setDate(date);
-    this.dateCalcuator.nextDay();
-    this.nextDate = this.dateCalcuator.getDate();
-  }
+    var current_year = this.date.substring(0, 4);
+    var current_month = this.date.substring(4, 6);
+    var current_day = this.date.substring(6, );
 
-  /*convert_24hr(time: String)
-  {
-    if(time.slice(4, ) == "PM")
-    {
-      var time_len = time.length;
-      if(time_len == 7)
-      {
-        var hr = Number(time[0]);
-        hr += 12;
-        var new_time = String(hr) + time.slice(4, );
-        return new_time;
-      }
-      else
-      {
-        if(time.slice(0, 2) != "12")
-        {
-          var hr = Number(time[0] + time[1])
-          hr += 12
-          var new_time = String(hr) + time.slice(4, );
-          if(new_time.slice(0, 2) == "24")
-          {
-            new_time = "00" + new_time.slice(4, );
-            return new_time;
-          }
-          else
-            return time.slice(0, 4);
-        }
-      }
-    }
-    else
-    {
-      if(time.slice(0, 2) == "12")
-        return "00" + time.slice(4, );
-      else
-        return time.slice(0, 4);
-    }
-  }*/
+    var temp = new MyDate(Number(current_month), Number(current_day), Number(current_year));
+    temp.previousDay();
+    var temp_month = temp.getMonth();
+    var temp_month_formatted = temp_month < 10 ? "0" + String(temp_month) : String(temp_month);
+    var temp_day = temp.getDay();
+    var temp_day_formatted = temp_day < 10 ? "0" + String(temp_day) : String(temp_day);
+    var temp_year = String(temp.getYear());
+
+    this.previousDate = temp_year + temp_month_formatted + temp_day_formatted;
+
+    temp = new MyDate(Number(current_month), Number(current_day), Number(current_year));
+    temp.nextDay();
+    temp_month = temp.getMonth();
+    temp_month_formatted = temp_month < 10 ? "0" + String(temp_month) : String(temp_month);
+    temp_day = temp.getDay();
+    temp_day_formatted = temp_day < 10 ? "0" + String(temp_day) : String(temp_day);
+    temp_year = String(temp.getYear());
+
+    this.nextDate = temp_year + temp_month_formatted + temp_day_formatted;
+  }
 }

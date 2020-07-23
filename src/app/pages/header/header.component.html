@@ -10,7 +10,7 @@
         </div>
     </div>
     <ng-template #elseBlock>
-        <div class="card" *ngFor="let game of games" style="width:12%">
+        <div class="card" *ngFor="let game of games" style="width:155px">
             <div class="container" [routerLink]="['/date', date, game['game_Id']]">
                 <div>
                     <div style="text-align: center;">
@@ -27,14 +27,14 @@
                                 <img src="{{ game['visitingTeamLogoLocation'] }}" height="17px">
                             </td>
                             <td> {{ game["visitingTeam"] }} </td>
-                            <td style="text-align: right;"> {{ game["visitingScore"] }} </td>
+                            <td style="text-align: right;"> {{ game["visitingLabel"] }} </td>
                         </tr>
                         <tr>
                             <td style="text-align: center;">
                                 <img src="{{ game['homeTeamLogoLocation'] }}" height="17px">
                             </td>
                             <td> {{ game["homeTeam"] }} </td>
-                            <td style="text-align: right;"> {{ game["homeScore"] }} </td>
+                            <td style="text-align: right;"> {{ game["homeLabel"] }} </td>
                         </tr>
                     </table>
                 </div>

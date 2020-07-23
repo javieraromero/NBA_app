@@ -3,7 +3,17 @@
 <h1> NBA Scores </h1>
 
 <div class="container mt-3">
-    <span> Scores for {{ longDate }} </span>
+    <a href="/date/{{ previousDate }}">Previous Day</a>
+    <span> || </span>
+    <div class="dropdown">
+        <span>{{ longDate }}</span>
+        <div class="dropdown-content">
+            <app-calendar [date]="date"></app-calendar>
+        </div>
+    </div>
+    <span> || </span>
+    <a href="/date/{{ nextDate }}">Next Day</a>
+
     <div *ngIf="games.length === 0; else elseBlock">
         <h3>No NBA Games Today!</h3>
     </div>
@@ -31,9 +41,9 @@
                             <a [routerLink]="['/series', game['playoff_info']['seriesId'], game['seasonYear']]">(R{{ game["playoff_info"]["roundNum"] }}G{{ game["playoff_info"]["gameNumInSeries"] }})</a>
                         </span>
                     </div>
-                    {{ game["label"] }} 
+                    {{ game["top_label"] }} 
                     <br> 
-                    {{ game["visitingScore"] }} - {{ game["homeScore"] }}
+                    {{ game["bottom_label"] }}
                     <br>
                     <a [routerLink]="['/date', date, game['game_Id']]"> Boxscore </a>
                 </td>
@@ -49,6 +59,4 @@
             </tr>
         </table>
     </ng-template>
-    <a href="/date/{{ previousDate }}"> Previous Day </a>
-    <a href="/date/{{ nextDate }}"> Next Day </a>
 </div>

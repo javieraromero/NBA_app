@@ -19,6 +19,7 @@ import { OverallStandingsComponent } from './pages/overall-standings/overall-sta
 import { SeriesComponent } from './pages/series/series.component';
 import { PlayoffBracketComponent } from './pages/playoff-bracket/playoff-bracket.component';
 import { AllStarComponent } from './pages/all-star/all-star.component';
+import { CalendarComponent } from './pages/calendar/calendar.component';
 
 import { TeamInfo } from 'src/app/assets/team_info';
 import { PlayersList } from 'src/app/assets/players_list';
@@ -42,7 +43,8 @@ import { TeamsSearchPipe } from './pipes/teams-search.pipe';
     OverallStandingsComponent,
     SeriesComponent,
     PlayoffBracketComponent,
-    AllStarComponent
+    AllStarComponent,
+    CalendarComponent
   ],
   imports: [
     BrowserModule,

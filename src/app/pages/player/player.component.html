@@ -39,7 +39,7 @@
             </tr>
             <tr *ngFor="let season of seasons">
                 <td> {{ season["seasonYear"] }} </td>
-                <td> {{ season["seasonTeam"] }} </td>
+                <td> {{ season["seasonTeams"].length > 1 ? season["seasonTeams"][1] + "/" + season["seasonTeams"][0] : season["seasonTeams"][0] }} </td>
                 <td> {{ season["ppg"] }} </td>
                 <td> {{ season["rpg"] }} </td>
                 <td> {{ season["apg"] }} </td>

@@ -306,7 +306,7 @@ export class TeamComponent implements OnInit {
   getLongDate(date: String)
   {
     var year = Number(date.slice(0, 4));
-    var month = Number(date.slice(4, 6)) - 1;
+    var month = Number(date.slice(4, 6));
     var day = Number(date.slice(6, ));
 
     var newDate = new Date(year, month, day);
