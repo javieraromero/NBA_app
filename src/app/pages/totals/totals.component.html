@@ -1,0 +1,500 @@
+<div *ngIf="statusNum === 3; else elseBlock"></div>
+    <table style="width:75%" id="totals">
+        <tr>
+            <th width="50%" style="visibility: hidden">  </th>
+            <th width="25%" style="text-align: center;"> {{ visiting_team }} </th>
+            <th width="25%" style="text-align: center;"> {{ home_team }} </th>
+        </tr>
+    
+        <tr *ngIf="compare(visiting_team_stats['fastBreakPoints'], home_team_stats['fastBreakPoints']) === 1">
+            <td> Fast Break Points </td>
+            <td><b> {{ visiting_team_stats["fastBreakPoints"] }} </b></td>
+            <td> {{ home_team_stats["fastBreakPoints"] }} </td>
+        </tr>
+        <tr *ngIf="compare(visiting_team_stats['fastBreakPoints'], home_team_stats['fastBreakPoints']) === -1">
+            <td> Fast Break Points </td>
+            <td> {{ visiting_team_stats["fastBreakPoints"] }} </td>
+            <td><b> {{ home_team_stats["fastBreakPoints"] }} </b></td>
+        </tr>
+        <tr *ngIf="compare(visiting_team_stats['fastBreakPoints'], home_team_stats['fastBreakPoints']) === 0">
+            <td> Fast Break Points </td>
+            <td> {{ visiting_team_stats["fastBreakPoints"] }} </td>
+            <td> {{ home_team_stats["fastBreakPoints"] }} </td>
+        </tr>
+    
+        <tr *ngIf="compare(visiting_team_stats['pointsInPaint'], home_team_stats['pointsInPaint']) === 1">
+            <td> Points in the Paint </td>
+            <td><b> {{ visiting_team_stats["pointsInPaint"] }} </b></td>
+            <td> {{ home_team_stats["pointsInPaint"] }} </td>
+        </tr>
+        <tr *ngIf="compare(visiting_team_stats['pointsInPaint'], home_team_stats['pointsInPaint']) === -1">
+            <td> Points in the Paint </td>
+            <td> {{ visiting_team_stats["pointsInPaint"] }} </td>
+            <td><b> {{ home_team_stats["pointsInPaint"] }} </b></td>
+        </tr>
+        <tr *ngIf="compare(visiting_team_stats['pointsInPaint'], home_team_stats['pointsInPaint']) === 0">
+            <td> Points in the Paint </td>
+            <td> {{ visiting_team_stats["pointsInPaint"] }} </td>
+            <td> {{ home_team_stats["pointsInPaint"] }} </td>
+        </tr>
+    
+        <tr *ngIf="compare(visiting_team_stats['secondChancePoints'], home_team_stats['secondChancePoints']) === 1">
+            <td> Second Chance Points </td>
+            <td><b> {{ visiting_team_stats["secondChancePoints"] }} </b></td>
+            <td> {{ home_team_stats["secondChancePoints"] }} </td>
+        </tr>
+        <tr *ngIf="compare(visiting_team_stats['secondChancePoints'], home_team_stats['secondChancePoints']) === -1">
+            <td> Second Chance Points </td>
+            <td> {{ visiting_team_stats["secondChancePoints"] }} </td>
+            <td><b> {{ home_team_stats["secondChancePoints"] }} </b></td>
+        </tr>
+        <tr *ngIf="compare(visiting_team_stats['secondChancePoints'], home_team_stats['secondChancePoints']) === 0">
+            <td> Second Chance Points </td>
+            <td> {{ visiting_team_stats["secondChancePoints"] }} </td>
+            <td> {{ home_team_stats["secondChancePoints"] }} </td>
+        </tr>
+    
+        <tr *ngIf="compare(visiting_team_stats['pointsOffTurnovers'], home_team_stats['pointsOffTurnovers']) === 1">
+            <td> Points Off Turnovers </td>
+            <td><b> {{ visiting_team_stats["pointsOffTurnovers"] }} </b></td>
+            <td> {{ home_team_stats["pointsOffTurnovers"] }} </td>
+        </tr>
+        <tr *ngIf="compare(visiting_team_stats['pointsOffTurnovers'], home_team_stats['pointsOffTurnovers']) === -1">
+            <td> Points Off Turnovers </td>
+            <td> {{ visiting_team_stats["pointsOffTurnovers"] }} </td>
+            <td><b> {{ home_team_stats["pointsOffTurnovers"] }} </b></td>
+        </tr>
+        <tr *ngIf="compare(visiting_team_stats['pointsOffTurnovers'], home_team_stats['pointsOffTurnovers']) === 0">
+            <td> Points Off Turnovers </td>
+            <td> {{ visiting_team_stats["pointsOffTurnovers"] }} </td>
+            <td> {{ home_team_stats["pointsOffTurnovers"] }} </td>
+        </tr>
+    
+        <tr *ngIf="compare(visiting_team_stats['points'], home_team_stats['points']) === 1">
+            <td> Points </td>
+            <td><b> {{ visiting_team_stats["points"] }} </b></td>
+            <td> {{ home_team_stats["points"] }} </td>
+        </tr>
+        <tr *ngIf="compare(visiting_team_stats['points'], home_team_stats['points']) === -1">
+            <td> Points </td>
+            <td> {{ visiting_team_stats["points"] }} </td>
+            <td><b> {{ home_team_stats["points"] }} </b></td>
+        </tr>
+        <tr *ngIf="compare(visiting_team_stats['points'], home_team_stats['points']) === 0">
+            <td> Points </td>
+            <td> {{ visiting_team_stats["points"] }} </td>
+            <td> {{ home_team_stats["points"] }} </td>
+        </tr>
+        
+        <tr *ngIf="compare(visiting_team_stats['fgm'], home_team_stats['fgm']) === 1">
+            <td> Field Goals Made </td>
+            <td><b> {{ visiting_team_stats["fgm"] }} </b></td>
+            <td> {{ home_team_stats["fgm"] }} </td>
+        </tr>
+        <tr *ngIf="compare(visiting_team_stats['fgm'], home_team_stats['fgm']) === -1">
+            <td> Field Goals Made </td>
+            <td> {{ visiting_team_stats["fgm"] }} </td>
+            <td><b> {{ home_team_stats["fgm"] }} </b></td>
+        </tr>
+        <tr *ngIf="compare(visiting_team_stats['fgm'], home_team_stats['fgm']) === 0">
+            <td> Field Goals Made </td>
+            <td> {{ visiting_team_stats["fgm"] }} </td>
+            <td> {{ home_team_stats["fgm"] }} </td>
+        </tr>
+        
+        <tr *ngIf="compare(visiting_team_stats['fga'], home_team_stats['fga']) === 1">
+            <td> Field Goals Attempted </td>
+            <td><b> {{ visiting_team_stats["fga"] }} </b></td>
+            <td> {{ home_team_stats["fga"] }} </td>
+        </tr>
+        <tr *ngIf="compare(visiting_team_stats['fga'], home_team_stats['fga']) === -1">
+            <td> Field Goals Attempted </td>
+            <td> {{ visiting_team_stats["fga"] }} </td>
+            <td><b> {{ home_team_stats["fga"] }} </b></td>
+        </tr>
+        <tr *ngIf="compare(visiting_team_stats['fga'], home_team_stats['fga']) === 0">
+            <td> Field Goals Attempted </td>
+            <td> {{ visiting_team_stats["fga"] }} </td>
+            <td> {{ home_team_stats["fga"] }} </td>
+        </tr>
+        
+        <tr *ngIf="compare(visiting_team_stats['fgp'], home_team_stats['fgp']) === 1">
+            <td> Field Goal % </td>
+            <td><b> {{ visiting_team_stats["fgp"] }} </b></td>
+            <td> {{ home_team_stats["fgp"] }} </td>
+        </tr>
+        <tr *ngIf="compare(visiting_team_stats['fgp'], home_team_stats['fgp']) === -1">
+            <td> Field Goal % </td>
+            <td> {{ visiting_team_stats["fgp"] }} </td>
+            <td><b> {{ home_team_stats["fgp"] }} </b></td>
+        </tr>
+        <tr *ngIf="compare(visiting_team_stats['fgp'], home_team_stats['fgp']) === 0">
+            <td> Field Goal % </td>
+            <td> {{ visiting_team_stats["fgp"] }} </td>
+            <td> {{ home_team_stats["fgp"] }} </td>
+        </tr>
+        
+        <tr *ngIf="compare(visiting_team_stats['ftm'], home_team_stats['ftm']) === 1">
+            <td> Free Throws Made </td>
+            <td><b> {{ visiting_team_stats["ftm"] }} </b></td>
+            <td> {{ home_team_stats["ftm"] }} </td>
+        </tr>
+        <tr *ngIf="compare(visiting_team_stats['ftm'], home_team_stats['ftm']) === -1">
+            <td> Free Throws Made </td>
+            <td> {{ visiting_team_stats["ftm"] }} </td>
+            <td><b> {{ home_team_stats["ftm"] }} </b></td>
+        </tr>
+        <tr *ngIf="compare(visiting_team_stats['ftm'], home_team_stats['ftm']) === 0">
+            <td> Free Throws Made </td>
+            <td> {{ visiting_team_stats["ftm"] }} </td>
+            <td> {{ home_team_stats["ftm"] }} </td>
+        </tr>
+        
+        <tr *ngIf="compare(visiting_team_stats['fta'], home_team_stats['fta']) === 1">
+            <td> Free Throws Attempted </td>
+            <td><b> {{ visiting_team_stats["fta"] }} </b></td>
+            <td> {{ home_team_stats["fta"] }} </td>
+        </tr>
+        <tr *ngIf="compare(visiting_team_stats['fta'], home_team_stats['fta']) === -1">
+            <td> Free Throws Attempted </td>
+            <td> {{ visiting_team_stats["fta"] }} </td>
+            <td><b> {{ home_team_stats["fta"] }} </b></td>
+        </tr>
+        <tr *ngIf="compare(visiting_team_stats['fta'], home_team_stats['fta']) === 0">
+            <td> Free Throws Attempted </td>
+            <td> {{ visiting_team_stats["fta"] }} </td>
+            <td> {{ home_team_stats["fta"] }} </td>
+        </tr>
+        
+        <tr *ngIf="compare(visiting_team_stats['ftp'], home_team_stats['ftp']) === 1">
+            <td> Free Throw % </td>
+            <td><b> {{ visiting_team_stats["ftp"] }} </b></td>
+            <td> {{ home_team_stats["ftp"] }} </td>
+        </tr>
+        <tr *ngIf="compare(visiting_team_stats['ftp'], home_team_stats['ftp']) === -1">
+            <td> Free Throw % </td>
+            <td> {{ visiting_team_stats["ftp"] }} </td>
+            <td><b> {{ home_team_stats["ftp"] }} </b></td>
+        </tr>
+        <tr *ngIf="compare(visiting_team_stats['ftp'], home_team_stats['ftp']) === 0">
+            <td> Free Throw % </td>
+            <td> {{ visiting_team_stats["ftp"] }} </td>
+            <td> {{ home_team_stats["ftp"] }} </td>
+        </tr>
+        
+        <tr *ngIf="compare(visiting_team_stats['tpm'], home_team_stats['tpm']) === 1">
+            <td> Three Pointers Made </td>
+            <td><b> {{ visiting_team_stats["tpm"] }} </b></td>
+            <td> {{ home_team_stats["tpm"] }} </td>
+        </tr>
+        <tr *ngIf="compare(visiting_team_stats['tpm'], home_team_stats['tpm']) === -1">
+            <td> Three Pointers Made </td>
+            <td> {{ visiting_team_stats["tpm"] }} </td>
+            <td><b> {{ home_team_stats["tpm"] }} </b></td>
+        </tr>
+        <tr *ngIf="compare(visiting_team_stats['tpm'], home_team_stats['tpm']) === 0">
+            <td> Three Pointers Made </td>
+            <td> {{ visiting_team_stats["tpm"] }} </td>
+            <td> {{ home_team_stats["tpm"] }} </td>
+        </tr>
+        
+        <tr *ngIf="compare(visiting_team_stats['tpa'], home_team_stats['tpa']) === 1">
+            <td> Three Pointers Attempted </td>
+            <td><b> {{ visiting_team_stats["tpa"] }} </b></td>
+            <td> {{ home_team_stats["tpa"] }} </td>
+        </tr>
+        <tr *ngIf="compare(visiting_team_stats['tpa'], home_team_stats['tpa']) === -1">
+            <td> Three Pointers Attempted </td>
+            <td> {{ visiting_team_stats["tpa"] }} </td>
+            <td><b> {{ home_team_stats["tpa"] }} </b></td>
+        </tr>
+        <tr *ngIf="compare(visiting_team_stats['tpa'], home_team_stats['tpa']) === 0">
+            <td> Three Pointers Attempted </td>
+            <td> {{ visiting_team_stats["tpa"] }} </td>
+            <td> {{ home_team_stats["tpa"] }} </td>
+        </tr>
+        
+        <tr *ngIf="compare(visiting_team_stats['tpp'], home_team_stats['tpp']) === 1">
+            <td> Three Point % </td>
+            <td><b> {{ visiting_team_stats["tpp"] }} </b></td>
+            <td> {{ home_team_stats["tpp"] }} </td>
+        </tr>
+        <tr *ngIf="compare(visiting_team_stats['tpp'], home_team_stats['tpp']) === -1">
+            <td> Three Point % </td>
+            <td> {{ visiting_team_stats["tpp"] }} </td>
+            <td><b> {{ home_team_stats["tpp"] }} </b></td>
+        </tr>
+        <tr *ngIf="compare(visiting_team_stats['tpp'], home_team_stats['tpp']) === 0">
+            <td> Three Point % </td>
+            <td> {{ visiting_team_stats["tpp"] }} </td>
+            <td> {{ home_team_stats["tpp"] }} </td>
+        </tr>
+        
+        <tr *ngIf="compare(visiting_team_stats['offReb'], home_team_stats['offReb']) === 1">
+            <td> Offensive Rebounds </td>
+            <td><b> {{ visiting_team_stats["offReb"] }} </b></td>
+            <td> {{ home_team_stats["offReb"] }} </td>
+        </tr>
+        <tr *ngIf="compare(visiting_team_stats['offReb'], home_team_stats['offReb']) === -1">
+            <td> Offensive Rebounds </td>
+            <td> {{ visiting_team_stats["offReb"] }} </td>
+            <td><b> {{ home_team_stats["offReb"] }} </b></td>
+        </tr>
+        <tr *ngIf="compare(visiting_team_stats['offReb'], home_team_stats['offReb']) === 0">
+            <td> Offensive Rebounds </td>
+            <td> {{ visiting_team_stats["offReb"] }} </td>
+            <td> {{ home_team_stats["offReb"] }} </td>
+        </tr>
+        
+        <tr *ngIf="compare(visiting_team_stats['defReb'], home_team_stats['defReb']) === 1">
+            <td> Defensive Rebounds </td>
+            <td><b> {{ visiting_team_stats["defReb"] }} </b></td>
+            <td> {{ home_team_stats["defReb"] }} </td>
+        </tr>
+        <tr *ngIf="compare(visiting_team_stats['defReb'], home_team_stats['defReb']) === -1">
+            <td> Defensive Rebounds </td>
+            <td> {{ visiting_team_stats["defReb"] }} </td>
+            <td><b> {{ home_team_stats["defReb"] }} </b></td>
+        </tr>
+        <tr *ngIf="compare(visiting_team_stats['defReb'], home_team_stats['defReb']) === 0">
+            <td> Defensive Rebounds </td>
+            <td> {{ visiting_team_stats["defReb"] }} </td>
+            <td> {{ home_team_stats["defReb"] }} </td>
+        </tr>
+        
+        <tr *ngIf="compare(visiting_team_stats['totReb'], home_team_stats['totReb']) === 1">
+            <td> Total Rebounds </td>
+            <td><b> {{ visiting_team_stats["totReb"] }} </b></td>
+            <td> {{ home_team_stats["totReb"] }} </td>
+        </tr>
+        <tr *ngIf="compare(visiting_team_stats['totReb'], home_team_stats['totReb']) === -1">
+            <td> Total Rebounds </td>
+            <td> {{ visiting_team_stats["totReb"] }} </td>
+            <td><b> {{ home_team_stats["totReb"] }} </b></td>
+        </tr>
+        <tr *ngIf="compare(visiting_team_stats['totReb'], home_team_stats['totReb']) === 0">
+            <td> Total Rebounds </td>
+            <td> {{ visiting_team_stats["totReb"] }} </td>
+            <td> {{ home_team_stats["totReb"] }} </td>
+        </tr>
+        
+        <tr *ngIf="compare(visiting_team_stats['assists'], home_team_stats['assists']) === 1">
+            <td> Assists </td>
+            <td><b> {{ visiting_team_stats["assists"] }} </b></td>
+            <td> {{ home_team_stats["assists"] }} </td>
+        </tr>
+        <tr *ngIf="compare(visiting_team_stats['assists'], home_team_stats['assists']) === -1">
+            <td> Assists </td>
+            <td> {{ visiting_team_stats["assists"] }} </td>
+            <td><b> {{ home_team_stats["assists"] }} </b></td>
+        </tr>
+        <tr *ngIf="compare(visiting_team_stats['assists'], home_team_stats['assists']) === 0">
+            <td> Assists </td>
+            <td> {{ visiting_team_stats["assists"] }} </td>
+            <td> {{ home_team_stats["assists"] }} </td>
+        </tr>
+        
+        <tr *ngIf="compare(visiting_team_stats['pFouls'], home_team_stats['pFouls']) === -1">
+            <td> Personal Fouls </td>
+            <td><b> {{ visiting_team_stats["pFouls"] }} </b></td>
+            <td> {{ home_team_stats["pFouls"] }} </td>
+        </tr>
+        <tr *ngIf="compare(visiting_team_stats['pFouls'], home_team_stats['pFouls']) === 1">
+            <td> Personal Fouls </td>
+            <td> {{ visiting_team_stats["pFouls"] }} </td>
+            <td><b> {{ home_team_stats["pFouls"] }} </b></td>
+        </tr>
+        <tr *ngIf="compare(visiting_team_stats['pFouls'], home_team_stats['pFouls']) === 0">
+            <td> Personal Fouls </td>
+            <td> {{ visiting_team_stats["pFouls"] }} </td>
+            <td> {{ home_team_stats["pFouls"] }} </td>
+        </tr>
+        
+        <tr *ngIf="compare(visiting_team_stats['steals'], home_team_stats['steals']) === 1">
+            <td> Steals </td>
+            <td><b> {{ visiting_team_stats["steals"] }} </b></td>
+            <td> {{ home_team_stats["steals"] }} </td>
+        </tr>
+        <tr *ngIf="compare(visiting_team_stats['steals'], home_team_stats['steals']) === -1">
+            <td> Steals </td>
+            <td> {{ visiting_team_stats["steals"] }} </td>
+            <td><b> {{ home_team_stats["steals"] }} </b></td>
+        </tr>
+        <tr *ngIf="compare(visiting_team_stats['steals'], home_team_stats['steals']) === 0">
+            <td> Steals </td>
+            <td> {{ visiting_team_stats["steals"] }} </td>
+            <td> {{ home_team_stats["steals"] }} </td>
+        </tr>
+        
+        <tr *ngIf="compare(visiting_team_stats['turnovers'], home_team_stats['turnovers']) === -1">
+            <td> Turnovers </td>
+            <td><b> {{ visiting_team_stats["turnovers"] }} </b></td>
+            <td> {{ home_team_stats["turnovers"] }} </td>
+        </tr>
+        <tr *ngIf="compare(visiting_team_stats['turnovers'], home_team_stats['turnovers']) === 1">
+            <td> Turnovers </td>
+            <td> {{ visiting_team_stats["turnovers"] }} </td>
+            <td><b> {{ home_team_stats["turnovers"] }} </b></td>
+        </tr>
+        <tr *ngIf="compare(visiting_team_stats['turnovers'], home_team_stats['turnovers']) === 0">
+            <td> Turnovers </td>
+            <td> {{ visiting_team_stats["turnovers"] }} </td>
+            <td> {{ home_team_stats["turnovers"] }} </td>
+        </tr>
+        
+        <tr *ngIf="compare(visiting_team_stats['blocks'], home_team_stats['blocks']) === 1">
+            <td> Blocks </td>
+            <td><b> {{ visiting_team_stats["blocks"] }} </b></td>
+            <td> {{ home_team_stats["blocks"] }} </td>
+        </tr>
+        <tr *ngIf="compare(visiting_team_stats['blocks'], home_team_stats['blocks']) === -1">
+            <td> Blocks </td>
+            <td> {{ visiting_team_stats["blocks"] }} </td>
+            <td><b> {{ home_team_stats["blocks"] }} </b></td>
+        </tr>
+        <tr *ngIf="compare(visiting_team_stats['blocks'], home_team_stats['blocks']) === 0">
+            <td> Blocks </td>
+            <td> {{ visiting_team_stats["blocks"] }} </td>
+            <td> {{ home_team_stats["blocks"] }} </td>
+        </tr>
+    
+        <tr *ngIf="compare(visiting_team_stats['team_fouls'], home_team_stats['team_fouls']) === -1">
+            <td> Total Fouls </td>
+            <td><b> {{ visiting_team_stats["team_fouls"] }} </b></td>
+            <td> {{ home_team_stats["team_fouls"] }} </td>
+        </tr>
+        <tr *ngIf="compare(visiting_team_stats['team_fouls'], home_team_stats['team_fouls']) === 1">
+            <td> Total Fouls </td>
+            <td> {{ visiting_team_stats["team_fouls"] }} </td>
+            <td><b> {{ home_team_stats["team_fouls"] }} </b></td>
+        </tr>
+        <tr *ngIf="compare(visiting_team_stats['team_fouls'], home_team_stats['team_fouls']) === 0">
+            <td> Total Fouls </td>
+            <td> {{ visiting_team_stats["team_fouls"] }} </td>
+            <td> {{ home_team_stats["team_fouls"] }} </td>
+        </tr>
+</table>
+<ng-template #elseBlock>
+    <table style="width:75%" id="totals">
+        <tr>
+            <th width="50%" style="visibility: hidden">  </th>
+            <th width="25%" style="text-align: center;"> {{ visiting_team }} </th>
+            <th width="25%" style="text-align: center;"> {{ home_team }} </th>
+        </tr>
+        <tr>
+            <td> Fast Break Points </td>
+            <td> {{ visiting_team_stats["fastBreakPoints"] }} </td>
+            <td> {{ home_team_stats["fastBreakPoints"] }} </td>
+        </tr>
+        <tr>
+            <td> Points in the Paint </td>
+            <td> {{ visiting_team_stats["pointsInPaint"] }} </td>
+            <td> {{ home_team_stats["pointsInPaint"] }} </td>
+        </tr>
+        <tr>
+            <td> Second Chance Points </td>
+            <td> {{ visiting_team_stats["secondChancePoints"] }} </td>
+            <td> {{ home_team_stats["secondChancePoints"] }} </td>
+        </tr>
+        <tr>
+            <td> Points Off Turnovers </td>
+            <td> {{ visiting_team_stats["pointsOffTurnovers"] }} </td>
+            <td> {{ home_team_stats["pointsOffTurnovers"] }} </td>
+        </tr>
+        <tr>
+            <td> Points </td>
+            <td> {{ visiting_team_stats["points"] }} </td>
+            <td> {{ home_team_stats["points"] }} </td>
+        </tr>
+        <tr>
+            <td> Field Goals Made </td>
+            <td> {{ visiting_team_stats["fgm"] }} </td>
+            <td> {{ home_team_stats["fgm"] }} </td>
+        </tr>
+        <tr>
+            <td> Field Goals Attempted </td>
+            <td> {{ visiting_team_stats["fga"] }} </td>
+            <td> {{ home_team_stats["fga"] }} </td>
+        </tr>
+        <tr>
+            <td> Field Goal % </td>
+            <td> {{ visiting_team_stats["fgp"] }} </td>
+            <td> {{ home_team_stats["fgp"] }} </td>
+        </tr>
+        <tr>
+            <td> Free Throws Made </td>
+            <td> {{ visiting_team_stats["ftm"] }} </td>
+            <td> {{ home_team_stats["ftm"] }} </td>
+        </tr>
+        <tr>
+            <td> Free Throws Attempted </td>
+            <td> {{ visiting_team_stats["fta"] }} </td>
+            <td> {{ home_team_stats["fta"] }} </td>
+        </tr>
+        <tr>
+            <td> Free Throw % </td>
+            <td> {{ visiting_team_stats["ftp"] }} </td>
+            <td> {{ home_team_stats["ftp"] }} </td>
+        </tr>
+        <tr>
+            <td> Three Pointers Made </td>
+            <td> {{ visiting_team_stats["tpm"] }} </td>
+            <td> {{ home_team_stats["tpm"] }} </td>
+        </tr>
+        <tr>
+            <td> Three Pointers Attempted </td>
+            <td> {{ visiting_team_stats["tpa"] }} </td>
+            <td> {{ home_team_stats["tpa"] }} </td>
+        </tr>
+        <tr>
+            <td> Three Point % </td>
+            <td> {{ visiting_team_stats["tpp"] }} </td>
+            <td> {{ home_team_stats["tpp"] }} </td>
+        </tr>
+        <tr>
+            <td> Offensive Rebounds </td>
+            <td> {{ visiting_team_stats["offReb"] }} </td>
+            <td> {{ home_team_stats["offReb"] }} </td>
+        </tr>
+        <tr>
+            <td> Defensive Rebounds </td>
+            <td> {{ visiting_team_stats["defReb"] }} </td>
+            <td> {{ home_team_stats["defReb"] }} </td>
+        </tr>
+        <tr>
+            <td> Total Rebounds </td>
+            <td> {{ visiting_team_stats["totReb"] }} </td>
+            <td> {{ home_team_stats["totReb"] }} </td>
+        </tr>
+        <tr>
+            <td> Assists </td>
+            <td> {{ visiting_team_stats["assists"] }} </td>
+            <td> {{ home_team_stats["assists"] }} </td>
+        </tr>
+        <tr>
+            <td> Personal Fouls </td>
+            <td> {{ visiting_team_stats["pFouls"] }} </td>
+            <td> {{ home_team_stats["pFouls"] }} </td>
+        </tr>
+        <tr>
+            <td> Steals </td>
+            <td> {{ visiting_team_stats["steals"] }} </td>
+            <td> {{ home_team_stats["steals"] }} </td>
+        </tr>
+        <tr>
+            <td> Turnovers </td>
+            <td> {{ visiting_team_stats["turnovers"] }} </td>
+            <td> {{ home_team_stats["turnovers"] }} </td>
+        </tr>
+        <tr>
+            <td> Blocks </td>
+            <td> {{ visiting_team_stats["blocks"] }} </td>
+            <td> {{ home_team_stats["blocks"] }} </td>
+        </tr>
+        <tr>
+            <td> Total Fouls </td>
+            <td> {{ visiting_team_stats["team_fouls"] }} </td>
+            <td> {{ home_team_stats["team_fouls"] }} </td>
+        </tr>
+    </table>
+</ng-template>

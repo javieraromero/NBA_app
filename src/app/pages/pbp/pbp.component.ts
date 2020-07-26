@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
-import { ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { Router, NavigationStart } from '@angular/router';
 
 @Component({
   selector: 'app-pbp',
@@ -10,17 +10,59 @@ import { HttpClient } from '@angular/common/http';
 })
 export class PbpComponent implements OnInit {
 
+  @Input() date: String;
+  @Input() gameId: String;
+  @Input() statusNum: number;
+
   pbp: Object[] = [];
 
+  private routeSub: any;
+
   constructor(
-    private route: ActivatedRoute,
     private http: HttpClient,
+    private router: Router
   ) { }
 
-  ngOnInit() {
-    const date = this.route.snapshot.paramMap.get('date');
-    const gameId = this.route.snapshot.paramMap.get('gameId');
-    this.getPBP(date, gameId);
+  async ngOnInit() {
+    var cont = true;
+    if(this.statusNum == 1)
+    {
+      this.routeSub = this.router.events.subscribe((event) => {
+        if(event instanceof NavigationStart) {
+          cont = false;
+          this.ngOnDestroy();
+        }
+      });
+    }
+    else if(this.statusNum == 2)
+    {
+      while(this.statusNum == 2 && cont)
+      {
+        console.log("refreshing pbp for gameId: " + this.gameId);
+        this.getPBP(this.date, this.gameId);
+        await new Promise(r => setTimeout(r, 5000));
+
+        this.routeSub = this.router.events.subscribe((event) => {
+          if(event instanceof NavigationStart) {
+            cont = false;
+            this.ngOnDestroy();
+          }
+        });
+      }
+    }
+    else if(this.statusNum == 3)
+    {
+      this.getPBP(this.date, this.gameId);
+      this.routeSub = this.router.events.subscribe((event) => {
+        if(event instanceof NavigationStart) {
+          this.ngOnDestroy();
+        }
+      });
+    }
+  }
+
+  public ngOnDestroy() {
+    this.routeSub.unsubscribe();
   }
 
   getPBP(date: String, gameId: String)
@@ -29,6 +71,8 @@ export class PbpComponent implements OnInit {
     .subscribe(response => {
 
       var plays = response["sports_content"]["game"]["play"];
+
+      var temp: Object[] = [];
 
       for(var i = 0; i < plays.length; i++)
       {
@@ -46,11 +90,12 @@ export class PbpComponent implements OnInit {
           period: period_label
         }
 
-        this.pbp.push(pbp_play);
+        temp.push(pbp_play);
       }
+
+      this.pbp = temp;
 
       this.pbp.reverse();
     });
   }
-
 }

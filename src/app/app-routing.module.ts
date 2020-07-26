@@ -6,7 +6,6 @@ import { DateComponent } from './pages/date/date.component';
 import { GameComponent } from './pages/game/game.component';
 import { PlayerComponent } from './pages/player/player.component';
 import { TeamComponent } from './pages/team/team.component';
-import { PbpComponent } from './pages/pbp/pbp.component';
 import { ConferenceStandingsComponent } from './pages/conference-standings/conference-standings.component';
 import { DivisionStandingsComponent } from './pages/division-standings/division-standings.component';
 import { OverallStandingsComponent } from './pages/overall-standings/overall-standings.component';
@@ -23,9 +22,6 @@ const routes: Routes = [
   },
   {
     path: 'date/:date/:gameId', component: GameComponent
-  },
-  {
-    path: 'date/:date/:gameId/pbp', component: PbpComponent
   },
   {
     path: 'player/:personId/:year', component: PlayerComponent

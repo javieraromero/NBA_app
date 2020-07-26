@@ -1,0 +1,34 @@
+th {
+    text-align: left;
+}
+
+th, td {
+    padding: 8px;
+}
+
+td {
+    text-align: center;
+}
+
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+table#totals th:nth-child(even) {
+    background-color: var(--visiting_team_primary);
+    color: var(--visiting_team_secondary);
+}
+
+table#totals th:nth-child(odd) {
+    background-color: var(--home_team_primary);
+    color: var(--home_team_secondary);
+}
+
+table#totals tr:nth-child(even) {
+    background-color: #eee;
+}
+
+table#totals tr:nth-child(odd) {
+   background-color: #fff;
+}

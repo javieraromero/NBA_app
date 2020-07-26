@@ -10,17 +10,21 @@
         </div>
     </div>
     <ng-template #elseBlock>
-        <div class="card" *ngFor="let game of games" style="width:155px">
+        <div class="card" *ngFor="let game of games" style="width:175px">
             <div class="container" [routerLink]="['/date', date, game['game_Id']]">
                 <div>
-                    <div style="text-align: center;">
-                        {{ game["label"] }} 
-                    </div>
+                    
                     <table style="width:100%">
                         <tr>
+                            <td width="50%" style="text-align: left;">{{ game["label"] }}</td>
+                            <td width="50%" style="text-align: right;">{{ game["broadcastersLabel"] }}</td>
+                        </tr>
+                    </table>
+                    <table style="width:100%">
+                        <tr>
+                            <th width="30%"></th>
                             <th width="35%"></th>
-                            <th width="32.5%"></th>
-                            <th width="32.5%"></th>
+                            <th width="35%"></th>
                         </tr>
                         <tr>
                             <td style="text-align: center;">

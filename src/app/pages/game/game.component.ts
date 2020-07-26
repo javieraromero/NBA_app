@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { ActivatedRoute } from '@angular/router';
-import { HttpClient, HttpRequest } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 
 import { TeamInfo } from '../../assets/team_info';
 import { MyDate } from 'src/app/assets/date_calculator';
@@ -13,6 +13,9 @@ import { MyDate } from 'src/app/assets/date_calculator';
 })
 export class GameComponent implements OnInit {
 
+  date;
+  gameId;
+  
   game_data;
   statusNum;
   visiting_team: String;
@@ -22,10 +25,14 @@ export class GameComponent implements OnInit {
   visiting_players: Object[] = [];
   home_players: Object[] = [];
   longDate: String;
+  isPreviewArticleAvail;
   preview_data;
   preview: String[] = [];
+  isRecapArticleAvail;
   recap_data;
   recap: String[] = [];
+  show_visitor_table: Boolean = true;
+  show_home_table: Boolean = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -33,9 +40,11 @@ export class GameComponent implements OnInit {
     private teamInfo: TeamInfo
   ) { }
 
-  ngOnInit() {
+  async ngOnInit() {
     const date = this.route.snapshot.paramMap.get('date');
     const gameId = this.route.snapshot.paramMap.get('gameId');
+    this.date = date;
+    this.gameId = gameId;
     this.getGameData(date, gameId);
     this.getPreview(date, gameId);
     this.getRecap(date, gameId);
@@ -51,7 +60,17 @@ export class GameComponent implements OnInit {
 
           var basicGameData = response["basicGameData"];
 
-          this.statusNum = basicGameData["statusNum"];
+          var statusNum = basicGameData["statusNum"];
+          this.statusNum = statusNum;
+
+          var isPreviewArticleAvail = basicGameData["isPreviewArticleAvail"];
+          this.isPreviewArticleAvail = isPreviewArticleAvail;
+
+          var isRecapArticleAvail = basicGameData["isRecapArticleAvail"];
+          this.isRecapArticleAvail = isRecapArticleAvail;
+
+          
+          this.setDefaultTab(isPreviewArticleAvail, isRecapArticleAvail, statusNum);
 
           if(this.statusNum != 1)
           {
@@ -62,6 +81,9 @@ export class GameComponent implements OnInit {
 
           this.visiting_team = undefined;
           this.home_team = undefined;
+
+          var visiting_team_abbrev = "";
+          var home_team_abbrev = "";
 
           var visiting_team_id = basicGameData["vTeam"]["teamId"];
           var home_team_id = basicGameData["hTeam"]["teamId"];
@@ -75,6 +97,7 @@ export class GameComponent implements OnInit {
             if(team["teamId"] == visiting_team_id)
             {
               this.visiting_team = team["teamName"];
+              visiting_team_abbrev = team["abbreviation"];
               visiting_logo_location = team["primaryLogoLocation"];
               document.documentElement.style.setProperty('--visiting_team_primary', team["primaryColor"]);
               document.documentElement.style.setProperty('--visiting_team_secondary', team["secondaryColor"]);
@@ -82,54 +105,13 @@ export class GameComponent implements OnInit {
             if(team["teamId"] == home_team_id)
             {
               this.home_team = team["teamName"];
+              home_team_abbrev = team["abbreviation"];
               home_logo_location = team["primaryLogoLocation"];
               document.documentElement.style.setProperty('--home_team_primary', team["primaryColor"]);
               document.documentElement.style.setProperty('--home_team_secondary', team["secondaryColor"]);
             }
             if(this.visiting_team && this.home_team)
               break;
-          }
-
-          var top_label, bottom_label;
-
-          if(this.statusNum == 1)
-          {
-            top_label = basicGameData["startTimeEastern"];
-            bottom_label = "";
-          }
-          else if(this.statusNum == 2)
-          {
-            var quarters_elapsed = basicGameData["period"]["current"];
-            var clock = basicGameData["clock"];
-            var is_halftime = basicGameData["period"]["isHalftime"];
-            var is_end_of_period = basicGameData["period"]["isEndOfPeriod"];
-            if(is_halftime)
-            {
-              top_label = "Halftime";
-            }
-            else if(is_end_of_period)
-            {
-              if(quarters_elapsed > 4)
-                top_label = "End of " + (quarters_elapsed > 5 ? String(quarters_elapsed - 4) : "") + "OT";
-              else
-                top_label = "End of Q" + quarters_elapsed;
-            }
-            else
-            {
-              if(quarters_elapsed > 4)
-                top_label = (quarters_elapsed > 5 ? String(quarters_elapsed - 4) : "") + "OT";
-              else
-                top_label = "Q" + quarters_elapsed + " " + clock;
-            }
-            bottom_label = basicGameData["vTeam"]["score"] + "-" + basicGameData["hTeam"]["score"];
-          }
-          else if(this.statusNum == 3)
-          {
-            top_label = "Final";
-            var quarters_elapsed = basicGameData["period"]["current"];
-            if(quarters_elapsed > 4)
-              top_label += " (" + (quarters_elapsed > 5 ? String(quarters_elapsed - 4) : "") + "OT)";
-            bottom_label = basicGameData["vTeam"]["score"] + " - " + basicGameData["hTeam"]["score"];
           }
 
           var broadcast_info = basicGameData["watch"]["broadcast"]["broadcasters"];
@@ -157,8 +139,8 @@ export class GameComponent implements OnInit {
           }
 
           this.game_data = {
-            top_label: top_label,
-            bottom_label: bottom_label,
+            vTeamAbbrev: visiting_team_abbrev,
+            hTeamAbbrev: home_team_abbrev,
             nugget: basicGameData["nugget"]["text"],
             attendance: basicGameData["attendance"],
             broadcastersNational: broadcastersNational,
@@ -167,8 +149,6 @@ export class GameComponent implements OnInit {
             officials: officials_list_formatted,
             previousMatchup_gameDate: response["previousMatchup"]["gameDate"],
             previousMatchup_gameId: response["previousMatchup"]["gameId"],
-            isPreviewArticleAvail: basicGameData["isPreviewArticleAvail"],
-            isRecapArticleAvail: basicGameData["isRecapArticleAvail"],
             seasonYear: basicGameData["seasonYear"],
             arena_name: basicGameData["arena"]["name"],
             arena_location: basicGameData["arena"]["city"] + ", " + basicGameData["arena"]["stateAbbr"],
@@ -366,5 +346,42 @@ export class GameComponent implements OnInit {
     var newDate = new MyDate(month, day, year);
 
     this.longDate = newDate.getDayOfWeekName() + ", " + newDate.getMonthName() + " " + newDate.getDay() + " " + newDate.getYear();
+  }
+
+  switchTab(evt, tabName) {
+    // Declare all variables
+    var i, tabcontent, tablinks;
+  
+    // Get all elements with class="tabcontent" and hide them
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+      tabcontent[i].style.display= "none";
+    }
+  
+    // Get all elements with class="tablinks" and remove the class "active"
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+      tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+  
+    // Show the current tab, and add an "active" class to the button that opened the tab
+    document.getElementById(tabName).style.display = "block";
+    evt.currentTarget.className += " active";
+  }
+
+  setDefaultTab(isPreviewArticleAvail: boolean, isRecapArticleAvail: boolean, statusNum: number)
+  {
+    if(isPreviewArticleAvail && statusNum == 1)
+    {
+      document.getElementById("preview_tab").click();
+    }
+    else if(isRecapArticleAvail && statusNum == 3)
+    {
+      document.getElementById("recap_tab").click();
+    }
+    else
+    {
+      document.getElementById("game_info_tab").click();
+    }
   }
 }

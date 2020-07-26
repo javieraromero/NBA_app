@@ -26,6 +26,9 @@ import { PlayersList } from 'src/app/assets/players_list';
 import { DateCalculator } from 'src/app/assets/date_calculator';
 
 import { TeamsSearchPipe } from './pipes/teams-search.pipe';
+import { ScoreboardComponent } from './pages/scoreboard/scoreboard.component';
+import { BoxscoreComponent } from './pages/boxscore/boxscore.component';
+import { TotalsComponent } from './pages/totals/totals.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +47,10 @@ import { TeamsSearchPipe } from './pipes/teams-search.pipe';
     SeriesComponent,
     PlayoffBracketComponent,
     AllStarComponent,
-    CalendarComponent
+    CalendarComponent,
+    ScoreboardComponent,
+    BoxscoreComponent,
+    TotalsComponent
   ],
   imports: [
     BrowserModule,

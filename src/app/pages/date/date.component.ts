@@ -135,7 +135,7 @@ export class DateComponent implements OnInit
             else
             {
               if(quarters_elapsed > 4)
-                top_label = (quarters_elapsed > 5 ? String(quarters_elapsed - 4) : "") + "OT";
+                top_label = (quarters_elapsed > 5 ? String(quarters_elapsed - 4) : "") + "OT " + clock;
               else
                 top_label = "Q" + quarters_elapsed + " " + clock;
             }

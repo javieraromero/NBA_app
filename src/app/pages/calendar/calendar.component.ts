@@ -10,6 +10,7 @@ import { DateCalculator, MyDate } from 'src/app/assets/date_calculator';
 export class CalendarComponent implements OnInit {
 
   @Input() date: string;
+  
   month_and_year;
   current_month;
   current_day;

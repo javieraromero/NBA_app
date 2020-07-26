@@ -121,7 +121,7 @@ export class HeaderComponent implements OnInit {
             else
             {
               if(quarters_elapsed > 4)
-                label = (quarters_elapsed > 5 ? String(quarters_elapsed - 4) : "") + "OT";
+                label = (quarters_elapsed > 5 ? String(quarters_elapsed - 4) : "") + "OT " + clock;
               else
                 label = "Q" + quarters_elapsed + " " + clock;
             }
@@ -135,9 +135,34 @@ export class HeaderComponent implements OnInit {
             if(quarters_elapsed > 4)
               label += " (" + (quarters_elapsed > 5 ? String(quarters_elapsed - 4) : "") + "OT)";
           }
+
           /*
           else if(statuNum == 4) could be postponed game, not sure
           */
+
+          var broadcast_info = game["watch"]["broadcast"]["broadcasters"];
+          var broadcastersNational = "", vTeamBroadcasters = "", hTeamBroadcasters = "";
+          if(statusNum <= 2)
+          {
+            if(broadcast_info["national"][0])
+            broadcastersNational = broadcast_info["national"][0]["shortName"];
+            /*if(broadcast_info["vTeam"][0])
+              vTeamBroadcasters = broadcast_info["vTeam"][0]["shortName"];
+            if(broadcast_info["hTeam"][0])
+              hTeamBroadcasters = broadcast_info["hTeam"][0]["shortName"];*/
+          }
+
+          var broadcastersLabel = "";
+
+          if(broadcastersNational)
+            broadcastersLabel = broadcastersNational;
+          /*else
+          {
+            if(vTeamBroadcasters && hTeamBroadcasters)
+              broadcastersLabel += vTeamBroadcasters + ", " + hTeamBroadcasters;
+            else
+              broadcastersLabel += vTeamBroadcasters + hTeamBroadcasters;
+          }*/
 
           const game_info = {
             game_Id: gameId,
@@ -150,6 +175,7 @@ export class HeaderComponent implements OnInit {
             homeTeamLogoLocation: home_team_logo,
             homeLabel: home_label,
             label: label,
+            broadcastersLabel: broadcastersLabel
           }
 
           this.games.push(game_info);

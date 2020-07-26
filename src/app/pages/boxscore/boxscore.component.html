@@ -1,0 +1,121 @@
+<div>
+    <form>
+        <input type="radio" id="vTeam_radio" name="radio" (click)="showTeam(visiting_team)" checked>
+        <label for="vTeam_radio">{{ visiting_team }}</label>
+        <input type="radio" id="hTeam_radio" name="radio" (click)="showTeam(home_team)">
+        <label for="hTeam_radio">{{ home_team }}</label>
+    </form>
+</div>
+
+<br>
+
+<div *ngIf="show_visiting_team" id="vTeam">
+    <table style="width:100%" id="visiting_team">
+        <tr>
+            <th> PLAYER </th>
+            <th> POS </th>
+            <th> PTS </th>
+            <th> MIN </th>
+            <th> FGM </th>
+            <th> FGA </th>
+            <th> FG% </th>
+            <th> FTM </th>
+            <th> FTA </th>
+            <th> FT% </th>
+            <th> 3PM </th>
+            <th> 3PA </th>
+            <th> 3P% </th>
+            <th> OREB </th>
+            <th> DREB </th>
+            <th> REB </th>
+            <th> AST </th>
+            <th> PF </th>
+            <th> STL </th>
+            <th> TOV </th>
+            <th> BLK </th>
+            <th> +/- </th>
+        </tr>
+        <tr *ngFor="let player of visiting_players">
+            <td><a [routerLink]="['/player', player['personId'], seasonYear]"> {{ player["firstName"] }} {{ player["lastName"] }} </a></td>
+            <td colspan="21" *ngIf="player['dnp']; else elseBlock"> {{ player["dnp"] }} </td>
+            <ng-template #elseBlock>
+                <td> {{ player["pos"] }} </td>
+                <td> {{ player["points"] }} </td>
+                <td> {{ player["min"] }} </td>
+                <td> {{ player["fgm"] }} </td>
+                <td> {{ player["fga"] }} </td>
+                <td> {{ player["fgp"] }} </td>
+                <td> {{ player["ftm"] }} </td>
+                <td> {{ player["fta"] }} </td>
+                <td> {{ player["ftp"] }} </td>
+                <td> {{ player["tpm"] }} </td>
+                <td> {{ player["tpa"] }} </td>
+                <td> {{ player["tpp"] }} </td>
+                <td> {{ player["offReb"] }} </td>
+                <td> {{ player["defReb"] }} </td>
+                <td> {{ player["totReb"] }} </td>
+                <td> {{ player["assists"] }} </td>
+                <td> {{ player["pFouls"] }} </td>
+                <td> {{ player["steals"] }} </td>
+                <td> {{ player["turnovers"] }} </td>
+                <td> {{ player["blocks"] }} </td>
+                <td> {{ player["plusMinus"] }} </td>
+            </ng-template>
+        </tr>
+    </table>
+</div>
+<div *ngIf="show_home_team" id="hTeam">
+    <table style="width:100%" id="home_team">
+        <tr>
+            <th> PLAYER </th>
+            <th> POS </th>
+            <th> PTS </th>
+            <th> MIN </th>
+            <th> FGM </th>
+            <th> FGA </th>
+            <th> FG% </th>
+            <th> FTM </th>
+            <th> FTA </th>
+            <th> FT% </th>
+            <th> 3PM </th>
+            <th> 3PA </th>
+            <th> 3P% </th>
+            <th> OREB </th>
+            <th> DREB </th>
+            <th> REB </th>
+            <th> AST </th>
+            <th> PF </th>
+            <th> STL </th>
+            <th> TOV </th>
+            <th> BLK </th>
+            <th> +/- </th>
+        </tr>
+        <tr *ngFor="let player of home_players">
+            <td><a [routerLink]="['/player', player['personId'], seasonYear]"> {{ player["firstName"] }} {{ player["lastName"] }} </a></td>
+            <td colspan="21" *ngIf="player['dnp']; else elseBlock"> {{ player["dnp"] }} </td>
+            <ng-template #elseBlock>
+                <td> {{ player["pos"] }} </td>
+                <td> {{ player["points"] }} </td>
+                <td> {{ player["min"] }} </td>
+                <td> {{ player["fgm"] }} </td>
+                <td> {{ player["fga"] }} </td>
+                <td> {{ player["fgp"] }} </td>
+                <td> {{ player["ftm"] }} </td>
+                <td> {{ player["fta"] }} </td>
+                <td> {{ player["ftp"] }} </td>
+                <td> {{ player["tpm"] }} </td>
+                <td> {{ player["tpa"] }} </td>
+                <td> {{ player["tpp"] }} </td>
+                <td> {{ player["offReb"] }} </td>
+                <td> {{ player["defReb"] }} </td>
+                <td> {{ player["totReb"] }} </td>
+                <td> {{ player["assists"] }} </td>
+                <td> {{ player["pFouls"] }} </td>
+                <td> {{ player["steals"] }} </td>
+                <td> {{ player["turnovers"] }} </td>
+                <td> {{ player["blocks"] }} </td>
+                <td> {{ player["plusMinus"] }} </td>
+            </ng-template>
+        </tr>
+    </table>
+</div>
