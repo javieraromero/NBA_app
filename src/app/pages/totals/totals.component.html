@@ -1,4 +1,4 @@
-<div *ngIf="statusNum === 3; else elseBlock"></div>
+<div *ngIf="statusNum === 3; else elseBlock">
     <table style="width:75%" id="totals">
         <tr>
             <th width="50%" style="visibility: hidden">  </th>
@@ -373,7 +373,8 @@
             <td> {{ visiting_team_stats["team_fouls"] }} </td>
             <td> {{ home_team_stats["team_fouls"] }} </td>
         </tr>
-</table>
+    </table>
+</div>
 <ng-template #elseBlock>
     <table style="width:75%" id="totals">
         <tr>

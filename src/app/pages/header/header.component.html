@@ -11,38 +11,40 @@
     </div>
     <ng-template #elseBlock>
         <div class="card" *ngFor="let game of games" style="width:175px">
-            <div class="container" [routerLink]="['/date', date, game['game_Id']]">
-                <div>
-                    
-                    <table style="width:100%">
-                        <tr>
-                            <td width="50%" style="text-align: left;">{{ game["label"] }}</td>
-                            <td width="50%" style="text-align: right;">{{ game["broadcastersLabel"] }}</td>
-                        </tr>
-                    </table>
-                    <table style="width:100%">
-                        <tr>
-                            <th width="30%"></th>
-                            <th width="35%"></th>
-                            <th width="35%"></th>
-                        </tr>
-                        <tr>
-                            <td style="text-align: center;">
-                                <img src="{{ game['visitingTeamLogoLocation'] }}" height="17px">
-                            </td>
-                            <td> {{ game["visitingTeam"] }} </td>
-                            <td style="text-align: right;"> {{ game["visitingLabel"] }} </td>
-                        </tr>
-                        <tr>
-                            <td style="text-align: center;">
-                                <img src="{{ game['homeTeamLogoLocation'] }}" height="17px">
-                            </td>
-                            <td> {{ game["homeTeam"] }} </td>
-                            <td style="text-align: right;"> {{ game["homeLabel"] }} </td>
-                        </tr>
-                    </table>
+            <a href="date/{{date}}/{{game['gameId']}}" style="text-decoration: none; color: inherit;">
+                <div class="container">
+                    <div>
+                        
+                        <table style="width:100%">
+                            <tr>
+                                <td width="50%" style="text-align: left;">{{ game["label"] }}</td>
+                                <td width="50%" style="text-align: right;">{{ game["broadcastersLabel"] }}</td>
+                            </tr>
+                        </table>
+                        <table style="width:100%">
+                            <tr>
+                                <th width="30%"></th>
+                                <th width="35%"></th>
+                                <th width="35%"></th>
+                            </tr>
+                            <tr>
+                                <td style="text-align: center;">
+                                    <img src="{{ game['visitingTeamLogoLocation'] }}" height="17px">
+                                </td>
+                                <td> {{ game["visitingTeam"] }} </td>
+                                <td style="text-align: right;"> {{ game["visitingLabel"] }} </td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: center;">
+                                    <img src="{{ game['homeTeamLogoLocation'] }}" height="17px">
+                                </td>
+                                <td> {{ game["homeTeam"] }} </td>
+                                <td style="text-align: right;"> {{ game["homeLabel"] }} </td>
+                            </tr>
+                        </table>
+                    </div>
                 </div>
-            </div>
+            </a>
         </div>
     </ng-template>
 </div> 

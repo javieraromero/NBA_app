@@ -1,19 +1,20 @@
 <table style="width:85%" id="score">
     <tr>
         <td style="width: 40%">
-            <a [routerLink]="['/team', game_data['vTeamId'], game_data['seasonYear']]">
-                <img src="{{ game_data['vTeamLogoLocation'] }}" style="max-height: 65px; max-width: 900px">
+            <a href="/team/{{game_data['vTeamId']}}/{{game_data['seasonYear']}}">
+                <img src="{{ game_data['vTeamLogoLocation'] }}" style="max-height: 65px; max-width: 90px">
                 <br>
                 {{ game_data["vTeamName"] }}
             </a>
         </td>
         <td style="width: 20%">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQQk9HOXM3Jy3qkuKetcZDWIMby7LlRs8lkCQ&usqp=CAU" *ngIf="statusNum === 2" style="max-width: 25px">
             {{ game_data["top_label"] }}
             <br>
             {{ game_data["bottom_label"] }}
         </td>
         <td style="width: 40%">
-            <a [routerLink]="['/team', game_data['hTeamId'], game_data['seasonYear']]">
+            <a href="/team/{{game_data['hTeamId']}}/{{game_data['seasonYear']}}">
                 <img src="{{ game_data['hTeamLogoLocation'] }}" style="max-height: 65px; max-width: 90px">
                 <br>
                 {{ game_data["hTeamName"] }}
@@ -25,12 +26,19 @@
             {{ game_data["vTeamRecord"] }}
         </td>
         <td>
-            
+            {{ game_data["broadcastersLabel"] }}
         </td>
         <td>
             {{ game_data["hTeamRecord"] }}
         </td>
     </tr>
+    <!--<tr *ngIf="game_data['isPlayoffs']">
+        <td colspan="3">
+            Round {{game_data['playoffInfo']['roundNum']}} Game {{game_data['playoffInfo']['gameNumInSeries']}}
+            <br>
+
+        </td>
+    </tr>-->
     <tr *ngIf="game_data['nugget']">
         <td colspan="3">{{ game_data["nugget"] }}</td>
     </tr>

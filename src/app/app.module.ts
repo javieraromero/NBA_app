@@ -20,15 +20,16 @@ import { SeriesComponent } from './pages/series/series.component';
 import { PlayoffBracketComponent } from './pages/playoff-bracket/playoff-bracket.component';
 import { AllStarComponent } from './pages/all-star/all-star.component';
 import { CalendarComponent } from './pages/calendar/calendar.component';
+import { ScoreboardComponent } from './pages/scoreboard/scoreboard.component';
+import { BoxscoreComponent } from './pages/boxscore/boxscore.component';
+import { TotalsComponent } from './pages/totals/totals.component';
+import { AllStandingsComponent } from './pages/all-standings/all-standings.component';
 
 import { TeamInfo } from 'src/app/assets/team_info';
 import { PlayersList } from 'src/app/assets/players_list';
 import { DateCalculator } from 'src/app/assets/date_calculator';
 
 import { TeamsSearchPipe } from './pipes/teams-search.pipe';
-import { ScoreboardComponent } from './pages/scoreboard/scoreboard.component';
-import { BoxscoreComponent } from './pages/boxscore/boxscore.component';
-import { TotalsComponent } from './pages/totals/totals.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { TotalsComponent } from './pages/totals/totals.component';
     CalendarComponent,
     ScoreboardComponent,
     BoxscoreComponent,
-    TotalsComponent
+    TotalsComponent,
+    AllStandingsComponent
   ],
   imports: [
     BrowserModule,

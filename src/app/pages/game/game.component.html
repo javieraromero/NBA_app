@@ -6,7 +6,7 @@
 
 <!-- Tab links -->
 <div class="tab">
-    <button class="tablinks" id="preview_tab" (="switchTab(event, 'preview')" [hidden]="!isPreviewArticleAvail || statusNum != 1">Preview</button>
+    <button class="tablinks" id="preview_tab" (click)="switchTab(event, 'preview')" [hidden]="!isPreviewArticleAvail || statusNum != 1">Preview</button>
     <button class="tablinks" id="recap_tab" (click)="switchTab(event, 'recap')" [hidden]="!isRecapArticleAvail || statusNum != 3">Recap</button>
     <button class="tablinks" id="game_info_tab" (click)="switchTab(event, 'game_info')">Game Info</button>
     <button class="tablinks" id="pbp_tab" (click)="switchTab(event, 'pbp')" [hidden]="statusNum === 1">Play-by-play</button>
@@ -35,7 +35,7 @@
         </tr>
         <tr>
             <td> Series Record </td>
-            <td> {{ game_data["vTeamAbbrev"] }} {{ game_data["vTeamSeriesRecord"] }} {{ game_data["hTeamAbbrev"] }}</td>
+            <td> {{ game_data["seriesRecord"] }} </td>
         </tr>
         <tr *ngIf="game_data['broadcastersNational']">
             <td> National Broadcast </td>

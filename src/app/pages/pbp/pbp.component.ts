@@ -24,41 +24,25 @@ export class PbpComponent implements OnInit {
   ) { }
 
   async ngOnInit() {
-    var cont = true;
-    if(this.statusNum == 1)
+    if(this.statusNum == 2)
     {
-      this.routeSub = this.router.events.subscribe((event) => {
-        if(event instanceof NavigationStart) {
-          cont = false;
-          this.ngOnDestroy();
-        }
-      });
-    }
-    else if(this.statusNum == 2)
-    {
-      while(this.statusNum == 2 && cont)
+      while(this.statusNum == 2)
       {
         console.log("refreshing pbp for gameId: " + this.gameId);
         this.getPBP(this.date, this.gameId);
         await new Promise(r => setTimeout(r, 5000));
-
-        this.routeSub = this.router.events.subscribe((event) => {
-          if(event instanceof NavigationStart) {
-            cont = false;
-            this.ngOnDestroy();
-          }
-        });
       }
     }
     else if(this.statusNum == 3)
     {
       this.getPBP(this.date, this.gameId);
-      this.routeSub = this.router.events.subscribe((event) => {
-        if(event instanceof NavigationStart) {
-          this.ngOnDestroy();
-        }
-      });
     }
+
+    this.routeSub = this.router.events.subscribe((event) => {
+      if(event instanceof NavigationStart) {
+        this.ngOnDestroy();
+      }
+    });
   }
 
   public ngOnDestroy() {

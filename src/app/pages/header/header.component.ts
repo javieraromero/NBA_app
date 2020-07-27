@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 
 import { HttpClient } from '@angular/common/http';
-import { ActivatedRoute } from '@angular/router';
+import { Router, NavigationStart } from '@angular/router';
 
 import { TeamInfo } from 'src/app/assets/team_info';
-import { DateCalculator, MyDate } from 'src/app/assets/date_calculator';
+import { MyDate } from 'src/app/assets/date_calculator';
 
 @Component({
   selector: 'app-header',
@@ -15,22 +15,41 @@ export class HeaderComponent implements OnInit {
 
   date;
   games: Object[] = [];
+  statusNums: number[] = [];
   previousDate;
   nextDate;
   longDate;
 
+  private routeSub: any;
+
   constructor(
     private http: HttpClient,
     private teamInfo: TeamInfo,
-    private route: ActivatedRoute,
-    private dateCalcuator: DateCalculator
+    private router: Router
   ) { }
 
-  ngOnInit() {
+  async ngOnInit() {
     this.date = this.getDate();
     this.getData(this.date);
     this.setPreviousAndNextDate(this.date);
     this.setLongDate(this.date);
+
+    while(this.statusNums.indexOf(1) != -1 || this.statusNums.indexOf(2) != -1)
+    {
+      console.log("refreshing header");
+      this.getData(this.date);
+      await new Promise(r => setTimeout(r, 5000));
+    }
+
+    this.routeSub = this.router.events.subscribe((event) => {
+      if(event instanceof NavigationStart) {
+        this.ngOnDestroy();
+      }
+    });
+  }
+
+  public ngOnDestroy() {
+    this.routeSub.unsubscribe();
   }
 
   getDate()
@@ -54,11 +73,15 @@ export class HeaderComponent implements OnInit {
         var list_of_games = response["games"];
         var team_list = this.teamInfo.teams;
 
+        var temp: Object[] = [];
+        var temp_statusNums: number[] = [];
+
         for(let i = 0; i < list_of_games.length; i++)
         {
           var game = list_of_games[i];
 
           var gameId = game["gameId"];
+          temp_statusNums.push(game["statusNum"]);
 
           var visitingId = Number(game["vTeam"]["teamId"]);
           var homeId = Number(game["hTeam"]["teamId"]);
@@ -137,7 +160,7 @@ export class HeaderComponent implements OnInit {
           }
 
           /*
-          else if(statuNum == 4) could be postponed game, not sure
+          else if(statusNum == 4) could be postponed game, not sure
           */
 
           var broadcast_info = game["watch"]["broadcast"]["broadcasters"];
@@ -165,7 +188,7 @@ export class HeaderComponent implements OnInit {
           }*/
 
           const game_info = {
-            game_Id: gameId,
+            gameId: gameId,
             visitingTeam: visiting_team,
             visitingTeamId: visitingId,
             visitingTeamLogoLocation: visiting_team_logo,
@@ -178,8 +201,11 @@ export class HeaderComponent implements OnInit {
             broadcastersLabel: broadcastersLabel
           }
 
-          this.games.push(game_info);
+          temp.push(game_info);
         }
+
+        this.games = temp;
+        this.statusNums = temp_statusNums;
       })
   }
 

@@ -1,0 +1,20 @@
+<title>Current Standings</title>
+
+<!-- Tab links -->
+<div class="tab">
+    <button class="tablinks" id="conference_standings_tab" (click)="switchTab(event, 'conference_standings')">Conference</button>
+    <button class="tablinks" id="division_standings_tab" (click)="switchTab(event, 'division_standings')">Division</button>
+    <button class="tablinks" id="overall_standings_tab" (click)="switchTab(event, 'overall_standings')">Overall</button>
+</div>
+
+<div id="conference_standings" class="tabcontent">
+    <app-conference-standings></app-conference-standings>
+</div>
+
+<div id="division_standings" class="tabcontent">
+    <app-division-standings></app-division-standings>
+</div>
+
+<div id="overall_standings" class="tabcontent">
+    <app-overall-standings></app-overall-standings>
+</div>

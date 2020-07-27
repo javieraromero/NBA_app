@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Router, NavigationStart } from '@angular/router';
 
 import { TeamInfo } from '../../assets/team_info';
 
@@ -16,26 +17,38 @@ export class ScoreboardComponent implements OnInit {
   @Input() statusNum: number;
 
   game_data;
+  private routeSub: any;
 
   constructor(
     private http: HttpClient,
-    private teamInfo: TeamInfo
+    private teamInfo: TeamInfo,
+    private router: Router
   ) { }
 
   async ngOnInit() {
-    //if(this.statusNum == 2)
-    //{
-    //  while(this.statusNum == 2)
-    //  {
-        //console.log("refreshing scoreboard");
+    if(this.statusNum == 1 || this.statusNum == 3)
+    {
+      this.getGameData(this.date, this.gameId);
+    }
+    else if(this.statusNum == 2)
+    {
+      while(this.statusNum == 2)
+      {
+        console.log("refreshing scoreboard for gameId: " + this.gameId);
         this.getGameData(this.date, this.gameId);
-    //    await new Promise(r => setTimeout(r, 5000));
-    //  }
-    //}
-    //else if(this.statusNum == 3)
-    //{
-    //  this.getGameData(this.date, this.gameId);
-    //}
+        await new Promise(r => setTimeout(r, 5000));
+      }
+    }
+
+    this.routeSub = this.router.events.subscribe((event) => {
+      if(event instanceof NavigationStart) {
+        this.ngOnDestroy();
+      }
+    });
+  }
+
+  public ngOnDestroy() {
+    this.routeSub.unsubscribe();
   }
 
   getGameData(date: String, gameId: String)
@@ -57,6 +70,28 @@ export class ScoreboardComponent implements OnInit {
 
         var visiting_logo_location;
         var home_logo_location;
+
+        var playoff_info;
+        var isPlayoffs = basicGameData["seasonStageId"] == 4;
+
+        if(isPlayoffs)
+        {
+          var playoff_stats = basicGameData["playoffs"];
+          playoff_info = {
+            roundNum: playoff_stats["roundNum"],
+            confName: playoff_stats["confName"],
+            seriesId: playoff_stats["seriesId"],
+            seriesSummaryText: playoff_stats["seriesSummaryText"],
+            isSeriesCompleted: playoff_stats["isSeriesCompleted"],
+            gameNumInSeries: playoff_stats["gameNumInSeries"],
+            vTeamSeed: playoff_stats["vTeam"]["seedNum"],
+            vTeamSeriesWins: playoff_stats["vTeam"]["seriesWin"],
+            vTeamIsSeriesWinner: playoff_stats["vTeam"]["isSeriesWinner"],
+            hTeamSeed: playoff_stats["hTeam"]["seedNum"],
+            hTeamSeriesWins: playoff_stats["hTeam"]["seriesWin"],
+            hTeamIsSeriesWinner: playoff_stats["hTeam"]["isSeriesWinner"],
+          }
+        }
 
         for(let i in team_list)
         {
@@ -123,8 +158,33 @@ export class ScoreboardComponent implements OnInit {
           bottom_label = basicGameData["vTeam"]["score"] + " - " + basicGameData["hTeam"]["score"];
         }
 
+        var broadcast_info = basicGameData["watch"]["broadcast"]["broadcasters"];
+          var broadcastersNational = "", vTeamBroadcasters = "", hTeamBroadcasters = "";
+          
+          if(broadcast_info["national"][0])
+          broadcastersNational = broadcast_info["national"][0]["shortName"];
+          if(broadcast_info["vTeam"][0])
+            vTeamBroadcasters = broadcast_info["vTeam"][0]["shortName"];
+          if(broadcast_info["hTeam"][0])
+            hTeamBroadcasters = broadcast_info["hTeam"][0]["shortName"];
+          
+
+          var broadcastersLabel = "";
+
+          if(broadcastersNational)
+            broadcastersLabel = broadcastersNational;
+          else
+          {
+            if(vTeamBroadcasters && hTeamBroadcasters)
+              broadcastersLabel += vTeamBroadcasters + ", " + hTeamBroadcasters;
+            else
+              broadcastersLabel += vTeamBroadcasters + hTeamBroadcasters;
+          }
+
         this.game_data = {
           seasonYear: basicGameData["seasonYear"],
+          isPlayoffs: isPlayoffs,
+          playoff_info: playoff_info,
           vTeamId: visiting_team_id,
           vTeamName: visiting_team,
           vTeamLogoLocation: visiting_logo_location,
@@ -135,7 +195,8 @@ export class ScoreboardComponent implements OnInit {
           hTeamRecord: "(" + basicGameData["hTeam"]["win"] + " - " + basicGameData["hTeam"]["loss"] + ")",
           nugget: basicGameData["nugget"]["text"],
           top_label: top_label,
-          bottom_label: bottom_label
+          bottom_label: bottom_label,
+          broadcastersLabel: broadcastersLabel
         }
 
       });
