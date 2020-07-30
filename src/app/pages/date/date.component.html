@@ -2,13 +2,14 @@
 
 <app-header></app-header>
 
-<h1> NBA Scores </h1>
+<div class="container mt-3" style="width: 75%; margin-left: auto; margin-right: auto;">
+    <h3> Scores for {{ longDate }} </h3>
 
-<div class="container mt-3">
     <a href="/date/{{ previousDate }}">Previous Day</a>
     <span> || </span>
     <div class="dropdown">
-        <span>{{ longDate }}</span>
+        <img src="assets/images/calendar_icon.png" style="max-height: 12px;">
+        <span> {{ longDate }}</span>
         <div class="dropdown-content">
             <app-calendar [date]="date"></app-calendar>
         </div>
@@ -16,50 +17,13 @@
     <span> || </span>
     <a href="/date/{{ nextDate }}">Next Day</a>
 
+    <br>
+    <br>
+
     <div *ngIf="games.length === 0; else elseBlock">
         <h3>No NBA Games Today!</h3>
     </div>
     <ng-template #elseBlock>
-        <!--<table style="width:70%" id="t01">
-            <tr>
-                <th width="40%"> Away Team </th>
-                <th width="20%"> Score </th>
-                <th width="40%"> Home Team </th>
-            </tr>
-            <tr *ngFor="let game of games">
-                <td> 
-                    <a [routerLink]="['/team', game['visitingTeamId'], game['seasonYear']]">
-                        <img src="{{ game['visitingTeamLogoLocation'] }}" height="35px">
-                        <br>
-                        {{ game["visitingTeam"] }}
-                    </a>
-                    <br>
-                    {{ game["visitingRecord"] }} 
-                </td>
-                <td>
-                    <div *ngIf="game['seasonStageId'] === 1"><span>Preseason</span></div>
-                    <div *ngIf="game['seasonStageId'] === 4">
-                        <span>Playoffs 
-                            <a [routerLink]="['/series', game['playoff_info']['seriesId'], game['seasonYear']]">(R{{ game["playoff_info"]["roundNum"] }}G{{ game["playoff_info"]["gameNumInSeries"] }})</a>
-                        </span>
-                    </div>
-                    {{ game["top_label"] }} 
-                    <br> 
-                    {{ game["bottom_label"] }}
-                    <br>
-                    <a [routerLink]="['/date', date, game['game_Id']]"> Boxscore </a>
-                </td>
-                <td>
-                    <a [routerLink]="['/team', game['homeTeamId'], game['seasonYear']]">
-                        <img src="{{ game['homeTeamLogoLocation'] }}" height="35px">
-                        <br>
-                        {{ game["homeTeam"] }}
-                    </a>
-                    <br>
-                    {{ game["homeRecord"] }} 
-                </td>
-            </tr>
-        </table>-->
         <ng-container *ngFor="let game of games">
             <a href="date/{{date}}/{{game['gameId']}}" style="text-decoration: none; color: inherit;">
                 <app-scoreboard [useSecondaryLogos]="true" [date]="date" [gameId]="game['gameId']" [statusNum]="game['statusNum']">

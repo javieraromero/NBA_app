@@ -28,18 +28,13 @@ export class HeaderComponent implements OnInit {
     private router: Router
   ) { }
 
-  async ngOnInit() {
+  ngOnInit() {
     this.date = this.getDate();
     this.getData(this.date);
     this.setPreviousAndNextDate(this.date);
     this.setLongDate(this.date);
 
-    while(this.statusNums.indexOf(1) != -1 || this.statusNums.indexOf(2) != -1)
-    {
-      console.log("refreshing header");
-      this.getData(this.date);
-      await new Promise(r => setTimeout(r, 5000));
-    }
+    this.run();
 
     this.routeSub = this.router.events.subscribe((event) => {
       if(event instanceof NavigationStart) {
@@ -50,6 +45,23 @@ export class HeaderComponent implements OnInit {
 
   public ngOnDestroy() {
     this.routeSub.unsubscribe();
+  }
+
+  async run()
+  {
+    var is_today_current_date;
+    do {
+        console.log("refreshing header");
+        this.getData(this.date);
+        await new Promise(r => setTimeout(r, 5000));
+        is_today_current_date = this.compareDates(this.date);
+    } while((this.statusNums.indexOf(1) != -1 || this.statusNums.indexOf(2) != -1) && is_today_current_date);
+
+    this.routeSub = this.router.events.subscribe((event) => {
+      if(event instanceof NavigationStart) {
+        this.ngOnDestroy();
+      }
+    });
   }
 
   getDate()
@@ -96,12 +108,12 @@ export class HeaderComponent implements OnInit {
             var team = team_list[i];
             if(team["teamId"] == visitingId)
             {
-              visiting_team = team["abbreviation"];
+              visiting_team = team["tricode"];
               visiting_team_logo = team["secondaryLogoLocation"];
             }
             if(team["teamId"] == homeId)
             {
-              home_team = team["abbreviation"];
+              home_team = team["tricode"];
               home_team_logo = team["secondaryLogoLocation"];
             }
             if(visiting_team && home_team)
@@ -117,9 +129,17 @@ export class HeaderComponent implements OnInit {
 
           if(statusNum == 1)
           {
-            label = start_time;
-            visiting_label = game["vTeam"]["win"] + "-" + game["vTeam"]["loss"];
-            home_label = game["hTeam"]["win"] + "-" + game["hTeam"]["loss"];
+            var isStartTimeTBD = game["isStartTimeTBD"];
+            if(isStartTimeTBD)
+            {
+              label = "TBD";
+            }
+            else
+            {
+              label = start_time;
+            }
+            visiting_label = "(" + game["vTeam"]["win"] + "-" + game["vTeam"]["loss"] + ")";
+            home_label = "(" + game["hTeam"]["win"] + "-" + game["hTeam"]["loss"] + ")";
 
           }
           else if(statusNum == 2)
@@ -189,6 +209,7 @@ export class HeaderComponent implements OnInit {
 
           const game_info = {
             gameId: gameId,
+            statusNum: statusNum,
             visitingTeam: visiting_team,
             visitingTeamId: visitingId,
             visitingTeamLogoLocation: visiting_team_logo,
@@ -216,6 +237,7 @@ export class HeaderComponent implements OnInit {
     this.setPreviousAndNextDate(this.date);
     this.setLongDate(this.date);
     this.getData(this.date);
+    this.run();
   }
 
   gotoNextDate()
@@ -225,6 +247,7 @@ export class HeaderComponent implements OnInit {
     this.setPreviousAndNextDate(this.date);
     this.setLongDate(this.date);
     this.getData(this.date);
+    this.run();
   }
 
   setPreviousAndNextDate(date: String)
@@ -263,5 +286,10 @@ export class HeaderComponent implements OnInit {
     var newDate = new MyDate(month, day, year);
 
     this.longDate = newDate.getDayOfWeekName() + ", " + newDate.getMonthName() + " " + newDate.getDay() + " " + newDate.getYear();
+  }
+
+  compareDates(date: String)
+  {
+    return date == this.getDate();
   }
 }

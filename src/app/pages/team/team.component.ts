@@ -7,8 +7,6 @@ import { TeamInfo } from '../../assets/team_info';
 import { PlayersList } from '../../assets/players_list';
 //import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
-import { TeamsSearchPipe } from '../../pipes/teams-search.pipe';
-
 @Component({
   selector: 'app-team',
   templateUrl: './team.component.html',
@@ -37,20 +35,22 @@ export class TeamComponent implements OnInit {
   ngOnInit() {
     this.teamId = this.route.snapshot.paramMap.get('teamId');
     this.year = this.route.snapshot.paramMap.get('year');
-    this.getRoster(this.teamId, this.year);
+    //this.getSchedule(this.teamId, this.year);
+    //this.getRoster(this.teamId, this.year);
     this.getTeamLeaders(this.teamId, this.year);
-    this.getSchedule(this.teamId, this.year);
     var teamAttributes = this.getTeamAttributes(this.teamId);
     this.teamName = teamAttributes["teamName"];
-    this.teamPrimaryLogoLocation = teamAttributes["teamPrimaryLogoLocation"];
+    /*this.teamPrimaryLogoLocation = teamAttributes["teamPrimaryLogoLocation"];
     this.teamSecondaryLogoLocation = teamAttributes["teamSecondaryLogoLocation"];
     var primaryColor = teamAttributes["teamPrimaryColor"];
     var secondaryColor = teamAttributes["teamSecondaryColor"];
     document.documentElement.style.setProperty('--team_primary', primaryColor);
-    document.documentElement.style.setProperty('--team_secondary', secondaryColor);
+    document.documentElement.style.setProperty('--team_secondary', secondaryColor);*/
+
+    document.getElementById("team_tab").click();
   }
 
-  getRoster(teamId: String, year: String)
+  /*getRoster(teamId: String, year: String)
   {
     return this.http.get("http://data.nba.net/prod/v1/" + year + "/teams/" + teamId + "/roster.json")
       .subscribe(response => {
@@ -85,7 +85,7 @@ export class TeamComponent implements OnInit {
           this.roster.push(player_info);
         }
       });
-  }
+  }*/
 
   getTeamLeaders(teamId: String, year: String)
   {
@@ -189,74 +189,6 @@ export class TeamComponent implements OnInit {
       });
   }
 
-  getSchedule(teamId: String, year: String)
-  {
-    return this.http.get("http://data.nba.net/10s/prod/v1/" + year + "/teams/" + teamId + "/schedule.json")
-      .subscribe(response => {
-        var leagueData = response["league"];
-        this.lastGamePlayedIndex = leagueData["lastStandardGamePlayedIndex"];
-        var games = leagueData["standard"];
-
-        for(var i = 0; i < games.length; i++)
-        {
-          var game = games[i];
-
-          var vTeamId = game["vTeam"]["teamId"];
-          var hTeamId = game["hTeam"]["teamId"];
-
-          var isPlayoffs = game["seasonStageId"] == 4;
-          var playoff_info;
-
-          if(isPlayoffs)
-          {
-            var playoff_stats = game["playoffs"];
-            playoff_info = {
-              roundNum: playoff_stats["roundNum"],
-              confName: playoff_stats["confName"],
-              seriesId: playoff_stats["seriesId"],
-              seriesSummaryText: playoff_stats["seriesSummaryText"],
-              isSeriesCompleted: playoff_stats["isSeriesCompleted"],
-              gameNumInSeries: playoff_stats["gameNumInSeries"],
-              vTeamSeed: playoff_stats["vTeam"]["seedNum"],
-              vTeamSeriesWins: playoff_stats["vTeam"]["seriesWin"],
-              vTeamIsSeriesWinner: playoff_stats["vTeam"]["isSeriesWinner"],
-              hTeamSeed: playoff_stats["hTeam"]["seedNum"],
-              hTeamSeriesWins: playoff_stats["hTeam"]["seriesWin"],
-              hTeamIsSeriesWinner: playoff_stats["hTeam"]["isSeriesWinner"],
-            }
-          }
-
-          var vTeamAttributes = this.getTeamAttributes(vTeamId);
-          var hTeamAttributes = this.getTeamAttributes(hTeamId);
-
-          const game_info = {
-            seasonStageId: game["seasonStageId"],
-            gameId: game["gameId"],
-            startTimeEastern: game["startTimeEastern"],
-            startDateEastern: game["startDateEastern"],
-            longDate: this.getLongDate(game["startDateEastern"]),
-            vTeamId: vTeamId,
-            vTeamName: vTeamId == this.teamId ? this.teamName : vTeamAttributes["teamName"],
-            vTeamAbbreviation: vTeamAttributes["teamAbbreviation"],
-            vTeamLocation: vTeamAttributes["teamLocation"],
-            vTeamSimpleName: vTeamAttributes["teamSimpleName"],
-            vTeamLogoLocation: vTeamId == this.teamId ? this.teamSecondaryLogoLocation : vTeamAttributes["teamSecondaryLogoLocation"],
-            vTeamScore: game["vTeam"]["score"],
-            hTeamId: hTeamId,
-            hTeamName: hTeamId == this.teamId ? this.teamName : hTeamAttributes["teamName"],
-            hTeamAbbreviation: hTeamAttributes["teamAbbreviation"],
-            hTeamLocation: hTeamAttributes["teamLocation"],
-            hTeamSimpleName: hTeamAttributes["teamSimpleName"],
-            hTeamLogoLocation: hTeamId == this.teamId ? this.teamSecondaryLogoLocation : hTeamAttributes["teamSecondaryLogoLocation"],
-            hTeamScore: game["hTeam"]["score"],
-            playoff_info: playoff_info
-          }
-
-          this.list_of_games.push(game_info);
-        }
-      });
-  }
-
   getTeamAttributes(teamId: String)
   {
     var team_list = this.teamInfo.teams;
@@ -264,7 +196,7 @@ export class TeamComponent implements OnInit {
     var teamId_int = Number(teamId);
 
     var teamName;
-    var teamAbbreviation;
+    var teamtricode;
     var teamLocation;
     var teamSimpleName;
     var teamPrimaryColor;
@@ -278,7 +210,7 @@ export class TeamComponent implements OnInit {
       if(team["teamId"] == teamId_int)
       {
         teamName = team["teamName"];
-        teamAbbreviation = team["abbreviation"];
+        teamtricode = team["tricode"];
         teamLocation = team["location"];
         teamSimpleName = team["simpleName"];
         teamPrimaryColor = team["primaryColor"];
@@ -291,7 +223,7 @@ export class TeamComponent implements OnInit {
 
     const team_attributes = {
       teamName: teamName,
-      teamAbbreviation: teamAbbreviation,
+      teamtricode: teamtricode,
       teamLocation: teamLocation,
       teamSimpleName: teamSimpleName,
       teamPrimaryColor: teamPrimaryColor,
@@ -303,14 +235,24 @@ export class TeamComponent implements OnInit {
     return team_attributes;
   }
 
-  getLongDate(date: String)
-  {
-    var year = Number(date.slice(0, 4));
-    var month = Number(date.slice(4, 6));
-    var day = Number(date.slice(6, ));
-
-    var newDate = new Date(year, month, day);
-
-    return newDate.toDateString();
+  switchTab(evt, tabName) {
+    // Declare all variables
+    var i, tabcontent, tablinks;
+  
+    // Get all elements with class="tabcontent" and hide them
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+      tabcontent[i].style.display= "none";
+    }
+  
+    // Get all elements with class="tablinks" and remove the class "active"
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+      tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+  
+    // Show the current tab, and add an "active" class to the button that opened the tab
+    document.getElementById(tabName).style.display = "block";
+    evt.currentTarget.className += " active";
   }
 }

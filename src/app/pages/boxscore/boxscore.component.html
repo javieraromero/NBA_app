@@ -1,7 +1,9 @@
-<div>
+<br>
+
+<div style="margin-left: auto; margin-right: auto;">
     <form>
-        <input type="radio" id="vTeam_radio" name="radio" (click)="showTeam(visiting_team)" checked>
         <label for="vTeam_radio">{{ visiting_team }}</label>
+        <input type="radio" id="vTeam_radio" name="radio" (click)="showTeam(visiting_team)" checked>
         <input type="radio" id="hTeam_radio" name="radio" (click)="showTeam(home_team)">
         <label for="hTeam_radio">{{ home_team }}</label>
     </form>
@@ -36,7 +38,12 @@
             <th> +/- </th>
         </tr>
         <tr *ngFor="let player of visiting_players">
-            <td><a [routerLink]="['/player', player['personId'], seasonYear]"> {{ player["firstName"] }} {{ player["lastName"] }} </a></td>
+            <td>
+                <img src="assets/images/on_court_icon.png" *ngIf="player['isOnCourt'] && statusNum === 2" style="max-height: 8px;">
+                <a [routerLink]="['/player', player['personId'], seasonYear]">
+                    {{ player["firstName"] }} {{ player["lastName"] }}
+                </a>
+            </td>
             <td colspan="21" *ngIf="player['dnp']; else elseBlock"> {{ player["dnp"] }} </td>
             <ng-template #elseBlock>
                 <td> {{ player["pos"] }} </td>
@@ -91,7 +98,12 @@
             <th> +/- </th>
         </tr>
         <tr *ngFor="let player of home_players">
-            <td><a [routerLink]="['/player', player['personId'], seasonYear]"> {{ player["firstName"] }} {{ player["lastName"] }} </a></td>
+            <td>
+                <img src="assets/images/on_court_icon.png" *ngIf="player['isOnCourt'] && statusNum === 2" style="max-height: 8px;">
+                <a [routerLink]="['/player', player['personId'], seasonYear]">
+                    {{ player["firstName"] }} {{ player["lastName"] }}
+                </a>
+            </td>
             <td colspan="21" *ngIf="player['dnp']; else elseBlock"> {{ player["dnp"] }} </td>
             <ng-template #elseBlock>
                 <td> {{ player["pos"] }} </td>

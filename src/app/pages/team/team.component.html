@@ -1,21 +1,27 @@
 <title>{{ teamName }} page</title>
 
-<h1><img src="{{ teamPrimaryLogoLocation }}" height="35px"> {{ teamName }} Roster and Schedule </h1>
+<app-header></app-header>
 
-<div class="container mt-3">
-    <table style="width:30%" id="team_table">
-        <tr>
-            <th> Roster </th>
-        </tr>
-        <tr *ngFor="let player of roster">
-            <td>
-                <a [routerLink]="['/player', player['playerId'], year]"> {{ player["firstName"] }} {{ player["lastName"] }} </a>
-            </td>
-        </tr>
-    </table>
+<br>
 
-    <br>
+<div class="tab">
+    <button class="tablinks" id="team_tab" (click)="switchTab(event, 'team')">Team</button>
+    <button class="tablinks" id="roster_tab" (click)="switchTab(event, 'roster')">Roster</button>
+    <button class="tablinks" id="schedule_tab" (click)="switchTab(event, 'schedule')">Schedule</button>
+    <button class="tablinks" id="team_leaders_tab" (click)="switchTab(event, 'team_leaders')">Team Leaders</button>
+</div>
 
+<div id="team" class="tabcontent">
+    <app-team-info [teamId]="teamId" [year]="year">
+    </app-team-info>
+</div>
+
+<div id="roster" class="tabcontent">
+    <app-roster [teamId]="teamId" [year]="year">
+    </app-roster>
+</div>
+
+<div id="team_leaders" class="tabcontent">
     <table style="width:80%" id="team_table">
         <tr>
             <th colspan="3"> Team Leaders </th>
@@ -111,47 +117,9 @@
             <td> {{ team_leaders["pfpgValue"] }} </td>
         </tr>
     </table>
+</div>
 
-    <br>
-
-    <span> Schedule </span>
-    <input style="width: 25%; display: inline-block;  margin-left: 5px;" placeholder="Search..." type="text" class="form-control" 
-        name="search" [(ngModel)]="search"/>
-    <table style="width:70%" id="team_table">
-        <tr>
-            <th width="10%"> Date </th>
-            <th width="35%"> Away Team </th>
-            <th width="20%"> Score </th>
-            <th width="35%"> Home Team </th>
-        </tr>
-        <tr *ngFor="let game of list_of_games | teamsSearch: search;">
-            <td>
-                <a href="/date/{{ game['startDateEastern'] }}"> {{ game["longDate"] }} </a>
-            </td>
-            <td> 
-                <a href="/team/{{ game['vTeamId'] }}/{{ year }}">
-                    <img src="{{ game['vTeamLogoLocation'] }}" height="35px">
-                    <br>
-                    {{ game["vTeamName"] }}
-                </a>
-            </td>
-            <td>
-                <div *ngIf="game['seasonStageId'] === 1"><span>Preseason</span></div>
-                <div *ngIf="game['seasonStageId'] === 4">
-                    <span>Playoffs (R{{ game["playoff_info"]["roundNum"] }}G{{ game["playoff_info"]["gameNumInSeries"] }})</span>
-                </div>
-                <br> 
-                {{ game["vTeamScore"] }} - {{ game["hTeamScore"] }}
-                <br>
-                <a [routerLink]="['/date', game['startDateEastern'], game['gameId']]"> Boxscore </a>
-            </td>
-            <td>
-                <a href="/team/{{ game['hTeamId'] }}/{{ year }}">
-                    <img src="{{ game['hTeamLogoLocation'] }}" height="35px">
-                    <br>
-                    {{ game["hTeamName"] }}
-                </a>
-            </td>
-        </tr>
-    </table>
+<div id="schedule" class="tabcontent">
+    <app-schedule [teamId]="teamId" [year]="year">
+    </app-schedule>
 </div>

@@ -35,7 +35,22 @@ export class BoxscoreComponent implements OnInit {
   ) { }
 
   async ngOnInit() {
-    if(this.statusNum == 2)
+    var is_today_current_date = this.compareDates(this.date);
+    if(this.statusNum == 1)
+    {
+      while(this.statusNum == 1 && is_today_current_date)
+      {
+        console.log("boxscore is checking statusNum");
+        await new Promise(r => setTimeout(r, 15000));
+      }
+      console.log("boxscore has detected a statusNum change. statusNum is now " + this.statusNum);
+    }
+
+    if(this.statusNum == 3)
+    {
+      this.getBoxscores(this.date, this.gameId);
+    }
+    else if(this.statusNum == 2)
     {
       while(this.statusNum == 2)
       {
@@ -43,10 +58,6 @@ export class BoxscoreComponent implements OnInit {
         this.getBoxscores(this.date, this.gameId);
         await new Promise(r => setTimeout(r, 5000));
       }
-    }
-    else if(this.statusNum == 3)
-    {
-      this.getBoxscores(this.date, this.gameId);
     }
 
     this.routeSub = this.router.events.subscribe((event) => {
@@ -214,5 +225,18 @@ export class BoxscoreComponent implements OnInit {
       this.show_home_team = false;
       this.show_visiting_team = true;
     }
+  }
+
+  compareDates(date: String)
+  {
+    var currentDate = new Date();
+    var currentYear = String(currentDate.getFullYear());
+    var currentMonth = currentDate.getMonth() + 1;
+    var currentMonthFormatted = currentMonth <= 9? "0" + String(currentMonth) : String(currentMonth);
+    var currentDay = currentDate.getDate()
+    var currentDayFormatted = currentDay <= 9? "0" + String(currentDay) : String(currentDay);
+    var formattedDate = currentYear + currentMonthFormatted + currentDayFormatted;
+
+    return date == formattedDate;
   }
 }

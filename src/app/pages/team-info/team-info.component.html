@@ -1,0 +1,35 @@
+<div class="row">
+    <div class="column">
+        <img src="{{ team_attributes['teamPrimaryLogoLocation'] }}" style="max-height: 250px; max-width: 200px; margin-left: 50px; margin-top: 50px">
+    </div>
+    <div class="column" style="margin-top: 50px">
+        <table>
+            <tr>
+                <td>Team name</td>
+                <td>{{ team_attributes['teamName'] }}</td>
+            </tr>
+            <tr>
+                <td>Tricode</td>
+                <td>{{ team_attributes['teamtricode'] }}</td>
+            </tr>
+            <tr>
+                <td colspan="2">{{ team_data['win'] }} - {{ team_data['loss'] }}</td>
+            </tr>
+            <tr>
+                <td colspan="2">{{ team_data['confRank'] == 1 ? "1st" : team_data['confRank'] == 2 ? "2nd" : team_data['confRank'] == 3 ? "3rd" : team_data['confRank'] + "th" }} in {{ team_attributes['confName'] }}ern Conference</td>
+            </tr>
+            <tr>
+                <td colspan="2">{{ team_data['divRank'] == 1 ? "1st" : team_data['divRank'] == 2 ? "2nd" : team_data['divRank'] == 3 ? "3rd" : team_data['divRank'] + "th" }} in {{ team_attributes['divName'] }} Division</td>
+            </tr>
+        </table>
+    </div>
+    <div class="column" style="margin-top: 50px">
+        <div *ngFor="let coach of coaches_list">
+            <div>
+                <app-person [isCoach]="true" [personId]="coach['personId']" [year]="year">
+                </app-person>
+                <br>
+            </div>
+        </div>
+    </div>
+</div>

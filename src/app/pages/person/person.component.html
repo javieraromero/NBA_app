@@ -1,0 +1,68 @@
+<div *ngIf="!isCoach; else elseBlock">
+    <table style="width:100%">
+        <tr>
+            <td rowspan="2" style="width: 20%">
+                <div class="images">
+                    <img class="img1" src="https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/260x190/{{ personId }}.png">
+                    <img class="img2" src="{{ logo_location }}" >
+                </div>
+            </td>
+            <td style="width: 20%">
+                <b>{{ person_attributes["firstName"] }} {{ person_attributes["lastName"] }}</b>
+            </td>
+            <td style="width: 17.5%">
+                {{ person_attributes["heightFeet"] }}'{{ person_attributes["heightInches"] }}", {{ person_attributes["weightPounds"] }} lbs
+            </td>
+            <td style="width: 17.5%">
+                College - {{ person_attributes["collegeName"] }}
+            </td>
+            <td style="width: 25%">
+                <div *ngIf="person_attributes['draft_info']['pickNum'] === ''; else elseBlock">
+                    Draft - Undrafted
+                </div>
+                <ng-template #elseBlock>
+                    Draft - {{ person_attributes["draft_info"]["seasonYear"] }}: Round {{ person_attributes["draft_info"]["roundNum"] }}, Pick {{ person_attributes["draft_info"]["pickNum"] }} ({{ person_attributes["draft_info"]["tricode"] }})
+                </ng-template>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                #{{ person_attributes["jersey"] }}
+            </td>
+            <td>
+                {{ person_attributes["dob"] }}
+            </td>
+            <td>
+                {{ person_attributes["country"] }}
+            </td>
+            <td>
+                {{ person_attributes["posFull"] }}
+            </td>
+        </tr>
+    </table>
+</div>
+<ng-template #elseBlock>
+    <table style="width:100%">
+        <tr>
+            <td rowspan="3" style="width: 20%">
+                <div class="images">
+                    <img class="img1" src="{{ headshot_location }}" style="max-width: 190; max-height: 260;">
+                    <img class="img2" src="{{ logo_location }}" >
+                </div>
+            </td>
+            <td style="width: 80%">
+                <b>{{ person_attributes["firstName"] }} {{ person_attributes["lastName"] }}</b>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                {{ person_attributes["coachRole"] }}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                College - {{ person_attributes["college"] }}
+            </td>
+        </tr>
+    </table>
+</ng-template>

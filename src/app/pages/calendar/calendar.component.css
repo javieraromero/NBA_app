@@ -1,3 +1,7 @@
+button, th, td {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  }
+
 table, th, td {
     border: 0px;
     border-collapse: collapse;

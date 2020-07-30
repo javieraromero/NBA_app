@@ -17,7 +17,7 @@ export class GameComponent implements OnInit {
   gameId;
   
   game_data;
-  statusNum: Number = 2;
+  statusNum: Number;
   visiting_team: String;
   home_team: String;
   longDate: String;
@@ -50,11 +50,15 @@ export class GameComponent implements OnInit {
     //this.getRecap(date, gameId);
     this.setLongDate(date);
 
-    while(this.statusNum <= 2)
+    var is_today_current_date = this.compareDates(this.date);
+
+    if(is_today_current_date)
     {
-      console.log("game is updating statusNum");
-      this.updateStatusNum(this.date, this.gameId);
-      await new Promise(r => setTimeout(r, 15000));
+      do {
+        console.log("game is updating statusNum");
+        this.updateStatusNum(this.date, this.gameId);
+        await new Promise(r => setTimeout(r, 15000));
+      } while(this.statusNum <= 2);
     }
   }
 
@@ -132,6 +136,7 @@ export class GameComponent implements OnInit {
           }
 
           this.game_data = {
+            gameId: basicGameData["gameId"],
             attendance: basicGameData["attendance"],
             broadcastersNational: broadcastersNational,
             vTeamBroadcasters: vTeamBroadcasters,
@@ -250,5 +255,18 @@ export class GameComponent implements OnInit {
     {
       document.getElementById("game_info_tab").click();
     }
+  }
+
+  compareDates(date: String)
+  {
+    var currentDate = new Date();
+    var currentYear = String(currentDate.getFullYear());
+    var currentMonth = currentDate.getMonth() + 1;
+    var currentMonthFormatted = currentMonth <= 9? "0" + String(currentMonth) : String(currentMonth);
+    var currentDay = currentDate.getDate()
+    var currentDayFormatted = currentDay <= 9? "0" + String(currentDay) : String(currentDay);
+    var formattedDate = currentYear + currentMonthFormatted + currentDayFormatted;
+
+    return date == formattedDate;
   }
 }

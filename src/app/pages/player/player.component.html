@@ -1,6 +1,12 @@
 <title>Stats for {{ first_name }} {{ last_name }}</title>
 
-<h1> Stats for {{ first_name }} {{ last_name }} - {{ current_team }} <img src="{{ teamLogoLocation }}" height="30px"></h1>
+<app-header></app-header>
+
+<br>
+
+<div style="width: 75%; margin-left: auto; margin-right: auto;">
+    <app-person [personId]="personId" [year]="year"></app-person>
+</div>
 
 <div class="table-wrapper">
     <span>Career Averages</span>

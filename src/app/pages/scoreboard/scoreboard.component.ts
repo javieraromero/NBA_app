@@ -15,6 +15,8 @@ export class ScoreboardComponent implements OnInit {
   @Input() date: String;
   @Input() gameId: String;
   @Input() statusNum: number;
+  //@Input() primaryTeamId: number;
+  //@Input() primaryTeamLogo: String;
 
   game_data;
   private routeSub: any;
@@ -26,12 +28,28 @@ export class ScoreboardComponent implements OnInit {
   ) { }
 
   async ngOnInit() {
-    if(this.statusNum == 1 || this.statusNum == 3)
+    var is_today_current_date = this.compareDates(this.date);
+    //console.log(this.statusNum);
+    if(this.statusNum == 1)
     {
+      //console.log("statusNum is: " + this.statusNum);
+      this.getGameData(this.date, this.gameId);
+      while(this.statusNum == 1 && is_today_current_date)
+      {
+        console.log("scoreboard is checking statusNum");
+        await new Promise(r => setTimeout(r, 15000));
+      }
+      console.log("scoreboard has detected a statusNum change. statusNum is now " + this.statusNum);
+    }
+    
+    if(this.statusNum == 3)
+    {
+      //console.log("statusNum is: " + this.statusNum);
       this.getGameData(this.date, this.gameId);
     }
     else if(this.statusNum == 2)
     {
+      //console.log("statusNum is: " + this.statusNum);
       while(this.statusNum == 2)
       {
         console.log("refreshing scoreboard for gameId: " + this.gameId);
@@ -116,11 +134,25 @@ export class ScoreboardComponent implements OnInit {
             break;
         }
 
+        var nugget = "";
+        if(basicGameData["nugget"])
+        {
+          nugget = basicGameData["nugget"]["text"];
+        }
+
         var top_label, bottom_label;
 
         if(statusNum == 1)
         {
-          top_label = basicGameData["startTimeEastern"];
+          var isStartTimeTBD = basicGameData["isStartTimeTBD"];
+          if(isStartTimeTBD)
+          {
+            top_label = "TBD";
+          }
+          else
+          {
+            top_label = basicGameData["startTimeEastern"];
+          }
           bottom_label = "";
         }
         else if(statusNum == 2)
@@ -193,7 +225,7 @@ export class ScoreboardComponent implements OnInit {
           hTeamName: home_team,
           hTeamLogoLocation: home_logo_location,
           hTeamRecord: "(" + basicGameData["hTeam"]["win"] + " - " + basicGameData["hTeam"]["loss"] + ")",
-          nugget: basicGameData["nugget"]["text"],
+          nugget: nugget,
           top_label: top_label,
           bottom_label: bottom_label,
           broadcastersLabel: broadcastersLabel
@@ -202,4 +234,16 @@ export class ScoreboardComponent implements OnInit {
       });
   }
 
+  compareDates(date: String)
+  {
+    var currentDate = new Date();
+    var currentYear = String(currentDate.getFullYear());
+    var currentMonth = currentDate.getMonth() + 1;
+    var currentMonthFormatted = currentMonth <= 9? "0" + String(currentMonth) : String(currentMonth);
+    var currentDay = currentDate.getDate()
+    var currentDayFormatted = currentDay <= 9? "0" + String(currentDay) : String(currentDay);
+    var formattedDate = currentYear + currentMonthFormatted + currentDayFormatted;
+
+    return date == formattedDate;
+  }
 }

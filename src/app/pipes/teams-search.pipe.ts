@@ -5,27 +5,27 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class TeamsSearchPipe implements PipeTransform {
 
-  transform(list: any, term: any): any {
-    if(term === undefined)
+  transform(list: any, term: any, all_games: any): any {
+    if(term == undefined || term == "")
     {
       return list;
     }
 
-    return list.filter(function(game){
+    return all_games.filter(function(game){
       var vTeamFull_vs_hTeamFull = game["vTeamName"] + " vs " + game["hTeamName"];
-      var vTeamAbbrev_vs_hTeamAbbrev = game["vTeamAbbreviation"] + " vs " + game["hTeamAbbreviation"];
+      var vTeamAbbrev_vs_hTeamAbbrev = game["vTeamtricode"] + " vs " + game["hTeamtricode"];
       var vTeamLocation_vs_hTeamLocation = game["vTeamLocation"] + " vs " + game["hTeamLocation"];
       var vTeamSimple_vs_hTeamSimple = game["vTeamSimpleName"] + " vs " + game["hTeamSimpleName"];
       var hTeamFull_vs_vTeamFull = game["hTeamName"] + " vs " + game["vTeamName"];
-      var hTeamAbbrev_vs_vTeamAbbrev = game["hTeamAbbreviation"] + " vs " + game["vTeamAbbreviation"];
+      var hTeamAbbrev_vs_vTeamAbbrev = game["hTeamtricode"] + " vs " + game["vTeamtricode"];
       var hTeamLocation_vs_vTeamLocation = game["hTeamLocation"] + " vs " + game["vTeamLocation"];
       var hTeamSimple_vs_vTeamSimple = game["hTeamSimpleName"] + " vs " + game["vTeamSimpleName"];
       var vTeamFull_hTeamFull = game["vTeamName"] + " " + game["hTeamName"];
-      var vTeamAbbrev_hTeamAbbrev = game["vTeamAbbreviation"] + " " + game["hTeamAbbreviation"];
+      var vTeamAbbrev_hTeamAbbrev = game["vTeamtricode"] + " " + game["hTeamtricode"];
       var vTeamLocation_hTeamLocation = game["vTeamLocation"] + " " + game["hTeamLocation"];
       var vTeamSimple_hTeamSimple = game["vTeamSimpleName"] + " " + game["hTeamSimpleName"];
       var hTeamFull_vTeamFull = game["hTeamName"] + " " + game["vTeamName"];
-      var hTeamAbbrev_vTeamAbbrev = game["hTeamAbbreviation"] + " " + game["vTeamAbbreviation"];
+      var hTeamAbbrev_vTeamAbbrev = game["hTeamtricode"] + " " + game["vTeamtricode"];
       var hTeamLocation_vTeamLocation = game["hTeamLocation"] + " " + game["vTeamLocation"];
       var hTeamSimple_vTeamSimple = game["hTeamSimpleName"] + " " + game["vTeamSimpleName"];
 

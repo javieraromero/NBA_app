@@ -250,7 +250,7 @@ export class SeriesComponent implements OnInit {
     var teamId_int = Number(teamId);
 
     var teamName;
-    var teamAbbreviation;
+    var teamtricode;
     var teamLocation;
     var teamSimpleName;
     var teamPrimaryColor;
@@ -264,7 +264,7 @@ export class SeriesComponent implements OnInit {
       if(team["teamId"] == teamId_int)
       {
         teamName = team["teamName"];
-        teamAbbreviation = team["abbreviation"];
+        teamtricode = team["tricode"];
         teamLocation = team["location"];
         teamSimpleName = team["simpleName"];
         teamPrimaryColor = team["primaryColor"];
@@ -277,7 +277,7 @@ export class SeriesComponent implements OnInit {
 
     const team_attributes = {
       teamName: teamName,
-      teamAbbreviation: teamAbbreviation,
+      teamtricode: teamtricode,
       teamLocation: teamLocation,
       teamSimpleName: teamSimpleName,
       teamPrimaryColor: teamPrimaryColor,

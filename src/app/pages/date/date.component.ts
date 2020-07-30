@@ -34,13 +34,16 @@ export class DateComponent implements OnInit
     this.getData(this.date);
     this.setLongDate(this.date);
     this.setPreviousAndNextDate(this.date);
-    
-    //console.log(this.statusNums);
-    while(this.statusNums.indexOf(1) != -1 || this.statusNums.indexOf(2) != -1)
+
+    var is_today_current_date = this.compareDates(this.date);
+
+    if(is_today_current_date)
     {
-      console.log("date is updating statusNums");
-      this.updateStatusNums(this.date);
-      await new Promise(r => setTimeout(r, 15000));
+      do {
+        console.log("date is updating statusNums");
+        this.updateStatusNums(this.date);
+        await new Promise(r => setTimeout(r, 15000));
+      } while(this.statusNums.indexOf(1) != -1 || this.statusNums.indexOf(2) != -1);
     }
   }
 
@@ -147,5 +150,18 @@ export class DateComponent implements OnInit
     temp_year = String(temp.getYear());
 
     this.nextDate = temp_year + temp_month_formatted + temp_day_formatted;
+  }
+
+  compareDates(date: String)
+  {
+    var currentDate = new Date();
+    var currentYear = String(currentDate.getFullYear());
+    var currentMonth = currentDate.getMonth() + 1;
+    var currentMonthFormatted = currentMonth <= 9? "0" + String(currentMonth) : String(currentMonth);
+    var currentDay = currentDate.getDate()
+    var currentDayFormatted = currentDay <= 9? "0" + String(currentDay) : String(currentDay);
+    var formattedDate = currentYear + currentMonthFormatted + currentDayFormatted;
+
+    return date == formattedDate;
   }
 }

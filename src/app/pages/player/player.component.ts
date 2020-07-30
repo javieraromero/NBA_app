@@ -13,6 +13,8 @@ import { PlayersList } from '../../assets/players_list';
 })
 export class PlayerComponent implements OnInit {
 
+  personId;
+  year;
   careerSummary;
   seasons: Object[] = [];
   first_name;
@@ -30,9 +32,9 @@ export class PlayerComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    const personId = this.route.snapshot.paramMap.get('personId');
-    const year = this.route.snapshot.paramMap.get('year');
-    this.getPlayerData(personId, year);
+    this.personId = this.route.snapshot.paramMap.get('personId');
+    this.year = this.route.snapshot.paramMap.get('year');
+    this.getPlayerData(this.personId, this.year);
   }
 
   getPlayerData(personId: String, year: String)
@@ -134,7 +136,7 @@ export class PlayerComponent implements OnInit {
             {
               var teamId = teamIds[l];
               if(teamId == team["teamId"])
-                teamShortNames.push(team["abbreviation"]);
+                teamShortNames.push(team["tricode"]);
             }
           }
 
