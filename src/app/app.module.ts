@@ -34,6 +34,7 @@ import { TeamsSearchPipe } from './pipes/teams-search.pipe';
 import { TeamInfoComponent } from './pages/team-info/team-info.component';
 import { PersonComponent } from './pages/person/person.component';
 import { RosterComponent } from './pages/roster/roster.component';
+import { TeamLeadersComponent } from './pages/team-leaders/team-leaders.component';
 
 @NgModule({
   declarations: [
@@ -60,7 +61,8 @@ import { RosterComponent } from './pages/roster/roster.component';
     ScheduleComponent,
     TeamInfoComponent,
     PersonComponent,
-    RosterComponent
+    RosterComponent,
+    TeamLeadersComponent
   ],
   imports: [
     BrowserModule,

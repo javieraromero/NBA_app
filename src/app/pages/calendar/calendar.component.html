@@ -1,5 +1,5 @@
 <div>
-    <table style="width: 200px; margin-left: auto; margin-right: auto;">
+    <table style="width: 230px; margin-left: auto; margin-right: auto;">
         <tr>
             <th style="width: 20%">
                 <button (click)="previousMonth()"> < </button>
@@ -22,19 +22,37 @@
         <th style="width: 14.28%; padding: 3px;">Fri</th>
         <th style="width: 14.28%; padding: 3px;">Sat</th>
     </tr>
-    <tr *ngFor="let week of calendar">
-        <td *ngFor="let day of week">
-            <div *ngIf="day === current_day && temp_month === current_month && temp_year === current_year; else elseBlock"
-                style="text-align: center;">
-                <b>{{ day }}</b>
-            </div>
-            <ng-template #elseBlock>
-                <div style="text-align: center;">
-                    <a href="date/{{ temp_year }}{{ temp_month < 10 ? '0' + temp_month : temp_month }}{{ day < 10 ? '0' + day : day }}">
-                        {{ day }}
-                    </a>
+    <tr *ngFor="let week of calendar; index as i">
+        <td *ngFor="let day of week; index as j">
+            <div *ngIf="calendar[i][j]">
+                <div *ngIf="day === current_day && temp_month === current_month && temp_year === current_year; else elseBlock"
+                    style="text-align: center;">
+                <p style="font-size: large;">
+                    <b>{{ day }}</b>
+                </p>
+                <p style="font-size: small">
+                    {{ num_of_games[temp_year + "" + (temp_month < 10 ? '0' + temp_month : temp_month) + "" + (day < 10 ? '0' + day : day)] == undefined ? '0' : num_of_games[temp_year + "" + (temp_month < 10 ? '0' + temp_month : temp_month) + "" + (day < 10 ? '0' + day : day)]}}
+                </p>
+                <p style="font-size: xx-small;">
+                    Games
+                </p>
                 </div>
-            </ng-template>
+                <ng-template #elseBlock>
+                    <div style="text-align: center;">
+                        <a href="date/{{ temp_year }}{{ temp_month < 10 ? '0' + temp_month : temp_month }}{{ day < 10 ? '0' + day : day }}">
+                            <p style="font-size: large;">
+                                {{ day }}
+                            </p>
+                            <p style="font-size: small">
+                                {{ num_of_games[temp_year + "" + (temp_month < 10 ? '0' + temp_month : temp_month) + "" + (day < 10 ? '0' + day : day)] == undefined ? '0' : num_of_games[temp_year + "" + (temp_month < 10 ? '0' + temp_month : temp_month) + "" + (day < 10 ? '0' + day : day)] }}
+                            </p>
+                            <p style="font-size: xx-small;">
+                                Games
+                            </p>
+                        </a>
+                    </div>
+                </ng-template>
+            </div>
         </td>
     </tr>
 </table>

@@ -2,13 +2,13 @@
     <table style="width: 600px; margin-left: auto; margin-right: auto;">
         <tr>
             <th style="width: 25%">
-                <button (click)="gotoPreviousDate()"> Previous Date </button>
+                <button (click)="gotoPreviousDate()" [disabled]="disable_buttons"> Previous Date </button>
             </th>
             <th style="width: 50%">
                 <span> Games for {{ longDate }} </span>
             </th>
             <th style="width: 25%">
-                <button (click)="gotoNextDate()"> Next Date </button>
+                <button (click)="gotoNextDate()" [disabled]="disable_buttons"> Next Date </button>
             </th>
     </table>
 </div>
@@ -30,7 +30,18 @@
                             <tr>
                                 <img src="assets/images/live_icon.png" *ngIf="game['statusNum'] === 2" style="max-width: 25px">
                                 <td width="50%" style="text-align: left;">{{ game["label"] }}</td>
-                                <td width="50%" style="text-align: right;">{{ game["broadcastersLabel"] }}</td>
+                                <td width="50%" style="text-align: right;">
+                                    <div *ngIf="game['broadcastersLabel'] === 'TNT' || 
+                                                game['broadcastersLabel'] === 'NBA TV' || 
+                                                game['broadcastersLabel'] === 'ABC' || 
+                                                game['broadcastersLabel'] === 'ESPN'">
+                                        <img src="{{ game['broadcastersLabel'] == 'TNT' ? 'assets/images/broadcast_icons/tnt_logo.png' : 
+                                                    game['broadcastersLabel'] == 'NBA TV' ? 'assets/images/broadcast_icons/nba_tv_logo.png' : 
+                                                    game['broadcastersLabel'] == 'ABC' ? 'assets/images/broadcast_icons/abc_logo.png' : 
+                                                    'assets/images/broadcast_icons/espn_logo.png' }}" 
+                                                style="max-height: 13px; max-width: 35px">
+                                    </div>
+                                </td>
                             </tr>
                         </table>
                         <table style="width:100%">

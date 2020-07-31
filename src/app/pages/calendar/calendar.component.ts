@@ -2,6 +2,8 @@ import { Component, OnInit, Input } from '@angular/core';
 
 import { DateCalculator, MyDate } from 'src/app/assets/date_calculator';
 
+import { HttpClient } from '@angular/common/http';
+
 @Component({
   selector: 'app-calendar',
   templateUrl: './calendar.component.html',
@@ -17,13 +19,16 @@ export class CalendarComponent implements OnInit {
   current_year;
   current: MyDate;
 
+  num_of_games;
+
   temp_month;
   temp_day;
   temp_year;
   temp: MyDate;
 
   constructor(
-    private dateCalculator: DateCalculator
+    private dateCalculator: DateCalculator,
+    private http: HttpClient,
   ) { }
 
   calendar: Object[][];
@@ -46,6 +51,8 @@ export class CalendarComponent implements OnInit {
     this.temp_month = this.current_month;
     this.temp_day = this.current_day;
     this.temp_year = this.current_year;
+
+    this.getNumOfGames();
   }
 
   previousMonth()
@@ -66,5 +73,13 @@ export class CalendarComponent implements OnInit {
     this.temp_year = this.temp.getYear();
     this.month_and_year = this.temp.getMonthName() + " " + this.temp.getYear();
     this.calendar = this.dateCalculator.buildCalendar(this.temp);
+  }
+
+  getNumOfGames()
+  {
+    return this.http.get("http://data.nba.net/10s/prod/v1/calendar.json")
+      .subscribe(response => {
+        this.num_of_games = response;
+      });
   }
 }

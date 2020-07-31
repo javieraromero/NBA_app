@@ -12,12 +12,13 @@
 
 <!-- Tab links -->
 <div class="tab">
-    <button class="tablinks" id="preview_tab" (click)="switchTab(event, 'preview')" [hidden]="!isPreviewArticleAvail || statusNum != 1">Preview</button>
-    <button class="tablinks" id="recap_tab" (click)="switchTab(event, 'recap')" [hidden]="!isRecapArticleAvail || statusNum != 3">Recap</button>
-    <button class="tablinks" id="game_info_tab" (click)="switchTab(event, 'game_info')">Game Info</button>
-    <button class="tablinks" id="pbp_tab" (click)="switchTab(event, 'pbp')" [hidden]="statusNum === 1">Play-by-play</button>
-    <button class="tablinks" id="totals_tab" (click)="switchTab(event, 'totals')" [hidden]="statusNum === 1">Totals</button>
-    <button class="tablinks" id="boxscore_tab" (click)="switchTab(event, 'boxscore')" [hidden]="statusNum === 1">Boxscore</button>
+    <button class="tablinks" id="preview_tab" (click)="switchTab($event, 'preview')" [hidden]="!isPreviewArticleAvail || statusNum != 1">Preview</button>
+    <button class="tablinks" id="recap_tab" (click)="switchTab($event, 'recap')" [hidden]="!isRecapArticleAvail || statusNum != 3">Recap</button>
+    <button class="tablinks" id="game_info_tab" (click)="switchTab($event, 'game_info')">Game Info</button>
+    <button class="tablinks" id="team_leaders_tab" (click)="switchTab($event, 'team_leaders')" [hidden]="statusNum != 1">Team Leaders</button>
+    <button class="tablinks" id="pbp_tab" (click)="switchTab($event, 'pbp')" [hidden]="statusNum === 1">Play-by-play</button>
+    <button class="tablinks" id="totals_tab" (click)="switchTab($event, 'totals')" [hidden]="statusNum === 1">Totals</button>
+    <button class="tablinks" id="boxscore_tab" (click)="switchTab($event, 'boxscore')" [hidden]="statusNum === 1">Boxscore</button>
 </div>
 
 <!-- Tab content -->
@@ -65,6 +66,12 @@
     </table>
 </div>
 
+<div id="team_leaders" class="tabcontent" [hidden]="statusNum != 1">
+    <app-team-leaders [teamId]="visiting_team_id" [year]="seasonYear"></app-team-leaders>
+    <br>
+    <app-team-leaders [teamId]="home_team_id" [year]="seasonYear"></app-team-leaders>
+</div>
+
 <div id="pbp" class="tabcontent" [hidden]="statusNum === 1">
     <app-pbp [date]="date" [gameId]="gameId" [statusNum]="statusNum"></app-pbp>
 </div>
@@ -80,7 +87,7 @@
 
 <div id="recap" class="tabcontent" [hidden]="!isRecapArticleAvail || statusNum != 3">
     <h3>{{ recap_data["title"] }} </h3>
-    <h5>{{ recap_data["author"] }}, {{ recap_data["authorTitle"] }}</h5>
+    <h5 [hidden]="!recap_data['author']">{{ recap_data["author"] }}, {{ recap_data["authorTitle"] }} </h5>
     
     <p *ngFor="let paragraph of recap">
         {{ paragraph }}

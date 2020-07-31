@@ -22,7 +22,7 @@ export class PlayerComponent implements OnInit {
   current_team;
   primaryColor: string;
   secondaryColor: string;
-  teamLogoLocation: string;
+  //teamLogoLocation: string;
 
   constructor(
     private route: ActivatedRoute,
@@ -68,7 +68,7 @@ export class PlayerComponent implements OnInit {
             this.secondaryColor = team["secondaryColor"];
             document.documentElement.style.setProperty('--team_primary', this.primaryColor);
             document.documentElement.style.setProperty('--team_secondary', this.secondaryColor);
-            this.teamLogoLocation = team["secondaryLogoLocation"];
+            //this.teamLogoLocation = team["secondaryLogoLocation"];
             break;
           }
         }

@@ -20,6 +20,8 @@ export class HeaderComponent implements OnInit {
   nextDate;
   longDate;
 
+  disable_buttons: boolean = false;
+
   private routeSub: any;
 
   constructor(
@@ -53,6 +55,7 @@ export class HeaderComponent implements OnInit {
     do {
         console.log("refreshing header");
         this.getData(this.date);
+        this.disable_buttons = false;
         await new Promise(r => setTimeout(r, 5000));
         is_today_current_date = this.compareDates(this.date);
     } while((this.statusNums.indexOf(1) != -1 || this.statusNums.indexOf(2) != -1) && is_today_current_date);
@@ -232,6 +235,7 @@ export class HeaderComponent implements OnInit {
 
   gotoPreviousDate()
   {
+    this.disable_buttons = true;
     this.games = [];
     this.date = this.previousDate;
     this.setPreviousAndNextDate(this.date);
@@ -242,6 +246,7 @@ export class HeaderComponent implements OnInit {
 
   gotoNextDate()
   {
+    this.disable_buttons = true;
     this.games = [];
     this.date = this.nextDate;
     this.setPreviousAndNextDate(this.date);

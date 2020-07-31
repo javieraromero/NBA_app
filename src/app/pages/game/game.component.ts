@@ -18,8 +18,11 @@ export class GameComponent implements OnInit {
   
   game_data;
   statusNum: Number;
+  seasonYear;
   visiting_team: String;
+  visiting_team_id;
   home_team: String;
+  home_team_id;
   longDate: String;
   isPreviewArticleAvail;
   preview_data = {
@@ -74,6 +77,8 @@ export class GameComponent implements OnInit {
           var statusNum = basicGameData["statusNum"];
           this.statusNum = statusNum;
 
+          this.seasonYear = basicGameData["seasonYear"];
+
           var isPreviewArticleAvail = basicGameData["isPreviewArticleAvail"];
           this.isPreviewArticleAvail = isPreviewArticleAvail;
           if(isPreviewArticleAvail && statusNum == 1)
@@ -89,19 +94,19 @@ export class GameComponent implements OnInit {
           this.visiting_team = undefined;
           this.home_team = undefined;
 
-          var visiting_team_id = basicGameData["vTeam"]["teamId"];
-          var home_team_id = basicGameData["hTeam"]["teamId"];
+          this.visiting_team_id = basicGameData["vTeam"]["teamId"];
+          this.home_team_id = basicGameData["hTeam"]["teamId"];
 
           for(let i in team_list)
           {
             var team = team_list[i];
-            if(team["teamId"] == visiting_team_id)
+            if(team["teamId"] == this.visiting_team_id)
             {
               this.visiting_team = team["teamName"];
               document.documentElement.style.setProperty('--visiting_team_primary', team["primaryColor"]);
               document.documentElement.style.setProperty('--visiting_team_secondary', team["secondaryColor"]);
             }
-            if(team["teamId"] == home_team_id)
+            if(team["teamId"] == this.home_team_id)
             {
               this.home_team = team["teamName"];
               document.documentElement.style.setProperty('--home_team_primary', team["primaryColor"]);

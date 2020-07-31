@@ -1,4 +1,24 @@
 <table style="width:100%">
+    <tr *ngIf="game_data['isPreseason']">
+        <td colspan="3">
+            Preseason
+        </td>
+    </tr>
+    <tr *ngIf="game_data['isPlayoffs']">
+        <td colspan="3">
+            {{ game_data["playoff_info"]["confName"] }}ern Conference Playoffs - Round {{ game_data["playoff_info"]["roundNum"] }} Game {{ game_data["playoff_info"]["gameNumInSeries"] }}
+            <br>
+            <div *ngIf="game_data['playoff_info']['vTeamIsSeriesWinner'] || game_data['playoff_info']['hTeamIsSeriesWinner']; else elseBlock">
+                {{ game_data["playoff_info"]["vTeamIsSeriesWinner"] ? game_data["vTeamTricode"] + ' wins series ' + game_data["playoff_info"]["vTeamSeriesWins"] + ' - ' + game_data["playoff_info"]["hTeamSeriesWins"] :
+                   game_data["hTeamTricode"] + ' wins series ' + game_data["playoff_info"]["hTeamSeriesWins"] + ' - ' + game_data["playoff_info"]["vTeamSeriesWins"] }}
+            </div>
+            <ng-template #elseBlock>
+                {{ game_data["playoff_info"]["vTeamSeriesWins"] == game_data["playoff_info"]["hTeamSeriesWins"] ? 'Series tied ' + game_data["playoff_info"]["vTeamSeriesWins"] + ' - ' + game_data["playoff_info"]["hTeamSeriesWins"] :
+                   game_data["playoff_info"]["vTeamSeriesWins"] > game_data["playoff_info"]["hTeamSeriesWins"] ? game_data["vTeamTricode"] + ' leads series ' + game_data["playoff_info"]["vTeamSeriesWins"] + ' - ' + game_data["playoff_info"]["hTeamSeriesWins"] :
+                   game_data["hTeamTricode"] + ' leads series ' + game_data["playoff_info"]["hTeamSeriesWins"] + ' - ' + game_data["playoff_info"]["vTeamSeriesWins"] }}
+            </ng-template>
+        </td>
+    </tr>
     <tr>
         <td style="width: 40%">
             <a href="/team/{{game_data['vTeamId']}}/{{game_data['seasonYear']}}">
@@ -8,7 +28,7 @@
             </a>
         </td>
         <td style="width: 20%; font-size: larger;">
-            <img src="assets/images/live_icon.png" *ngIf="statusNum === 2" style="max-width: 25px">
+            <img src="assets/images/live_icon.png" *ngIf="statusNum === 2" style="max-width: 30px">
             {{ game_data["top_label"] }}
             <br>
             {{ game_data["bottom_label"] }}
@@ -26,17 +46,22 @@
             {{ game_data["vTeamRecord"] }}
         </td>
         <td>
-            {{ game_data["broadcastersLabel"] }}
+            <div *ngIf="game_data['broadcastersLabel'] === 'TNT' || 
+                        game_data['broadcastersLabel'] === 'NBA TV' || 
+                        game_data['broadcastersLabel'] === 'ABC' || 
+                        game_data['broadcastersLabel'] === 'ESPN'; else elseBlock">
+                <img src="{{ game_data['broadcastersLabel'] == 'TNT' ? 'assets/images/broadcast_icons/tnt_logo.png' : 
+                             game_data['broadcastersLabel'] == 'NBA TV' ? 'assets/images/broadcast_icons/nba_tv_logo.png' : 
+                             game_data['broadcastersLabel'] == 'ABC' ? 'assets/images/broadcast_icons/abc_logo.png' : 
+                             'assets/images/broadcast_icons/espn_logo.png' }}" 
+                    style="max-height: 23px; max-width: 50px">
+            </div>
+            <ng-template #elseBlock>
+                {{ game_data['broadcastersLabel' ]}}
+            </ng-template>
         </td>
         <td>
             {{ game_data["hTeamRecord"] }}
-        </td>
-    </tr>
-    <tr *ngIf="game_data['isPlayoffs']">
-        <td colspan="3">
-            {{ game_data["playoff_info"]["confName"] }}: R{{ game_data["playoff_info"]["roundNum"] }}G{{ game_data["playoff_info"]["gameNumInSeries"] }}
-            <br>
-
         </td>
     </tr>
     <tr *ngIf="game_data['nugget']">

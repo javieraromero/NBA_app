@@ -1,97 +1,44 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
-//import { HttpClient } from '@angular/common/http';
-import { ActivatedRoute } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 
+import { PlayersList } from '../../assets/players_list';
 import { TeamInfo } from '../../assets/team_info';
-//import { PlayersList } from '../../assets/players_list';
-//import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
 @Component({
-  selector: 'app-team',
-  templateUrl: './team.component.html',
-  styleUrls: ['./team.component.css']
+  selector: 'app-team-leaders',
+  templateUrl: './team-leaders.component.html',
+  styleUrls: ['./team-leaders.component.css']
 })
-export class TeamComponent implements OnInit {
+export class TeamLeadersComponent implements OnInit {
 
-  teamId: String;
-  year: String;
-  teamName: String;
-  list_of_games: Object[] = [];
-  team_leaders: Object;
-  roster: Object[] = [];
-  lastGamePlayedIndex;
-  teamPrimaryLogoLocation;
-  teamSecondaryLogoLocation;
-  search: String;
+  @Input() teamId: String;
+  @Input() year: String;
+
+  team_leaders;
+  team_name;
 
   constructor(
-    //private http: HttpClient,
-    private route: ActivatedRoute,
-    private teamInfo: TeamInfo,
-    //private players: PlayersList
+    private http: HttpClient,
+    private players: PlayersList,
+    private teamInfo: TeamInfo
   ) { }
 
   ngOnInit() {
-    this.teamId = this.route.snapshot.paramMap.get('teamId');
-    this.year = this.route.snapshot.paramMap.get('year');
-    //this.getSchedule(this.teamId, this.year);
-    //this.getRoster(this.teamId, this.year);
-    //this.getTeamLeaders(this.teamId, this.year);
-    var teamAttributes = this.getTeamAttributes(this.teamId);
-    this.teamName = teamAttributes["teamName"];
-    /*this.teamPrimaryLogoLocation = teamAttributes["teamPrimaryLogoLocation"];
-    this.teamSecondaryLogoLocation = teamAttributes["teamSecondaryLogoLocation"];
-    var primaryColor = teamAttributes["teamPrimaryColor"];
-    var secondaryColor = teamAttributes["teamSecondaryColor"];
-    document.documentElement.style.setProperty('--team_primary', primaryColor);
-    document.documentElement.style.setProperty('--team_secondary', secondaryColor);*/
-
-    document.getElementById("team_tab").click();
+    this.getTeamLeaders(this.teamId, this.year);
   }
 
-  /*getRoster(teamId: String, year: String)
-  {
-    return this.http.get("http://data.nba.net/prod/v1/" + year + "/teams/" + teamId + "/roster.json")
-      .subscribe(response => {
-        var roster = response["league"]["standard"]["players"];
-
-        for(var i = 0; i < roster.length; i++)
-        {
-          var playerId = roster[i]["personId"];
-          
-          var players_list = this.players.players;
-
-          var first_name = "";
-          var last_name = "";
-
-          for(let i in players_list)
-          {
-            var player = players_list[i];
-            if(String(player["playerId"]) == playerId)
-            {
-              first_name = player["firstName"];
-              last_name = player["lastName"];
-              break;
-            }
-          }
-
-          const player_info = {
-            playerId: playerId,
-            firstName: first_name,
-            lastName: last_name
-          }
-
-          this.roster.push(player_info);
-        }
-      });
-  }*/
-
-  /*getTeamLeaders(teamId: String, year: String)
+  getTeamLeaders(teamId: String, year: String)
   {
     return this.http.get("http://data.nba.net/prod/v1/" + year + "/teams/" + teamId + "/leaders.json")
       .subscribe(response => {
         var data = response["league"]["standard"];
+
+        var teamAttributes = this.getTeamAttributes(this.teamId);
+
+        document.documentElement.style.setProperty('--team_primary', teamAttributes["teamPrimaryColor"]);
+        document.documentElement.style.setProperty('--team_secondary', teamAttributes["teamSecondaryColor"]);
+        this.team_name = teamAttributes["teamName"];
 
         var players_list = this.players.players;
 
@@ -187,7 +134,7 @@ export class TeamComponent implements OnInit {
 
         this.team_leaders = stat_leaders;
       });
-  }*/
+  }
 
   getTeamAttributes(teamId: String)
   {
@@ -196,12 +143,8 @@ export class TeamComponent implements OnInit {
     var teamId_int = Number(teamId);
 
     var teamName;
-    var teamtricode;
-    var teamLocation;
-    var teamSimpleName;
     var teamPrimaryColor;
     var teamSecondaryColor;
-    var teamPrimaryLogoLocation;
     var teamSecondaryLogoLocation;
 
     for(let i in team_list)
@@ -210,12 +153,8 @@ export class TeamComponent implements OnInit {
       if(team["teamId"] == teamId_int)
       {
         teamName = team["teamName"];
-        teamtricode = team["tricode"];
-        teamLocation = team["location"];
-        teamSimpleName = team["simpleName"];
         teamPrimaryColor = team["primaryColor"];
         teamSecondaryColor = team["secondaryColor"];
-        teamPrimaryLogoLocation = team["primaryLogoLocation"];
         teamSecondaryLogoLocation = team["secondaryLogoLocation"];
         break;
       }
@@ -223,36 +162,11 @@ export class TeamComponent implements OnInit {
 
     const team_attributes = {
       teamName: teamName,
-      teamtricode: teamtricode,
-      teamLocation: teamLocation,
-      teamSimpleName: teamSimpleName,
       teamPrimaryColor: teamPrimaryColor,
       teamSecondaryColor: teamSecondaryColor,
-      teamPrimaryLogoLocation: teamPrimaryLogoLocation,
       teamSecondaryLogoLocation: teamSecondaryLogoLocation
     }
 
     return team_attributes;
-  }
-
-  switchTab(evt, tabName) {
-    // Declare all variables
-    var i, tabcontent, tablinks;
-  
-    // Get all elements with class="tabcontent" and hide them
-    tabcontent = document.getElementsByClassName("tabcontent");
-    for (i = 0; i < tabcontent.length; i++) {
-      tabcontent[i].style.display= "none";
-    }
-  
-    // Get all elements with class="tablinks" and remove the class "active"
-    tablinks = document.getElementsByClassName("tablinks");
-    for (i = 0; i < tablinks.length; i++) {
-      tablinks[i].className = tablinks[i].className.replace(" active", "");
-    }
-  
-    // Show the current tab, and add an "active" class to the button that opened the tab
-    document.getElementById(tabName).style.display = "block";
-    evt.currentTarget.className += " active";
   }
 }

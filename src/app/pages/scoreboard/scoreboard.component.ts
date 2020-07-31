@@ -15,8 +15,6 @@ export class ScoreboardComponent implements OnInit {
   @Input() date: String;
   @Input() gameId: String;
   @Input() statusNum: number;
-  //@Input() primaryTeamId: number;
-  //@Input() primaryTeamLogo: String;
 
   game_data;
   private routeSub: any;
@@ -29,15 +27,14 @@ export class ScoreboardComponent implements OnInit {
 
   async ngOnInit() {
     var is_today_current_date = this.compareDates(this.date);
-    //console.log(this.statusNum);
     if(this.statusNum == 1)
     {
-      //console.log("statusNum is: " + this.statusNum);
       this.getGameData(this.date, this.gameId);
       while(this.statusNum == 1 && is_today_current_date)
       {
         console.log("scoreboard is checking statusNum");
         await new Promise(r => setTimeout(r, 15000));
+        this.getGameData(this.date, this.gameId);
       }
       console.log("scoreboard has detected a statusNum change. statusNum is now " + this.statusNum);
     }
@@ -79,9 +76,11 @@ export class ScoreboardComponent implements OnInit {
         var basicGameData = response["basicGameData"];
 
         var statusNum = basicGameData["statusNum"];
+        this.statusNum = statusNum;
 
         var visiting_team = undefined;
         var home_team = undefined;
+        var visiting_team_tricode, home_team_tricode;
 
         var visiting_team_id = basicGameData["vTeam"]["teamId"];
         var home_team_id = basicGameData["hTeam"]["teamId"];
@@ -89,6 +88,7 @@ export class ScoreboardComponent implements OnInit {
         var visiting_logo_location;
         var home_logo_location;
 
+        var isPreseason = basicGameData["seasonStageId"] == 1;
         var playoff_info;
         var isPlayoffs = basicGameData["seasonStageId"] == 4;
 
@@ -117,6 +117,7 @@ export class ScoreboardComponent implements OnInit {
           if(team["teamId"] == visiting_team_id)
           {
             visiting_team = team["teamName"];
+            visiting_team_tricode = team["tricode"];
             if(this.useSecondaryLogos)
               visiting_logo_location = team["secondaryLogoLocation"];
             else
@@ -125,6 +126,7 @@ export class ScoreboardComponent implements OnInit {
           if(team["teamId"] == home_team_id)
           {
             home_team = team["teamName"];
+            home_team_tricode = team["tricode"];
             if(this.useSecondaryLogos)
               home_logo_location = team["secondaryLogoLocation"];
             else
@@ -194,7 +196,7 @@ export class ScoreboardComponent implements OnInit {
           var broadcastersNational = "", vTeamBroadcasters = "", hTeamBroadcasters = "";
           
           if(broadcast_info["national"][0])
-          broadcastersNational = broadcast_info["national"][0]["shortName"];
+            broadcastersNational = broadcast_info["national"][0]["shortName"];
           if(broadcast_info["vTeam"][0])
             vTeamBroadcasters = broadcast_info["vTeam"][0]["shortName"];
           if(broadcast_info["hTeam"][0])
@@ -215,14 +217,17 @@ export class ScoreboardComponent implements OnInit {
 
         this.game_data = {
           seasonYear: basicGameData["seasonYear"],
+          isPreseason: isPreseason,
           isPlayoffs: isPlayoffs,
           playoff_info: playoff_info,
           vTeamId: visiting_team_id,
           vTeamName: visiting_team,
+          vTeamTricode: visiting_team_tricode,
           vTeamLogoLocation: visiting_logo_location,
           vTeamRecord: "(" + basicGameData["vTeam"]["win"] + " - " + basicGameData["vTeam"]["loss"] + ")",
           hTeamId: home_team_id,
           hTeamName: home_team,
+          hTeamTricode: home_team_tricode,
           hTeamLogoLocation: home_logo_location,
           hTeamRecord: "(" + basicGameData["hTeam"]["win"] + " - " + basicGameData["hTeam"]["loss"] + ")",
           nugget: nugget,

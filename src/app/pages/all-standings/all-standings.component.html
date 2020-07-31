@@ -1,10 +1,13 @@
+<app-header></app-header>
+<br>
+
 <title>Current Standings</title>
 
 <!-- Tab links -->
 <div class="tab">
-    <button class="tablinks" id="conference_standings_tab" (click)="switchTab(event, 'conference_standings')">Conference</button>
-    <button class="tablinks" id="division_standings_tab" (click)="switchTab(event, 'division_standings')">Division</button>
-    <button class="tablinks" id="overall_standings_tab" (click)="switchTab(event, 'overall_standings')">Overall</button>
+    <button class="tablinks" id="conference_standings_tab" (click)="switchTab($event, 'conference_standings')">Conference</button>
+    <button class="tablinks" id="division_standings_tab" (click)="switchTab($event, 'division_standings')">Division</button>
+    <button class="tablinks" id="overall_standings_tab" (click)="switchTab($event, 'overall_standings')">Overall</button>
 </div>
 
 <div id="conference_standings" class="tabcontent">
