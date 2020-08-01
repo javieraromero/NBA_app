@@ -2,6 +2,12 @@ th, td, h4 {
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
+span {
+  font-size: small;
+  color: dimgray;
+}
+
+
 th {
   text-align: left;
 }
@@ -15,7 +21,7 @@ td {
 }
 
 table, th, td {
-  border: 1px solid black;
+  border: 0px;
   border-collapse: collapse;
 }
 

@@ -807,7 +807,11 @@ export class TeamInfo
         "urlName": "usa",
         "teamShortName": "USA",
         "confName": "East",
-        "divName": "East"
+        "divName": "East",
+        "primaryColor": "#FC4C02",
+        "secondaryColor": "#FFFFFF",
+        "primaryLogoLocation": "assets/images/team_logos/team_usa.svg",
+        "secondaryLogoLocation": "assets/images/team_logos/team_usa.svg"
     },
     {
         "isNBAFranchise": true,
@@ -857,7 +861,11 @@ export class TeamInfo
         "urlName": "world",
         "teamShortName": "World",
         "confName": "East",
-        "divName": "East"
+        "divName": "East",
+        "primaryColor": "#330072",
+        "secondaryColor": "#FFFFFF",
+        "primaryLogoLocation": "assets/images/team_logos/team_world.svg",
+        "secondaryLogoLocation": "assets/images/team_logos/team_world.svg"
     }
 ]/*[
     {

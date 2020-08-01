@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 
 import { TeamInfo } from '../../assets/team_info';
 import { PlayersList } from '../../assets/players_list';
+import { MyDate } from 'src/app/assets/date_calculator';
 
 @Component({
   selector: 'app-series',
@@ -13,24 +14,135 @@ import { PlayersList } from '../../assets/players_list';
 })
 export class SeriesComponent implements OnInit {
 
-  seriesId;
-  year;
-  team1_data;
-  team2_data;
+  @Input() seriesId: String;
+  @Input() year: String;
+  @Input() current_gameId: String = "";
+  team1_data = {
+    teamId: "",
+    teamName: "",
+    teamPrimaryLogoLocation: "",
+    ppgPlayerName: "",
+    ppgPlayerId: "",
+    ppgValue: "",
+    trpgPlayerName: "",
+    trpgPlayerId: "",
+    trpgValue: "",
+    apgPlayerName: "",
+    apgPlayerId: "",
+    apgValue: "",
+    fgpPlayerName: "",
+    fgpPlayerId: "",
+    fgpValue: "",
+    tppPlayerName: "",
+    tppPlayerId: "",
+    tppValue: "",
+    ftpPlayerName: "",
+    ftpPlayerId: "",
+    ftpValue: "",
+    bpgPlayerName: "",
+    bpgPlayerId: "",
+    bpgValue: "",
+    spgPlayerName: "",
+    spgPlayerId: "",
+    spgValue: "",
+    tpgPlayerName: "",
+    tpgPlayerId: "",
+    tpgValue: "",
+    pfpgPlayerName: "",
+    pfpgPlayerId: "",
+    pfpgValue: ""
+  };
+  team2_data = {
+    teamId: "",
+    teamName: "",
+    teamPrimaryLogoLocation: "",
+    ppgPlayerName: "",
+    ppgPlayerId: "",
+    ppgValue: "",
+    trpgPlayerName: "",
+    trpgPlayerId: "",
+    trpgValue: "",
+    apgPlayerName: "",
+    apgPlayerId: "",
+    apgValue: "",
+    fgpPlayerName: "",
+    fgpPlayerId: "",
+    fgpValue: "",
+    tppPlayerName: "",
+    tppPlayerId: "",
+    tppValue: "",
+    ftpPlayerName: "",
+    ftpPlayerId: "",
+    ftpValue: "",
+    bpgPlayerName: "",
+    bpgPlayerId: "",
+    bpgValue: "",
+    spgPlayerName: "",
+    spgPlayerId: "",
+    spgValue: "",
+    tpgPlayerName: "",
+    tpgPlayerId: "",
+    tpgValue: "",
+    pfpgPlayerName: "",
+    pfpgPlayerId: "",
+    pfpgValue: ""
+  };
   team1_name;
   team2_name;
 
+  list_of_games: Object[] = [];
+
   constructor(
     private http: HttpClient,
-    private route: ActivatedRoute,
+    //private route: ActivatedRoute,
     private teamInfo: TeamInfo,
     private players: PlayersList
   ) { }
 
   ngOnInit() {
-    this.seriesId = this.route.snapshot.paramMap.get('seriesId');
-    this.year = this.route.snapshot.paramMap.get('year');
-    this.getSeriesInfo(this.year, this.seriesId);
+    if(this.seriesId != '0')
+      this.getSeriesInfo(this.year, this.seriesId);
+  }
+
+  getSchedule(team1_teamId: String, team2_teamId: String, year: String)
+  {
+    return this.http.get("http://data.nba.net/10s/prod/v1/" + year + "/teams/" + team1_teamId + "/schedule.json")
+      .subscribe(response => {
+        var leagueData = response["league"];
+        var list_of_games = leagueData["standard"];
+
+        for(var i = 0; i < list_of_games.length; i++)
+        {
+          console.log("i: " + i);
+          var game = list_of_games[i];
+
+          if(game["seasonStageId"] == 4)
+          {
+            if(game["vTeam"]["teamId"] == team2_teamId || game["hTeam"]["teamId"] == team2_teamId)
+            {
+              for(var j = i; j < list_of_games.length; j++)
+              {
+                console.log("j: " + j);
+                game = list_of_games[j];
+
+                if(game["vTeam"]["teamId"] != team2_teamId && game["hTeam"]["teamId"] != team2_teamId)
+                  break;
+
+                this.list_of_games.push(
+                  {
+                    gameId: game["gameId"],
+                    date: game["startDateEastern"],
+                    longDate: this.setLongDate(game["startDateEastern"]),
+                    statusNum: game["statusNum"],
+                    gameNumInSeries: Number(game["playoffs"]["gameNumInSeries"])
+                  }
+                );
+              }
+              break;
+            }
+          }
+        }
+      });
   }
 
   getSeriesInfo(year: String, seriesId: String)
@@ -40,6 +152,11 @@ export class SeriesComponent implements OnInit {
         var teams = response["teams"];
         var team1 = teams[0];
         var team2 = teams[1];
+
+        var team1_teamId = team1["teamId"];
+        var team2_teamId = team2["teamId"];
+
+        this.getSchedule(team1_teamId, team2_teamId, this.year);
 
         var players_list = this.players.players;
 
@@ -240,7 +357,8 @@ export class SeriesComponent implements OnInit {
         }
 
         this.team2_data = team2_data;
-      });
+      },
+      error => {});
   }
 
   getTeamAttributes(teamId: String)
@@ -287,5 +405,16 @@ export class SeriesComponent implements OnInit {
     }
 
     return team_attributes;
+  }
+
+  setLongDate(date: String)
+  {
+    var year = Number(date.slice(0, 4));
+    var month = Number(date.slice(4, 6));
+    var day = Number(date.slice(6, ));
+
+    var newDate = new MyDate(month, day, year);
+
+    return newDate.getDayOfWeekName() + ", " + newDate.getMonthName() + " " + newDate.getDay() + " " + newDate.getYear();
   }
 }

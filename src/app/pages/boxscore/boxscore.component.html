@@ -1,12 +1,22 @@
 <br>
 
-<div style="margin-left: auto; margin-right: auto;">
-    <form>
-        <label for="vTeam_radio">{{ visiting_team }}</label>
-        <input type="radio" id="vTeam_radio" name="radio" (click)="showTeam(visiting_team)" checked>
-        <input type="radio" id="hTeam_radio" name="radio" (click)="showTeam(home_team)">
-        <label for="hTeam_radio">{{ home_team }}</label>
-    </form>
+<div>
+    <table id="toggle_buttons" style="width: 50%">
+        <tr>
+            <td style="width: 45%; text-align: right;">
+                <label for="vTeam_radio">{{ visiting_team }}</label>
+            </td>
+            <td style="width: 5%">
+                <input type="radio" id="vTeam_radio" name="radio" (click)="showTeam(visiting_team)" checked>
+            </td>
+            <td style="width: 5%">
+                <input type="radio" id="hTeam_radio" name="radio" (click)="showTeam(home_team)">
+            </td>
+            <td style="width: 45%; text-align: left;">
+                <label for="hTeam_radio">{{ home_team }}</label>
+            </td>
+        </tr>
+    </table>
 </div>
 
 <br>

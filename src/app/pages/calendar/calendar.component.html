@@ -34,7 +34,7 @@
                     {{ num_of_games[temp_year + "" + (temp_month < 10 ? '0' + temp_month : temp_month) + "" + (day < 10 ? '0' + day : day)] == undefined ? '0' : num_of_games[temp_year + "" + (temp_month < 10 ? '0' + temp_month : temp_month) + "" + (day < 10 ? '0' + day : day)]}}
                 </p>
                 <p style="font-size: xx-small;">
-                    Games
+                    {{ num_of_games[temp_year + "" + (temp_month < 10 ? '0' + temp_month : temp_month) + "" + (day < 10 ? '0' + day : day)] == 1 ? "Game" : "Games" }}
                 </p>
                 </div>
                 <ng-template #elseBlock>
@@ -47,7 +47,7 @@
                                 {{ num_of_games[temp_year + "" + (temp_month < 10 ? '0' + temp_month : temp_month) + "" + (day < 10 ? '0' + day : day)] == undefined ? '0' : num_of_games[temp_year + "" + (temp_month < 10 ? '0' + temp_month : temp_month) + "" + (day < 10 ? '0' + day : day)] }}
                             </p>
                             <p style="font-size: xx-small;">
-                                Games
+                                {{ num_of_games[temp_year + "" + (temp_month < 10 ? '0' + temp_month : temp_month) + "" + (day < 10 ? '0' + day : day)] == 1 ? "Game" : "Games" }}
                             </p>
                         </a>
                     </div>

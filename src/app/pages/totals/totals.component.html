@@ -71,17 +71,17 @@
         </tr>
     
         <tr *ngIf="compare(visiting_team_stats['points'], home_team_stats['points']) === 1">
-            <td> Points </td>
+            <td> Total Points </td>
             <td><b> {{ visiting_team_stats["points"] }} </b></td>
             <td> {{ home_team_stats["points"] }} </td>
         </tr>
         <tr *ngIf="compare(visiting_team_stats['points'], home_team_stats['points']) === -1">
-            <td> Points </td>
+            <td> Total Points </td>
             <td> {{ visiting_team_stats["points"] }} </td>
             <td><b> {{ home_team_stats["points"] }} </b></td>
         </tr>
         <tr *ngIf="compare(visiting_team_stats['points'], home_team_stats['points']) === 0">
-            <td> Points </td>
+            <td> Total Points </td>
             <td> {{ visiting_team_stats["points"] }} </td>
             <td> {{ home_team_stats["points"] }} </td>
         </tr>

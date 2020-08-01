@@ -41,8 +41,7 @@ export class ScheduleComponent implements OnInit {
         var leagueData = response["league"];
         this.lastGamePlayedIndex = leagueData["lastStandardGamePlayedIndex"];
         var games = leagueData["standard"];
-        //this.all_games = leagueData["standard"];
-        //this.sizeof_list = this.all_games.length;
+        this.sizeof_list = games.length;
 
         var temp: Object[] = [];
         for(var i = 0; i < games.length; i++)
@@ -122,39 +121,6 @@ export class ScheduleComponent implements OnInit {
     var temp: Object[] = [];
     for(var i = beginning_index; i <= end_index; i++)
     {
-      var game = this.all_games[i];
-
-      /*var vTeamId = game["vTeam"]["teamId"];
-      var hTeamId = game["hTeam"]["teamId"];
-
-      var vTeamAttributes = this.getTeamAttributes(vTeamId);
-      var hTeamAttributes = this.getTeamAttributes(hTeamId);*/
-
-      /*const game_info = {
-        //seasonStageId: game["seasonStageId"],
-        isLastGamePlayed: i == this.lastGamePlayedIndex,
-        gameId: game["gameId"],
-        //startTimeEastern: game["startTimeEastern"],
-        date: game["date"],
-        longDate: game["longDate"],
-        statusNum: game["statusNum"],
-        //vTeamId: vTeamId,
-        vTeamName: game["vTeamName"],
-        vTeamtricode: game["vTeamtricode"],
-        vTeamLocation: game["vTeamLocation"],
-        vTeamSimpleName: game["vTeamSimpleName"],
-        //vTeamLogoLocation: vTeamId == this.teamId ? this.teamSecondaryLogoLocation : vTeamAttributes["teamSecondaryLogoLocation"],
-        //vTeamScore: game["vTeam"]["score"],
-        //hTeamId: hTeamId,
-        hTeamName: hTeamId == this.teamId ? this.teamName : hTeamAttributes["teamName"],
-        hTeamtricode: hTeamAttributes["teamtricode"],
-        hTeamLocation: hTeamAttributes["teamLocation"],
-        hTeamSimpleName: hTeamAttributes["teamSimpleName"],
-        //hTeamLogoLocation: hTeamId == this.teamId ? this.teamSecondaryLogoLocation : hTeamAttributes["teamSecondaryLogoLocation"],
-        //hTeamScore: game["hTeam"]["score"],
-        //playoff_info: playoff_info
-      }*/
-
       temp.push(this.all_games[i]);
     }
 
@@ -168,8 +134,6 @@ export class ScheduleComponent implements OnInit {
     var [beginning_index, end_index] = this.calculateRange(this.temp_index);
     console.log(beginning_index + " " + end_index);
     this.getRangeOfGames(beginning_index, end_index);
-    console.log("list_of_games after prev5games: ");
-    console.log(this.list_of_games);
   }
 
   getNextFiveGames()
@@ -179,8 +143,6 @@ export class ScheduleComponent implements OnInit {
     var [beginning_index, end_index] = this.calculateRange(this.temp_index);
     console.log(beginning_index + " " + end_index);
     this.getRangeOfGames(beginning_index, end_index);
-    console.log("list_of_games after next5games: ");
-    console.log(this.list_of_games);
   }
 
   getTeamAttributes(teamId: String)

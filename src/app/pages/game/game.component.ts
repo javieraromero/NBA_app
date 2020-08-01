@@ -20,8 +20,10 @@ export class GameComponent implements OnInit {
   statusNum: Number;
   seasonYear;
   visiting_team: String;
+  visiting_team_tricode;
   visiting_team_id;
   home_team: String;
+  home_team_tricode;
   home_team_id;
   longDate: String;
   isPreviewArticleAvail;
@@ -74,6 +76,12 @@ export class GameComponent implements OnInit {
 
           var basicGameData = response["basicGameData"];
 
+          var isPlayoffs = basicGameData["seasonStageId"] == 4;
+          var seriesId = 0;
+
+          if(isPlayoffs)
+            seriesId = basicGameData["playoffs"]["seriesId"];
+
           var statusNum = basicGameData["statusNum"];
           this.statusNum = statusNum;
 
@@ -103,12 +111,14 @@ export class GameComponent implements OnInit {
             if(team["teamId"] == this.visiting_team_id)
             {
               this.visiting_team = team["teamName"];
+              this.visiting_team_tricode = team["tricode"];
               document.documentElement.style.setProperty('--visiting_team_primary', team["primaryColor"]);
               document.documentElement.style.setProperty('--visiting_team_secondary', team["secondaryColor"]);
             }
             if(team["teamId"] == this.home_team_id)
             {
               this.home_team = team["teamName"];
+              this.home_team_tricode = team["tricode"];
               document.documentElement.style.setProperty('--home_team_primary', team["primaryColor"]);
               document.documentElement.style.setProperty('--home_team_secondary', team["secondaryColor"]);
             }
@@ -142,6 +152,7 @@ export class GameComponent implements OnInit {
 
           this.game_data = {
             gameId: basicGameData["gameId"],
+            startTime: basicGameData["startTimeEastern"],
             attendance: basicGameData["attendance"],
             broadcastersNational: broadcastersNational,
             vTeamBroadcasters: vTeamBroadcasters,
@@ -151,7 +162,12 @@ export class GameComponent implements OnInit {
             previousMatchup_gameId: response["previousMatchup"]["gameId"],
             arena_name: basicGameData["arena"]["name"],
             arena_location: basicGameData["arena"]["city"] + ", " + basicGameData["arena"]["stateAbbr"],
-            seriesRecord: basicGameData["vTeam"]["seriesWin"] + " - " + basicGameData["vTeam"]["seriesLoss"],
+            vSeriesWins: basicGameData["vTeam"]["seriesWin"],
+            vSeriesLoss: basicGameData["vTeam"]["seriesLoss"],
+            hSeriesWins: basicGameData["hTeam"]["seriesWin"],
+            hSeriesLoss: basicGameData["hTeam"]["seriesLoss"],
+            isPlayoffs: isPlayoffs,
+            seriesId: seriesId
           };
       });
   }

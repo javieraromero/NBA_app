@@ -15,6 +15,7 @@
     <button class="tablinks" id="preview_tab" (click)="switchTab($event, 'preview')" [hidden]="!isPreviewArticleAvail || statusNum != 1">Preview</button>
     <button class="tablinks" id="recap_tab" (click)="switchTab($event, 'recap')" [hidden]="!isRecapArticleAvail || statusNum != 3">Recap</button>
     <button class="tablinks" id="game_info_tab" (click)="switchTab($event, 'game_info')">Game Info</button>
+    <button class="tablinks" id="series_hub_tab" (click)="switchTab($event, 'series_hub')" [hidden]="!game_data['isPlayoffs']">Series Hub</button>
     <button class="tablinks" id="team_leaders_tab" (click)="switchTab($event, 'team_leaders')" [hidden]="statusNum != 1">Team Leaders</button>
     <button class="tablinks" id="pbp_tab" (click)="switchTab($event, 'pbp')" [hidden]="statusNum === 1">Play-by-play</button>
     <button class="tablinks" id="totals_tab" (click)="switchTab($event, 'totals')" [hidden]="statusNum === 1">Totals</button>
@@ -29,6 +30,10 @@
             <td width="50%"> {{ longDate }} </td>
         </tr>
         <tr>
+            <td> Start Time </td>
+            <td> {{ game_data["startTime"] }} </td>
+        </tr>
+        <tr>
             <td> Arena Name </td>
             <td> {{ game_data["arena_name"] }} </td>
         </tr>
@@ -40,9 +45,10 @@
             <td> Attendance </td>
             <td> {{ game_data["attendance"] }} </td>
         </tr>
-        <tr>
+        <tr *ngIf="game_data['vSeriesWins'] && game_data['vSeriesLoss']
+                && game_data['hSeriesWins'] && game_data['hSeriesLoss']">
             <td> Series Record </td>
-            <td> {{ game_data["seriesRecord"] }} </td>
+            <td> {{ visiting_team_tricode }} {{ game_data["vSeriesWins"] }} - {{ game_data["hSeriesWins"]}} {{ home_team_tricode }} </td>
         </tr>
         <tr *ngIf="game_data['broadcastersNational']">
             <td> National Broadcast </td>
@@ -66,10 +72,12 @@
     </table>
 </div>
 
+<div id="series_hub" class="tabcontent" [hidden]="!game_data['isPlayoffs']">
+    <app-series [seriesId]="game_data['seriesId']" [year]="seasonYear" [current_gameId]="gameId"></app-series>
+</div>
+
 <div id="team_leaders" class="tabcontent" [hidden]="statusNum != 1">
-    <app-team-leaders [teamId]="visiting_team_id" [year]="seasonYear"></app-team-leaders>
-    <br>
-    <app-team-leaders [teamId]="home_team_id" [year]="seasonYear"></app-team-leaders>
+    <app-team-leaders [vTeamId]="visiting_team_id" [hTeamId]="home_team_id" [year]="seasonYear"></app-team-leaders>
 </div>
 
 <div id="pbp" class="tabcontent" [hidden]="statusNum === 1">

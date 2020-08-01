@@ -23,6 +23,16 @@ td {
     text-align: center;
 }
 
+table#toggle_buttons {
+    border: 0px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+table#toggle_buttons td {
+    border: 0px;
+}
+
 table#visiting_team th {
     background-color: var(--visiting_team_primary);
     color: var(--visiting_team_secondary);

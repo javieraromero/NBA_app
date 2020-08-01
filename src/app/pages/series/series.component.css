@@ -1,3 +1,7 @@
+th, a, td, h3 {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
 th {
     text-align: left;
 }
@@ -42,3 +46,15 @@ table#team2_table th {
     color: var(--team2_secondary);
     text-align: center;
 }
+
+.column {
+    float: left;
+    width: 50%;
+  }
+  
+  /* Clear floats after the columns */
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }

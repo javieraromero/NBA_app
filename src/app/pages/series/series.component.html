@@ -1,202 +1,218 @@
-<title> {{ team1_name }} vs. {{ team2_name }} Series Page </title>
+<div class="row">
+    <div class="column">
+        <div style="padding-top: 15px; padding-left: 5px">
+            <table style="width:100%;" id="team1_table">
+                <tr>
+                    <th colspan="3"> {{ team1_name }} Series Leaders</th>
+                </tr>
+                <tr>
+                    <td> Points Per Game </td>
+                    <td>
+                        <a [routerLink]="['/player', team1_data['ppgPlayerId'], year]">
+                            {{ team1_data["ppgPlayerName"] }}
+                        </a>
+                    </td>
+                    <td> {{ team1_data["ppgValue"] }} </td>
+                </tr>
+                <tr>
+                    <td> Rebounds Per Game </td>
+                    <td>
+                        <a [routerLink]="['/player', team1_data['trpgPlayerId'], year]">
+                            {{ team1_data["trpgPlayerName"] }}
+                        </a>
+                    </td>
+                    <td> {{ team1_data["trpgValue"] }} </td>
+                </tr>
+                <tr>
+                    <td> Assists Per Game </td>
+                    <td>
+                        <a [routerLink]="['/player', team1_data['apgPlayerId'], year]">
+                            {{ team1_data["apgPlayerName"] }}
+                        </a>
+                    </td>
+                    <td> {{ team1_data["apgValue"] }} </td>
+                </tr>
+                <tr>
+                    <td> Field Goal Percentage </td>
+                    <td>
+                        <a [routerLink]="['/player', team1_data['fgpPlayerId'], year]">
+                            {{ team1_data["fgpPlayerName"] }}
+                        </a>
+                    </td>
+                    <td> {{ team1_data["fgpValue"] }} </td>
+                </tr>
+                <tr>
+                    <td> Three Point Percentage </td>
+                    <td>
+                        <a [routerLink]="['/player', team1_data['tppPlayerId'], year]">
+                            {{ team1_data["tppPlayerName"] }}
+                        </a>
+                    </td>
+                    <td> {{ team1_data["tppValue"] }} </td>
+                </tr>
+                <tr>
+                    <td> Free Throw Percentage </td>
+                    <td>
+                        <a [routerLink]="['/player', team1_data['ftpPlayerId'], year]">
+                            {{ team1_data["ftpPlayerName"] }}
+                        </a>
+                    </td>
+                    <td> {{ team1_data["ftpValue"] }} </td>
+                </tr>
+                <tr>
+                    <td> Blocks Per Game </td>
+                    <td>
+                        <a [routerLink]="['/player', team1_data['bpgPlayerId'], year]">
+                            {{ team1_data["bpgPlayerName"] }}
+                        </a>
+                    </td>
+                    <td> {{ team1_data["bpgValue"] }} </td>
+                </tr>
+                <tr>
+                    <td> Steals Per Game </td>
+                    <td>
+                        <a [routerLink]="['/player', team1_data['spgPlayerId'], year]">
+                            {{ team1_data["spgPlayerName"] }}
+                        </a>
+                    </td>
+                    <td> {{ team1_data["spgValue"] }} </td>
+                </tr>
+                <tr>
+                    <td> Turnovers Per Game </td>
+                    <td>
+                        <a [routerLink]="['/player', team1_data['tpgPlayerId'], year]">
+                            {{ team1_data["tpgPlayerName"] }}
+                        </a>
+                    </td>
+                    <td> {{ team1_data["tpgValue"] }} </td>
+                </tr>
+                <tr>
+                    <td> Personal Fouls Per Game </td>
+                    <td>
+                        <a [routerLink]="['/player', team1_data['pfpgPlayerId'], year]">
+                            {{ team1_data["pfpgPlayerName"] }}
+                        </a>
+                    </td>
+                    <td> {{ team1_data["pfpgValue"] }} </td>
+                </tr>
+            </table>
+        
+        </div>
+    </div>
+    <div class="column">
+        <div style="padding-top: 15px; padding-left: 5px">
+            <table style="width:100%" id="team2_table">
+                <tr>
+                    <th colspan="3"> {{ team2_name }} Series Leaders </th>
+                </tr>
+                <tr>
+                    <td> Points Per Game </td>
+                    <td>
+                        <a [routerLink]="['/player', team2_data['ppgPlayerId'], year]">
+                            {{ team2_data["ppgPlayerName"] }}
+                        </a>
+                    </td>
+                    <td> {{ team2_data["ppgValue"] }} </td>
+                </tr>
+                <tr>
+                    <td> Rebounds Per Game </td>
+                    <td>
+                        <a [routerLink]="['/player', team2_data['trpgPlayerId'], year]">
+                            {{ team2_data["trpgPlayerName"] }}
+                        </a>
+                    </td>
+                    <td> {{ team2_data["trpgValue"] }} </td>
+                </tr>
+                <tr>
+                    <td> Assists Per Game </td>
+                    <td>
+                        <a [routerLink]="['/player', team2_data['apgPlayerId'], year]">
+                            {{ team2_data["apgPlayerName"] }}
+                        </a>
+                    </td>
+                    <td> {{ team2_data["apgValue"] }} </td>
+                </tr>
+                <tr>
+                    <td> Field Goal Percentage </td>
+                    <td>
+                        <a [routerLink]="['/player', team2_data['fgpPlayerId'], year]">
+                            {{ team2_data["fgpPlayerName"] }}
+                        </a>
+                    </td>
+                    <td> {{ team2_data["fgpValue"] }} </td>
+                </tr>
+                <tr>
+                    <td> Three Point Percentage </td>
+                    <td>
+                        <a [routerLink]="['/player', team2_data['tppPlayerId'], year]">
+                            {{ team2_data["tppPlayerName"] }}
+                        </a>
+                    </td>
+                    <td> {{ team2_data["tppValue"] }} </td>
+                </tr>
+                <tr>
+                    <td> Free Throw Percentage </td>
+                    <td>
+                        <a [routerLink]="['/player', team2_data['ftpPlayerId'], year]">
+                            {{ team2_data["ftpPlayerName"] }}
+                        </a>
+                    </td>
+                    <td> {{ team2_data["ftpValue"] }} </td>
+                </tr>
+                <tr>
+                    <td> Blocks Per Game </td>
+                    <td>
+                        <a [routerLink]="['/player', team2_data['bpgPlayerId'], year]">
+                            {{ team2_data["bpgPlayerName"] }}
+                        </a>
+                    </td>
+                    <td> {{ team2_data["bpgValue"] }} </td>
+                </tr>
+                <tr>
+                    <td> Steals Per Game </td>
+                    <td>
+                        <a [routerLink]="['/player', team2_data['spgPlayerId'], year]">
+                            {{ team2_data["spgPlayerName"] }}
+                        </a>
+                    </td>
+                    <td> {{ team2_data["spgValue"] }} </td>
+                </tr>
+                <tr>
+                    <td> Turnovers Per Game </td>
+                    <td>
+                        <a [routerLink]="['/player', team2_data['tpgPlayerId'], year]">
+                            {{ team2_data["tpgPlayerName"] }}
+                        </a>
+                    </td>
+                    <td> {{ team2_data["tpgValue"] }} </td>
+                </tr>
+                <tr>
+                    <td> Personal Fouls Per Game </td>
+                    <td>
+                        <a [routerLink]="['/player', team2_data['pfpgPlayerId'], year]">
+                            {{ team2_data["pfpgPlayerName"] }}
+                        </a>
+                    </td>
+                    <td> {{ team2_data["pfpgValue"] }} </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
 
-<app-header></app-header>
-<br>
-
-<h1> {{ team1_name }} vs. {{ team2_name }} Series Page </h1>
-
-<div class="container mt-3">
-    <table style="width:80%" id="team1_table">
-        <tr>
-            <th colspan="3"> {{ team1_name }} </th>
-        </tr>
-        <tr>
-            <td> Points Per Game </td>
-            <td>
-                <a [routerLink]="['/player', team1_data['ppgPlayerId'], year]">
-                    {{ team1_data["ppgPlayerName"] }}
-                </a>
-            </td>
-            <td> {{ team1_data["ppgValue"] }} </td>
-        </tr>
-        <tr>
-            <td> Rebounds Per Game </td>
-            <td>
-                <a [routerLink]="['/player', team1_data['trpgPlayerId'], year]">
-                    {{ team1_data["trpgPlayerName"] }}
-                </a>
-            </td>
-            <td> {{ team1_data["trpgValue"] }} </td>
-        </tr>
-        <tr>
-            <td> Assists Per Game </td>
-            <td>
-                <a [routerLink]="['/player', team1_data['apgPlayerId'], year]">
-                    {{ team1_data["apgPlayerName"] }}
-                </a>
-            </td>
-            <td> {{ team1_data["apgValue"] }} </td>
-        </tr>
-        <tr>
-            <td> Field Goal Percentage </td>
-            <td>
-                <a [routerLink]="['/player', team1_data['fgpPlayerId'], year]">
-                    {{ team1_data["fgpPlayerName"] }}
-                </a>
-            </td>
-            <td> {{ team1_data["fgpValue"] }} </td>
-        </tr>
-        <tr>
-            <td> Three Point Percentage </td>
-            <td>
-                <a [routerLink]="['/player', team1_data['tppPlayerId'], year]">
-                    {{ team1_data["tppPlayerName"] }}
-                </a>
-            </td>
-            <td> {{ team1_data["tppValue"] }} </td>
-        </tr>
-        <tr>
-            <td> Free Throw Percentage </td>
-            <td>
-                <a [routerLink]="['/player', team1_data['ftpPlayerId'], year]">
-                    {{ team1_data["ftpPlayerName"] }}
-                </a>
-            </td>
-            <td> {{ team1_data["ftpValue"] }} </td>
-        </tr>
-        <tr>
-            <td> Blocks Per Game </td>
-            <td>
-                <a [routerLink]="['/player', team1_data['bpgPlayerId'], year]">
-                    {{ team1_data["bpgPlayerName"] }}
-                </a>
-            </td>
-            <td> {{ team1_data["bpgValue"] }} </td>
-        </tr>
-        <tr>
-            <td> Steals Per Game </td>
-            <td>
-                <a [routerLink]="['/player', team1_data['spgPlayerId'], year]">
-                    {{ team1_data["spgPlayerName"] }}
-                </a>
-            </td>
-            <td> {{ team1_data["spgValue"] }} </td>
-        </tr>
-        <tr>
-            <td> Turnovers Per Game </td>
-            <td>
-                <a [routerLink]="['/player', team1_data['tpgPlayerId'], year]">
-                    {{ team1_data["tpgPlayerName"] }}
-                </a>
-            </td>
-            <td> {{ team1_data["tpgValue"] }} </td>
-        </tr>
-        <tr>
-            <td> Personal Fouls Per Game </td>
-            <td>
-                <a [routerLink]="['/player', team1_data['pfpgPlayerId'], year]">
-                    {{ team1_data["pfpgPlayerName"] }}
-                </a>
-            </td>
-            <td> {{ team1_data["pfpgValue"] }} </td>
-        </tr>
-    </table>
-
-    <br>
-
-    <table style="width:80%" id="team2_table">
-        <tr>
-            <th colspan="3"> {{ team2_name }} </th>
-        </tr>
-        <tr>
-            <td> Points Per Game </td>
-            <td>
-                <a [routerLink]="['/player', team2_data['ppgPlayerId'], year]">
-                    {{ team2_data["ppgPlayerName"] }}
-                </a>
-            </td>
-            <td> {{ team2_data["ppgValue"] }} </td>
-        </tr>
-        <tr>
-            <td> Rebounds Per Game </td>
-            <td>
-                <a [routerLink]="['/player', team2_data['trpgPlayerId'], year]">
-                    {{ team2_data["trpgPlayerName"] }}
-                </a>
-            </td>
-            <td> {{ team2_data["trpgValue"] }} </td>
-        </tr>
-        <tr>
-            <td> Assists Per Game </td>
-            <td>
-                <a [routerLink]="['/player', team2_data['apgPlayerId'], year]">
-                    {{ team2_data["apgPlayerName"] }}
-                </a>
-            </td>
-            <td> {{ team2_data["apgValue"] }} </td>
-        </tr>
-        <tr>
-            <td> Field Goal Percentage </td>
-            <td>
-                <a [routerLink]="['/player', team2_data['fgpPlayerId'], year]">
-                    {{ team2_data["fgpPlayerName"] }}
-                </a>
-            </td>
-            <td> {{ team2_data["fgpValue"] }} </td>
-        </tr>
-        <tr>
-            <td> Three Point Percentage </td>
-            <td>
-                <a [routerLink]="['/player', team2_data['tppPlayerId'], year]">
-                    {{ team2_data["tppPlayerName"] }}
-                </a>
-            </td>
-            <td> {{ team2_data["tppValue"] }} </td>
-        </tr>
-        <tr>
-            <td> Free Throw Percentage </td>
-            <td>
-                <a [routerLink]="['/player', team2_data['ftpPlayerId'], year]">
-                    {{ team2_data["ftpPlayerName"] }}
-                </a>
-            </td>
-            <td> {{ team2_data["ftpValue"] }} </td>
-        </tr>
-        <tr>
-            <td> Blocks Per Game </td>
-            <td>
-                <a [routerLink]="['/player', team2_data['bpgPlayerId'], year]">
-                    {{ team2_data["bpgPlayerName"] }}
-                </a>
-            </td>
-            <td> {{ team2_data["bpgValue"] }} </td>
-        </tr>
-        <tr>
-            <td> Steals Per Game </td>
-            <td>
-                <a [routerLink]="['/player', team2_data['spgPlayerId'], year]">
-                    {{ team2_data["spgPlayerName"] }}
-                </a>
-            </td>
-            <td> {{ team2_data["spgValue"] }} </td>
-        </tr>
-        <tr>
-            <td> Turnovers Per Game </td>
-            <td>
-                <a [routerLink]="['/player', team2_data['tpgPlayerId'], year]">
-                    {{ team2_data["tpgPlayerName"] }}
-                </a>
-            </td>
-            <td> {{ team2_data["tpgValue"] }} </td>
-        </tr>
-        <tr>
-            <td> Personal Fouls Per Game </td>
-            <td>
-                <a [routerLink]="['/player', team2_data['pfpgPlayerId'], year]">
-                    {{ team2_data["pfpgPlayerName"] }}
-                </a>
-            </td>
-            <td> {{ team2_data["pfpgValue"] }} </td>
-        </tr>
-    </table>
+<div style="width: 75%; margin-left: auto; margin-right: auto;">
+    <div style="padding-top: 15px;" *ngFor="let game of list_of_games; index as i">
+        <div *ngIf="game['gameId'] === current_gameId; else elseBlock">
+            <h3>Game {{ i + 1 }}: {{ game['longDate'] }}</h3>
+            <app-scoreboard [useSecondaryLogos]="true" [date]="game['date']" [gameId]="game['gameId']" [statusNum]="game['statusNum']">
+            </app-scoreboard>
+        </div>
+        <ng-template #elseBlock>
+            <h3 style="color: dimgray">Game {{ i + 1 }}: {{ game['longDate'] }}</h3>
+            <a href="date/{{game['date']}}/{{game['gameId']}}" style="text-decoration: none; color: inherit;">
+                <app-scoreboard [useSecondaryLogos]="true" [date]="game['date']" [gameId]="game['gameId']" [statusNum]="game['statusNum']">
+                </app-scoreboard>
+            </a>
+        </ng-template>
+    </div>
 </div>

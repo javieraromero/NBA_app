@@ -12,11 +12,79 @@ import { TeamInfo } from '../../assets/team_info';
 })
 export class TeamLeadersComponent implements OnInit {
 
-  @Input() teamId: String;
+  @Input() vTeamId: String;
+  @Input() hTeamId: String;
   @Input() year: String;
 
-  team_leaders;
-  team_name;
+  vTeam_leaders = {
+    seasonStageId: "",
+    ppgPlayerName: "",
+    ppgPlayerId: "",
+    ppgValue: "",
+    trpgPlayerName: "",
+    trpgPlayerId: "",
+    trpgValue: "",
+    apgPlayerName: "",
+    apgPlayerId: "",
+    apgValue: "",
+    fgpPlayerName: "",
+    fgpPlayerId: "",
+    fgpValue: "",
+    tppPlayerName: "",
+    tppPlayerId: "",
+    tppValue: "",
+    ftpPlayerName: "",
+    ftpPlayerId: "",
+    ftpValue: "",
+    bpgPlayerName: "",
+    bpgPlayerId: "",
+    bpgValue: "",
+    spgPlayerName: "",
+    spgPlayerId: "",
+    spgValue: "",
+    tpgPlayerName: "",
+    tpgPlayerId: "",
+    tpgValue: "",
+    pfpgPlayerName: "",
+    pfpgPlayerId: "",
+    pfpgValue: ""
+  };
+  vTeam_name;
+
+  hTeam_leaders = {
+    seasonStageId: "",
+    ppgPlayerName: "",
+    ppgPlayerId: "",
+    ppgValue: "",
+    trpgPlayerName: "",
+    trpgPlayerId: "",
+    trpgValue: "",
+    apgPlayerName: "",
+    apgPlayerId: "",
+    apgValue: "",
+    fgpPlayerName: "",
+    fgpPlayerId: "",
+    fgpValue: "",
+    tppPlayerName: "",
+    tppPlayerId: "",
+    tppValue: "",
+    ftpPlayerName: "",
+    ftpPlayerId: "",
+    ftpValue: "",
+    bpgPlayerName: "",
+    bpgPlayerId: "",
+    bpgValue: "",
+    spgPlayerName: "",
+    spgPlayerId: "",
+    spgValue: "",
+    tpgPlayerName: "",
+    tpgPlayerId: "",
+    tpgValue: "",
+    pfpgPlayerName: "",
+    pfpgPlayerId: "",
+    pfpgValue: ""
+  };
+  hTeam_name;
 
   constructor(
     private http: HttpClient,
@@ -25,7 +93,11 @@ export class TeamLeadersComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.getTeamLeaders(this.teamId, this.year);
+    if(this.vTeamId)
+    {
+      this.getTeamLeaders(this.vTeamId, this.year);
+    }
+    this.getTeamLeaders(this.hTeamId, this.year);
   }
 
   getTeamLeaders(teamId: String, year: String)
@@ -34,11 +106,21 @@ export class TeamLeadersComponent implements OnInit {
       .subscribe(response => {
         var data = response["league"]["standard"];
 
-        var teamAttributes = this.getTeamAttributes(this.teamId);
+        var teamAttributes = this.getTeamAttributes(teamId);
 
-        document.documentElement.style.setProperty('--team_primary', teamAttributes["teamPrimaryColor"]);
-        document.documentElement.style.setProperty('--team_secondary', teamAttributes["teamSecondaryColor"]);
-        this.team_name = teamAttributes["teamName"];
+        if(teamId == this.vTeamId)
+        {
+          document.documentElement.style.setProperty('--vTeam_primary', teamAttributes["teamPrimaryColor"]);
+          document.documentElement.style.setProperty('--vTeam_secondary', teamAttributes["teamSecondaryColor"]);
+          this.vTeam_name = teamAttributes["teamName"];
+        }
+
+        else
+        {
+          document.documentElement.style.setProperty('--hTeam_primary', teamAttributes["teamPrimaryColor"]);
+          document.documentElement.style.setProperty('--hTeam_secondary', teamAttributes["teamSecondaryColor"]);
+          this.hTeam_name = teamAttributes["teamName"];
+        }
 
         var players_list = this.players.players;
 
@@ -132,8 +214,12 @@ export class TeamLeadersComponent implements OnInit {
           pfpgValue: data["pfpg"][0]["value"]
         }
 
-        this.team_leaders = stat_leaders;
-      });
+        if(teamId == this.vTeamId)
+          this.vTeam_leaders = stat_leaders;
+        else
+          this.hTeam_leaders = stat_leaders;
+      },
+      error => {});
   }
 
   getTeamAttributes(teamId: String)

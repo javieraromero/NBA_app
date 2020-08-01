@@ -17,6 +17,11 @@ export class TeamInfoComponent implements OnInit {
   team_data;
   coaches_list: Object[] = [];
 
+  coach_role_names: String[] = ["", "Head Coach", "Assistant Coach", "Trainer", "Assistant Trainer",
+                                "Strength-and-Conditioning Coach", "", "", "Advance Scout / Assistant Coach",
+                                "Associate Head Coach", "", "", "Assistant Coach for Player Development",
+                                "Lead Assistant Coach"];
+
   constructor(
     private teamInfo: TeamInfo,
     private http: HttpClient,
@@ -141,7 +146,14 @@ export class TeamInfoComponent implements OnInit {
 
               if(coach["teamId"] != teamId)
                 break;
-              this.coaches_list.push({personId: coach["personId"]});
+
+              var coach_info = {
+                personId: coach["personId"],
+                firstName: coach["firstName"],
+                lastName: coach["lastName"],
+                coachRole: this.coach_role_names[coach["teamSitesOnly"]["coachRole"]]
+              }
+              this.coaches_list.push(coach_info);
             }
             break;
           }

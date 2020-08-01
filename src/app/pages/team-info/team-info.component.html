@@ -5,31 +5,50 @@
     <div class="column" style="margin-top: 50px">
         <table>
             <tr>
-                <td>Team name</td>
-                <td>{{ team_attributes['teamName'] }}</td>
+                <td>
+                    <span>Team Name</span>
+                    <br>
+                    {{ team_attributes['teamName'] }}
+                </td>
             </tr>
             <tr>
-                <td>Tricode</td>
-                <td>{{ team_attributes['teamtricode'] }}</td>
+                <td>
+                    <span>Tricode</span>
+                    <br>
+                    {{ team_attributes['teamtricode'] }}
+                </td>
             </tr>
             <tr>
-                <td colspan="2">{{ team_data['win'] }} - {{ team_data['loss'] }}</td>
+                <td>
+                    <span>Current Record</span>
+                    <br>
+                    {{ team_data['win'] }} - {{ team_data['loss'] }}</td>
             </tr>
             <tr>
-                <td colspan="2">{{ team_data['confRank'] == 1 ? "1st" : team_data['confRank'] == 2 ? "2nd" : team_data['confRank'] == 3 ? "3rd" : team_data['confRank'] + "th" }} in {{ team_attributes['confName'] }}ern Conference</td>
+                <td>
+                    <span>Conf. Standing</span>
+                    <br>
+                    {{ team_data['confRank'] == 1 ? "1st" : team_data['confRank'] == 2 ? "2nd" : team_data['confRank'] == 3 ? "3rd" : team_data['confRank'] + "th" }} in {{ team_attributes['confName'] }}ern Conference
+                </td>
             </tr>
             <tr>
-                <td colspan="2">{{ team_data['divRank'] == 1 ? "1st" : team_data['divRank'] == 2 ? "2nd" : team_data['divRank'] == 3 ? "3rd" : team_data['divRank'] + "th" }} in {{ team_attributes['divName'] }} Division</td>
+                <td>
+                    <span>Div. Standing</span>
+                    <br>
+                    {{ team_data['divRank'] == 1 ? "1st" : team_data['divRank'] == 2 ? "2nd" : team_data['divRank'] == 3 ? "3rd" : team_data['divRank'] + "th" }} in {{ team_attributes['divName'] }} Division
+                </td>
             </tr>
         </table>
     </div>
     <div class="column" style="margin-top: 50px">
-        <div *ngFor="let coach of coaches_list">
-            <div>
-                <app-person [isCoach]="true" [personId]="coach['personId']" [year]="year">
-                </app-person>
-                <br>
-            </div>
-        </div>
+        <table>
+            <tr *ngFor="let coach of coaches_list">
+                <td>
+                    <span>{{ coach["coachRole"] }}</span>
+                    <br>
+                    {{ coach["firstName"] }} {{coach["lastName"] }}
+                </td>
+            </tr>
+        </table>
     </div>
 </div>

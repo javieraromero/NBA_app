@@ -19,16 +19,43 @@ h1, span, button, a, th, td {
       border-collapse: collapse;
   }
   
-  table#team_table tr:nth-child(even) {
+  table#vTeam_table tr:nth-child(even) {
       background-color: #eee;
   }
   
-  table#team_table tr:nth-child(odd) {
+  table#vTeam_table tr:nth-child(odd) {
      background-color: #fff;
   }
   
-  table#team_table th {
-      background-color: var(--team_primary);
-      color: var(--team_secondary);
+  table#vTeam_table th {
+      background-color: var(--vTeam_primary);
+      color: var(--vTeam_secondary);
       text-align: center;
+  }
+
+
+    table#hTeam_table tr:nth-child(even) {
+        background-color: #eee;
+    }
+
+    table#hTeam_table tr:nth-child(odd) {
+    background-color: #fff;
+    }
+
+    table#hTeam_table th {
+        background-color: var(--hTeam_primary);
+        color: var(--hTeam_secondary);
+        text-align: center;
+    }
+
+    .column {
+    float: left;
+    width: 50%;
+  }
+  
+  /* Clear floats after the columns */
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
   }
