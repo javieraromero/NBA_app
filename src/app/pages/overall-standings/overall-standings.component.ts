@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 import { HttpClient } from '@angular/common/http';
 
+import { TeamInfo } from '../../assets/team_info';
+
 @Component({
   selector: 'app-overall-standings',
   templateUrl: './overall-standings.component.html',
@@ -14,7 +16,8 @@ export class OverallStandingsComponent implements OnInit {
   seasonYear;
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private teamInfo: TeamInfo
   ) { }
 
   ngOnInit() {
@@ -35,13 +38,18 @@ export class OverallStandingsComponent implements OnInit {
         {
           var team = teams[i];
 
-          var team_attributes = team["teamSitesOnly"];
+          var team_info = team["teamSitesOnly"];
+
+          var teamId = team["teamId"];
+
+          var team_attributes = this.getTeamAttributes(teamId);
 
           const team_data = {
             teamId: team["teamId"],
-            teamName: team_attributes["teamName"],
-            teamNickname: team_attributes["teamNickname"],
+            //teamName: team_attributes["teamName"],
+            //teamNickname: team_attributes["teamNickname"],
             teamTricode: team_attributes["teamTricode"],
+            teamLogoLocation: team_attributes["teamSecondaryLogoLocation"],
             win: team["win"],
             loss: team["loss"],
             winPct: team["winPct"],
@@ -58,7 +66,7 @@ export class OverallStandingsComponent implements OnInit {
             awayLoss: team["awayLoss"],
             lastTenWin: team["lastTenWin"],
             lastTenLoss: team["lastTenLoss"],
-            streakText: team_attributes["streakText"],
+            streakText: team_info["streakText"],
           }
 
           this.overall_standings.push(team_data);
@@ -66,4 +74,40 @@ export class OverallStandingsComponent implements OnInit {
       });
   }
 
+  getTeamAttributes(teamId: String)
+  {
+    var team_list = this.teamInfo.teams;
+
+    var teamId_int = Number(teamId);
+
+    var teamName;
+    var teamTricode;
+    //var teamPrimaryColor;
+    //var teamSecondaryColor;
+    var teamSecondaryLogoLocation;
+
+    for(let i in team_list)
+    {
+      var team = team_list[i];
+      if(team["teamId"] == teamId_int)
+      {
+        teamName = team["teamName"];
+        teamTricode = team["tricode"];
+        //teamPrimaryColor = team["primaryColor"];
+        //teamSecondaryColor = team["secondaryColor"];
+        teamSecondaryLogoLocation = team["secondaryLogoLocation"];
+        break;
+      }
+    }
+
+    const team_attributes = {
+      teamName: teamName,
+      teamTricode: teamTricode,
+      //teamPrimaryColor: teamPrimaryColor,
+      //teamSecondaryColor: teamSecondaryColor,
+      teamSecondaryLogoLocation: teamSecondaryLogoLocation
+    }
+
+    return team_attributes;
+  }
 }

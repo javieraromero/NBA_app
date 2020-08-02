@@ -24,6 +24,9 @@ export class AllStarComponent implements OnInit {
 
   getData(year: String)
   {
-    
+    return this.http.get("http://data.nba.net/10s/prod/v1/allstar/" + year + "/AS_roster.json")
+      .subscribe(response => {
+        console.log(response["sportsContent"]);
+      });
   }
 }

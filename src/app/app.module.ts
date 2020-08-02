@@ -35,6 +35,7 @@ import { TeamInfoComponent } from './pages/team-info/team-info.component';
 import { PersonComponent } from './pages/person/person.component';
 import { RosterComponent } from './pages/roster/roster.component';
 import { TeamLeadersComponent } from './pages/team-leaders/team-leaders.component';
+import { SearchComponent } from './pages/search/search.component';
 
 @NgModule({
   declarations: [
@@ -62,7 +63,8 @@ import { TeamLeadersComponent } from './pages/team-leaders/team-leaders.componen
     TeamInfoComponent,
     PersonComponent,
     RosterComponent,
-    TeamLeadersComponent
+    TeamLeadersComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,

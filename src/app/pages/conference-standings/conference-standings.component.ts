@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 import { HttpClient } from '@angular/common/http';
 
+import { TeamInfo } from '../../assets/team_info';
+
 @Component({
   selector: 'app-conference-standings',
   templateUrl: './conference-standings.component.html',
@@ -15,7 +17,8 @@ export class ConferenceStandingsComponent implements OnInit {
   seasonYear;
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private teamInfo: TeamInfo
   ) { }
 
   ngOnInit() {
@@ -39,12 +42,17 @@ export class ConferenceStandingsComponent implements OnInit {
 
           var teamInfo = team["teamSitesOnly"];
 
+          var teamId = team["teamId"];
+
+          var team_attributes = this.getTeamAttributes(teamId);
+
           const team_info = 
           {
-            teamId: team["teamId"],
-            teamName: teamInfo["teamName"],
+            teamId: teamId,
+            teamName: team_attributes["teamName"],
             teamNickname: teamInfo["teamNickname"],
-            teamTricode: teamInfo["teamTricode"],
+            teamTricode: team_attributes["tricode"],
+            teamLogoLocation: team_attributes["teamSecondaryLogoLocation"],
             win: team["win"],
             loss: team["loss"],
             winPct: team["winPct"],
@@ -73,12 +81,17 @@ export class ConferenceStandingsComponent implements OnInit {
 
           var teamInfo = team["teamSitesOnly"];
 
+          var teamId = team["teamId"];
+
+          var team_attributes = this.getTeamAttributes(teamId);
+
           const team_info = 
           {
-            teamId: team["teamId"],
-            teamName: teamInfo["teamName"],
+            teamId: teamId,
+            teamName: team_attributes["teamName"],
             teamNickname: teamInfo["teamNickname"],
-            teamTricode: teamInfo["teamTricode"],
+            teamTricode: team_attributes["tricode"],
+            teamLogoLocation: team_attributes["teamSecondaryLogoLocation"],
             win: team["win"],
             loss: team["loss"],
             winPct: team["winPct"],
@@ -101,5 +114,42 @@ export class ConferenceStandingsComponent implements OnInit {
           this.western_standings.push(team_info);
         }
       });
+  }
+
+  getTeamAttributes(teamId: String)
+  {
+    var team_list = this.teamInfo.teams;
+
+    var teamId_int = Number(teamId);
+
+    var teamName;
+    var tricode;
+    //var teamPrimaryColor;
+    //var teamSecondaryColor;
+    var teamSecondaryLogoLocation;
+
+    for(let i in team_list)
+    {
+      var team = team_list[i];
+      if(team["teamId"] == teamId_int)
+      {
+        teamName = team["teamName"];
+        tricode = team["tricode"];
+        //teamPrimaryColor = team["primaryColor"];
+        //teamSecondaryColor = team["secondaryColor"];
+        teamSecondaryLogoLocation = team["secondaryLogoLocation"];
+        break;
+      }
+    }
+
+    const team_attributes = {
+      teamName: teamName,
+      tricode: tricode,
+      //teamPrimaryColor: teamPrimaryColor,
+      //teamSecondaryColor: teamSecondaryColor,
+      teamSecondaryLogoLocation: teamSecondaryLogoLocation
+    }
+
+    return team_attributes;
   }
 }

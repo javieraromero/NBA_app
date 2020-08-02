@@ -2,28 +2,37 @@ th, td {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   }
 
+  span {
+    color: dimgray;
+}
+
 th {
     text-align: left;
 }
 
 th, td {
-    padding: 8px;
+    padding: 5px;
 }
 
 table, th, td {
-    border: 1px solid black;
+    /*border: 1px solid black;*/
     border-collapse: collapse;
 }
 
-table#overall_table tr:nth-child(even) {
+table#overall_table tr:nth-child(odd) {
     background-color: #eee;
 }
 
-table#overall_table tr:nth-child(odd) {
+table#overall_table tr:nth-child(even) {
    background-color: #fff;
 }
 
 table#overall_table th {
-    background-color: black;
-    color: white;
+    background-color: inherit;
+    color: black;
+}
+
+table#key th, td {
+    padding: 3px;
+    font-size: small;
 }

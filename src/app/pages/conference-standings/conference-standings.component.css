@@ -2,17 +2,26 @@ th, td {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   }
 
+  span {
+      color: dimgray;
+  }
+
 th {
     text-align: left;
 }
 
 th, td {
-    padding: 8px;
+    padding: 5px;
 }
 
 table, th, td {
-    border: 1px solid black;
+    /*border: 1px solid black;*/
     border-collapse: collapse;
+}
+
+table#key th, td {
+    padding: 3px;
+    font-size: small;
 }
 
 table#conf_west tr:nth-child(even) {
@@ -40,3 +49,15 @@ table#conf_east th {
     background-color: #17408B;
     color: white;
 }
+
+.column {
+    float: left;
+    width: 50%;
+  }
+  
+  /* Clear floats after the columns */
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
