@@ -1,9 +1,9 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'teamsSearch'
+  name: 'scheduleSearch'
 })
-export class TeamsSearchPipe implements PipeTransform {
+export class ScheduleSearchPipe implements PipeTransform {
 
   transform(list: any, term: any, all_games: any): any {
     if(term == undefined || term == "")

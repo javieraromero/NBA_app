@@ -30,7 +30,7 @@ import { TeamInfo } from 'src/app/assets/team_info';
 import { PlayersList } from 'src/app/assets/players_list';
 import { DateCalculator } from 'src/app/assets/date_calculator';
 
-import { TeamsSearchPipe } from './pipes/teams-search.pipe';
+import { ScheduleSearchPipe } from './pipes/schedule-search.pipe';
 import { TeamInfoComponent } from './pages/team-info/team-info.component';
 import { PersonComponent } from './pages/person/person.component';
 import { RosterComponent } from './pages/roster/roster.component';
@@ -46,7 +46,7 @@ import { SearchComponent } from './pages/search/search.component';
     PlayerComponent,
     TeamComponent,
     HeaderComponent,
-    TeamsSearchPipe,
+    ScheduleSearchPipe,
     PbpComponent,
     ConferenceStandingsComponent,
     DivisionStandingsComponent,

@@ -14,7 +14,7 @@
         </tr>
     </table>
 
-    <div *ngFor="let game of list_of_games | teamsSearch: search : all_games">
+    <div *ngFor="let game of list_of_games | scheduleSearch: search : all_games">
         <div *ngIf="game['isLastGamePlayed']; else elseBlock">
             <h3>{{ game['longDate'] }}</h3>
             <a href="date/{{game['date']}}/{{game['gameId']}}" style="text-decoration: none; color: inherit;">
