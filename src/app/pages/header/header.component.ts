@@ -22,7 +22,13 @@ export class HeaderComponent implements OnInit {
 
   disable_buttons: boolean = false;
 
-  private routeSub: any;
+  search_query: String = "";
+
+  private routeSub = this.router.events.subscribe((event) => {
+    if(event instanceof NavigationStart) {
+      this.ngOnDestroy();
+    }
+  });
 
   constructor(
     private http: HttpClient,
@@ -37,12 +43,6 @@ export class HeaderComponent implements OnInit {
     this.setLongDate(this.date);
 
     this.run();
-
-    this.routeSub = this.router.events.subscribe((event) => {
-      if(event instanceof NavigationStart) {
-        this.ngOnDestroy();
-      }
-    });
   }
 
   public ngOnDestroy() {
@@ -59,12 +59,6 @@ export class HeaderComponent implements OnInit {
         await new Promise(r => setTimeout(r, 5000));
         is_today_current_date = this.compareDates(this.date);
     } while((this.statusNums.indexOf(1) != -1 || this.statusNums.indexOf(2) != -1) && is_today_current_date);
-
-    this.routeSub = this.router.events.subscribe((event) => {
-      if(event instanceof NavigationStart) {
-        this.ngOnDestroy();
-      }
-    });
   }
 
   getDate()
@@ -296,5 +290,10 @@ export class HeaderComponent implements OnInit {
   compareDates(date: String)
   {
     return date == this.getDate();
+  }
+
+  search()
+  {
+    this.router.navigate(['/search/' + this.search_query]);
   }
 }

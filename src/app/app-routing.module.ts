@@ -9,6 +9,7 @@ import { TeamComponent } from './pages/team/team.component';
 import { PlayoffBracketComponent } from './pages/playoff-bracket/playoff-bracket.component';
 import { AllStarComponent } from './pages/all-star/all-star.component';
 import { AllStandingsComponent } from './pages/all-standings/all-standings.component';
+import { SearchComponent } from './pages/search/search.component';
 
 const routes: Routes = [
   {
@@ -34,6 +35,9 @@ const routes: Routes = [
   },
   {
     path: 'all-star/:year', component: AllStarComponent
+  },
+  {
+    path: 'search/:query', component: SearchComponent
   }
 ];
 

@@ -1,5 +1,11 @@
 <div>
-    <table style="width: 600px; margin-left: auto; margin-right: auto;">
+    <form>
+        <input style="width: 35%; display: inline-block;" placeholder="Search..." type="text" class="form-control" 
+                    name="search" [(ngModel)]="search_query"/>
+                    <input type="submit" style="display: none" (click)="search()"/>
+        <button (click)="search()" [disabled]="disable_buttons"> Go </button>
+    </form>
+    <table style="width: 700px; margin-left: auto; margin-right: auto;">
         <tr>
             <th style="width: 25%">
                 <button (click)="gotoPreviousDate()" [disabled]="disable_buttons"> Previous Date </button>

@@ -1,1 +1,31 @@
-<p>search works!</p>
+<title>Results for "{{ query }}"</title>
+
+<table>
+    <tr *ngFor="let x of list_of_teams | teamsSearch : query">
+        <td innerHTML="{{ emboldenResult(x['location']) }} {{ emboldenResult(x['altCityName']) }} {{ emboldenResult(x['teamName']) }} {{ emboldenResult(x['tricode']) }}">{{ emboldenResult(x["location"]) }} {{ emboldenResult(x["altCityName"]) }} {{ emboldenResult(x["teamName"]) }} {{ emboldenResult(x["tricode"]) }} </td>
+    </tr>
+</table>
+
+<hr>
+
+<table>
+    <tr *ngFor="let x of league_schedule | gamesSearch : query">
+        <td innerHTML="{{ emboldenResult(x['vTeamName']) }} vs {{ emboldenResult(x['hTeamName']) }}">{{ emboldenResult(x["vTeamName"]) }} vs {{ emboldenResult(x["hTeamName"]) }} </td>
+    </tr>
+</table>
+
+<hr>
+
+<table>
+    <tr *ngFor="let x of league_roster | playersSearch : query">
+        <td innerHTML="{{ emboldenResult(x['firstName']) }} {{ emboldenResult(x['lastName']) }}">{{ emboldenResult(x["firstName"]) }} {{ emboldenResult(x["lastName"]) }} </td>
+    </tr>
+</table>
+
+<hr>
+
+<table>
+    <tr *ngFor="let x of list_of_coaches | coachesSearch : query">
+        <td innerHTML="{{ emboldenResult(x['firstName']) }} {{ emboldenResult(x['lastName']) }}">{{ emboldenResult(x["firstName"]) }} {{ emboldenResult(x["lastName"]) }} </td>
+    </tr>
+</table>

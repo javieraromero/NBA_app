@@ -26,7 +26,11 @@ export class BoxscoreComponent implements OnInit {
   show_visiting_team: boolean = true;
   show_home_team: boolean = false;
 
-  private routeSub: any;
+  private routeSub = this.router.events.subscribe((event) => {
+    if(event instanceof NavigationStart) {
+      this.ngOnDestroy();
+    }
+  });
 
   constructor(
     private http: HttpClient,
@@ -59,12 +63,6 @@ export class BoxscoreComponent implements OnInit {
         await new Promise(r => setTimeout(r, 5000));
       }
     }
-
-    this.routeSub = this.router.events.subscribe((event) => {
-      if(event instanceof NavigationStart) {
-        this.ngOnDestroy();
-      }
-    });
   }
 
   public ngOnDestroy() {

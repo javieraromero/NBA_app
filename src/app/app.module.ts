@@ -36,6 +36,10 @@ import { PersonComponent } from './pages/person/person.component';
 import { RosterComponent } from './pages/roster/roster.component';
 import { TeamLeadersComponent } from './pages/team-leaders/team-leaders.component';
 import { SearchComponent } from './pages/search/search.component';
+import { TeamsSearchPipe } from './pipes/teams-search.pipe';
+import { GamesSearchPipe } from './pipes/games-search.pipe';
+import { PlayersSearchPipe } from './pipes/players-search.pipe';
+import { CoachesSearchPipe } from './pipes/coaches-search.pipe';
 
 @NgModule({
   declarations: [
@@ -64,7 +68,11 @@ import { SearchComponent } from './pages/search/search.component';
     PersonComponent,
     RosterComponent,
     TeamLeadersComponent,
-    SearchComponent
+    SearchComponent,
+    TeamsSearchPipe,
+    GamesSearchPipe,
+    PlayersSearchPipe,
+    CoachesSearchPipe
   ],
   imports: [
     BrowserModule,
