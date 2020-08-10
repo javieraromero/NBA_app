@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 
 import { DateCalculator, MyDate } from 'src/app/assets/date_calculator';
 
+import { ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
@@ -29,7 +30,10 @@ export class CalendarComponent implements OnInit {
   constructor(
     private dateCalculator: DateCalculator,
     private http: HttpClient,
-  ) { }
+    private route: ActivatedRoute,
+  ) {
+    route.params.subscribe(val => this.ngOnInit())
+  }
 
   calendar: Object[][];
 

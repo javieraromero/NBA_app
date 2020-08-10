@@ -209,7 +209,7 @@
         </div>
         <ng-template #elseBlock>
             <h3 style="color: dimgray">Game {{ i + 1 }}: {{ game['longDate'] }}</h3>
-            <a href="date/{{game['date']}}/{{game['gameId']}}" style="text-decoration: none; color: inherit;">
+            <a [routerLink]="['/date/', game['date'], game['gameId']]" style="text-decoration: none; color: inherit;">
                 <app-scoreboard [useSecondaryLogos]="true" [date]="game['date']" [gameId]="game['gameId']" [statusNum]="game['statusNum']">
                 </app-scoreboard>
             </a>

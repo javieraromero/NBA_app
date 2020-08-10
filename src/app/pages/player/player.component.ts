@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
@@ -13,8 +13,9 @@ import { PlayersList } from '../../assets/players_list';
 })
 export class PlayerComponent implements OnInit {
 
+  @Input() year: string;
+
   personId;
-  year;
   careerSummary;
   seasons: Object[] = [];
   first_name;
@@ -22,7 +23,6 @@ export class PlayerComponent implements OnInit {
   current_team;
   primaryColor: string;
   secondaryColor: string;
-  //teamLogoLocation: string;
 
   constructor(
     private route: ActivatedRoute,
@@ -33,7 +33,6 @@ export class PlayerComponent implements OnInit {
 
   ngOnInit() {
     this.personId = this.route.snapshot.paramMap.get('personId');
-    this.year = this.route.snapshot.paramMap.get('year');
     this.getPlayerData(this.personId, this.year);
   }
 

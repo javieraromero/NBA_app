@@ -67,7 +67,7 @@
             <td> {{ game_data["officials"] }} </td>
         </tr>
         <tr *ngIf="game_data['previousMatchup_gameDate']">
-            <td colspan="2"><a href="date/{{ game_data['previousMatchup_gameDate'] }}/{{ game_data['previousMatchup_gameId'] }}"> Previous matchup </a></td>
+            <td colspan="2"><a [routerLink]="['/date/', game_data['previousMatchup_gameDate'], game_data['previousMatchup_gameId']]"> Previous matchup </a></td>
         </tr>
     </table>
 </div>

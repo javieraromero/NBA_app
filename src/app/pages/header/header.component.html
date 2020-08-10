@@ -1,4 +1,5 @@
 <div>
+    <a [routerLink]="['/']">Home</a>
     <form>
         <input style="width: 35%; display: inline-block;" placeholder="Search..." type="text" class="form-control" 
                     name="search" [(ngModel)]="search_query"/>
@@ -28,7 +29,7 @@
     </div>
     <ng-template #elseBlock>
         <div class="card" *ngFor="let game of games" style="width:175px">
-            <a href="date/{{date}}/{{game['gameId']}}" style="text-decoration: none; color: inherit;">
+            <a [routerLink]="['/date/', date, game['gameId']]" style="text-decoration: none; color: inherit;">
                 <div class="container">
                     <div>
                         <table style="width:100%">

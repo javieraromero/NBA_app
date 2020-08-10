@@ -13,6 +13,7 @@ export class GamesSearchPipe implements PipeTransform {
 
     return list.filter(function(x){
 
+      var long_date = x["longDate"];
       var vTeamFull_vs_hTeamFull = x["vTeamName"] + " vs " + x["hTeamName"];
       var vTeamAbbrev_vs_hTeamAbbrev = x["vTeamTricode"] + " vs " + x["hTeamTricode"];
       var vTeamLocation_vs_hTeamLocation = x["vTeamLocation"] + " vs " + x["hTeamLocation"];
@@ -30,7 +31,8 @@ export class GamesSearchPipe implements PipeTransform {
       var hTeamLocation_vTeamLocation = x["hTeamLocation"] + " " + x["vTeamLocation"];
       var hTeamSimple_vTeamSimple = x["hTeamSimpleName"] + " " + x["vTeamSimpleName"];
 
-      return vTeamFull_vs_hTeamFull.toLowerCase().includes(term.toLowerCase())
+      return long_date.toLowerCase().includes(term.toLowerCase())
+      || vTeamFull_vs_hTeamFull.toLowerCase().includes(term.toLowerCase())
       || vTeamAbbrev_vs_hTeamAbbrev.toLowerCase().includes(term.toLowerCase())
       || vTeamLocation_vs_hTeamLocation.toLowerCase().includes(term.toLowerCase())
       || vTeamSimple_vs_hTeamSimple.toLowerCase().includes(term.toLowerCase())

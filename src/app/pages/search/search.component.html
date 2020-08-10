@@ -1,31 +1,72 @@
-<title>Results for "{{ query }}"</title>
+<title>Search results for "{{ query }}"</title>
 
-<table>
-    <tr *ngFor="let x of list_of_teams | teamsSearch : query">
-        <td innerHTML="{{ emboldenResult(x['location']) }} {{ emboldenResult(x['altCityName']) }} {{ emboldenResult(x['teamName']) }} {{ emboldenResult(x['tricode']) }}">{{ emboldenResult(x["location"]) }} {{ emboldenResult(x["altCityName"]) }} {{ emboldenResult(x["teamName"]) }} {{ emboldenResult(x["tricode"]) }} </td>
-    </tr>
-</table>
+<app-header></app-header>
 
-<hr>
+<div class="container mt-3" style="width: 75%; margin-left: auto; margin-right: auto;">
 
-<table>
-    <tr *ngFor="let x of league_schedule | gamesSearch : query">
-        <td innerHTML="{{ emboldenResult(x['vTeamName']) }} vs {{ emboldenResult(x['hTeamName']) }}">{{ emboldenResult(x["vTeamName"]) }} vs {{ emboldenResult(x["hTeamName"]) }} </td>
-    </tr>
-</table>
+    <h3>Search results for "{{ query }}"</h3>
 
-<hr>
+    <div class="tab">
+        <button class="tablinks" id="players_tab" (click)="switchTab($event, 'players')">Players</button>
+        <button class="tablinks" id="games_tab" (click)="switchTab($event, 'games')">Games</button>
+        <button class="tablinks" id="teams_tab" (click)="switchTab($event, 'teams')">Teams</button>
+        <button class="tablinks" id="coaches_tab" (click)="switchTab($event, 'coaches')">Coaches</button>
+    </div>
 
-<table>
-    <tr *ngFor="let x of league_roster | playersSearch : query">
-        <td innerHTML="{{ emboldenResult(x['firstName']) }} {{ emboldenResult(x['lastName']) }}">{{ emboldenResult(x["firstName"]) }} {{ emboldenResult(x["lastName"]) }} </td>
-    </tr>
-</table>
+    <div id="teams" class="tabcontent">
+        <br>
+        <table style="width: 65%">
+            <tr>
+                <th style="width: 50%">
+                    Team Name
+                </th>
+                <th style="width: 30%">
+                    Location
+                </th>
+                <th style="width: 20%">
+                    Tricode
+                </th>
+            </tr>
+            <tr *ngFor="let x of list_of_teams | teamsSearch : query" [routerLink]="['/team/', x['teamId'], '2019']">
+                <td innerHTML="{{ emboldenResult(x['teamName']) }}"></td>
+                <td innerHTML="{{ emboldenResult(x['location']) }}"></td>
+                <td innerHTML="{{ emboldenResult(x['tricode']) }}"></td>
+            </tr>
+        </table>
+    </div>
 
-<hr>
+    <div id="games" class="tabcontent">
+        <table>
+            <tr>
+                <th>
+                    Team Name
+                </th>
+                <th>
+                    Location
+                </th>
+                <th>
+                    Tricode
+                </th>
+            </tr>
+            <tr *ngFor="let x of league_schedule | gamesSearch : query">
+                <td innerHTML="{{ emboldenResult(x['vTeamName']) }} vs {{ emboldenResult(x['hTeamName']) }}">{{ emboldenResult(x["vTeamName"]) }} vs {{ emboldenResult(x["hTeamName"]) }} </td>
+            </tr>
+        </table>
+    </div>
 
-<table>
-    <tr *ngFor="let x of list_of_coaches | coachesSearch : query">
-        <td innerHTML="{{ emboldenResult(x['firstName']) }} {{ emboldenResult(x['lastName']) }}">{{ emboldenResult(x["firstName"]) }} {{ emboldenResult(x["lastName"]) }} </td>
-    </tr>
-</table>
+    <div id="players" class="tabcontent" [hidden]="statusNum != 1">
+        <table>
+            <tr *ngFor="let x of league_roster | playersSearch : query">
+                <td innerHTML="{{ emboldenResult(x['firstName']) }} {{ emboldenResult(x['lastName']) }}">{{ emboldenResult(x["firstName"]) }} {{ emboldenResult(x["lastName"]) }} </td>
+            </tr>
+        </table>
+    </div>
+
+    <div id="coaches" class="tabcontent" [hidden]="statusNum != 1">
+        <table>
+            <tr *ngFor="let x of list_of_coaches | coachesSearch : query">
+                <td innerHTML="{{ emboldenResult(x['firstName']) }} {{ emboldenResult(x['lastName']) }}">{{ emboldenResult(x["firstName"]) }} {{ emboldenResult(x["lastName"]) }} </td>
+            </tr>
+        </table>
+    </div>
+</div>

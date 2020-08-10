@@ -43,7 +43,9 @@ export class GameComponent implements OnInit {
     private route: ActivatedRoute,
     private http: HttpClient,
     private teamInfo: TeamInfo
-  ) { }
+  ) {
+    route.params.subscribe(val => this.ngOnInit())
+   }
 
   async ngOnInit() {
     const date = this.route.snapshot.paramMap.get('date');

@@ -50,7 +50,7 @@
         <tr *ngFor="let player of visiting_players">
             <td>
                 <img src="assets/images/on_court_icon.png" *ngIf="player['isOnCourt'] && statusNum === 2" style="max-height: 8px;">
-                <a href="/player/{{ player['personId']}}/{{ seasonYear }}">
+                <a [routerLink]="['/player/', player['personId'], seasonYear]">
                     {{ player["firstName"] }} {{ player["lastName"] }}
                 </a>
             </td>
@@ -110,7 +110,7 @@
         <tr *ngFor="let player of home_players">
             <td>
                 <img src="assets/images/on_court_icon.png" *ngIf="player['isOnCourt'] && statusNum === 2" style="max-height: 8px;">
-                <a href="/player/{{ player['personId']}}/{{ seasonYear }}">
+                <a [routerLink]="['/player/', player['personId'], seasonYear]">
                     {{ player["firstName"] }} {{ player["lastName"] }}
                 </a>
             </td>

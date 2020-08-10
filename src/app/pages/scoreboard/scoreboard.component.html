@@ -19,9 +19,14 @@
             </ng-template>
         </td>
     </tr>
+    <tr *ngIf="!game_data['isPreseason'] && !game_data['isPlayoffs']">
+        <td colspan="3">
+            
+        </td>
+    </tr>
     <tr>
         <td style="width: 40%">
-            <a href="/team/{{game_data['vTeamId']}}/{{game_data['seasonYear']}}">
+            <a [routerLink]="['/team/', game_data['vTeamId'], game_data['seasonYear']]">
                 <img src="{{ game_data['vTeamLogoLocation'] }}" style="max-height: 65px; max-width: 130px">
                 <br>
                 {{ game_data["vTeamName"] }}
@@ -34,7 +39,7 @@
             {{ game_data["bottom_label"] }}
         </td>
         <td style="width: 40%">
-            <a href="/team/{{game_data['hTeamId']}}/{{game_data['seasonYear']}}">
+            <a [routerLink]="['/team/', game_data['hTeamId'], game_data['seasonYear']]">
                 <img src="{{ game_data['hTeamLogoLocation'] }}" style="max-height: 65px; max-width: 130px">
                 <br>
                 {{ game_data["hTeamName"] }}

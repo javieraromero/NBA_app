@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { HttpClient } from '@angular/common/http';
-//import { getLocaleDateFormat } from '@angular/common';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router, NavigationStart } from '@angular/router';
 
 import { TeamInfo } from 'src/app/assets/team_info';
 import { MyDate } from 'src/app/assets/date_calculator';
@@ -22,11 +21,20 @@ export class DateComponent implements OnInit
   statusNums: Number[] = [];
   longDate: String;
 
+  private routeSub = this.router.events.subscribe((event) => {
+    if(event instanceof NavigationStart) {
+      this.ngOnDestroy();
+    }
+  });
+
   constructor(
     private http: HttpClient,
     private teamInfo: TeamInfo,
     private route: ActivatedRoute,
-  ) { }
+    private router: Router
+  ) {
+    route.params.subscribe(val => this.ngOnInit())
+  }
 
   async ngOnInit()
   {
@@ -45,6 +53,10 @@ export class DateComponent implements OnInit
         await new Promise(r => setTimeout(r, 15000));
       } while(this.statusNums.indexOf(1) != -1 || this.statusNums.indexOf(2) != -1);
     }
+  }
+
+  public ngOnDestroy() {
+    this.routeSub.unsubscribe();
   }
 
   getData(date: String)

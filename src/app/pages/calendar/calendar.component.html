@@ -39,7 +39,7 @@
                 </div>
                 <ng-template #elseBlock>
                     <div style="text-align: center;">
-                        <a href="date/{{ temp_year }}{{ temp_month < 10 ? '0' + temp_month : temp_month }}{{ day < 10 ? '0' + day : day }}">
+                        <a [routerLink]="['/date/', temp_year + '' + (temp_month < 10 ? '0' + temp_month : temp_month) + '' + (day < 10 ? '0' + day : day)]">
                             <p style="font-size: large;">
                                 {{ day }}
                             </p>

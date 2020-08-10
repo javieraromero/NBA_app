@@ -25,7 +25,7 @@
     </div>
     <ng-template #elseBlock>
         <ng-container *ngFor="let game of games">
-            <a href="date/{{date}}/{{game['gameId']}}" style="text-decoration: none; color: inherit;">
+            <a [routerLink]="['/date/', date, game['gameId']]" style="text-decoration: none; color: inherit;">
                 <app-scoreboard [useSecondaryLogos]="true" [date]="date" [gameId]="game['gameId']" [statusNum]="game['statusNum']">
                 </app-scoreboard>
             </a>

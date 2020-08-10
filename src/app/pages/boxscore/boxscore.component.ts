@@ -1,8 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Router, NavigationStart } from '@angular/router';
+import { Router, NavigationStart, ActivatedRoute } from '@angular/router';
 
 import { TeamInfo } from '../../assets/team_info';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-boxscore',
@@ -35,11 +36,15 @@ export class BoxscoreComponent implements OnInit {
   constructor(
     private http: HttpClient,
     private teamInfo: TeamInfo,
-    private router: Router
-  ) { }
+    private router: Router,
+    private route: ActivatedRoute,
+  ) {
+    route.params.subscribe(val => this.ngOnInit())
+  }
 
   async ngOnInit() {
     var is_today_current_date = this.compareDates(this.date);
+    
     if(this.statusNum == 1)
     {
       while(this.statusNum == 1 && is_today_current_date)
