@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 
 import { TeamInfo } from '../../assets/team_info';
@@ -42,9 +42,13 @@ export class GameComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private http: HttpClient,
-    private teamInfo: TeamInfo
+    private teamInfo: TeamInfo,
+    private router: Router
   ) {
-    route.params.subscribe(val => this.ngOnInit())
+    route.params.subscribe(val => this.ngOnInit());
+    this.router.routeReuseStrategy.shouldReuseRoute = function () {
+      return false;
+    };
    }
 
   async ngOnInit() {

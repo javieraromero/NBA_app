@@ -16,7 +16,7 @@ export class PlayersSearchPipe implements PipeTransform {
       var firstName_lastName = x["firstName"] + " " + x["lastName"];
       var lastName_firstName = x["lastName"] + " " + x["firstName"];
 
-      var tempoaryDisplayName = x["temporaryDisplayName"] == undefined ? "" : x["temporaryDisplayName"];
+      var tempoaryDisplayName = x["temporaryDisplayName"] == undefined ? x["lastName"] + ", " + x["firstName"] : x["temporaryDisplayName"];
 
 
       return firstName_lastName.toLowerCase().includes(term.toLowerCase())

@@ -1,12 +1,11 @@
 <title>{{ year }} - {{ playoff_year }} Playoff Bracket</title>
 
 <app-header></app-header>
-<br>
 
 <h1> {{ year }} - {{ playoff_year }} Playoff Bracket </h1>
 
 <div class="container mt-3">
-    <table style="width: 100%">
+    <table style="width: 1050px">
         <tr>
             <td width="14%"></td>
             <td width="14%"></td>
@@ -21,15 +20,19 @@
                 <table style="table-layout: fixed; height:100%; width: 100%;" id="series_10_top"
                     [routerLink]="['/series', series_10['seriesId'], year]">
                     <tr>
-                        <th style="text-align: left; width: 90%;"> {{ series_10["topTeamSeed"] }} - {{ series_10["topTeamName"] }} </th>
-                        <th style="text-align: right; width: 11%"> {{ series_10["topTeamWins"] }} </th>
+                        <th style="text-align: left; width: 10%;"> {{ series_10["topTeamSeed"] }} </th>
+                        <th style="width: 20%"><img src="{{ series_10['topTeamSecondaryLogoLocation'] }}" style="max-height: 16px; max-width: 20px"></th>
+                        <th style="text-align: left; width: 45%"> {{ series_10["topTeamTricode"] }} </th>
+                        <th style="text-align: right; width: 25%"> {{ series_10["topTeamWins"] }} </th>
                     </tr>
                 </table>
                 <table style="table-layout: fixed; width: 100%;" id="series_10_bottom"
                     [routerLink]="['/series', series_10['seriesId'], year]">
                     <tr>
-                        <th style="text-align: left; width: 90%;"> {{ series_10["bottomTeamSeed"] }} - {{ series_10["bottomTeamName"] }} </th>
-                        <th style="text-align: right; width: 11%;"> {{ series_10["bottomTeamWins"] }} </th>
+                        <th style="text-align: left; width: 10%;"> {{ series_10["bottomTeamSeed"] }} </th>
+                        <th style="width: 20%"><img src="{{ series_10['bottomTeamSecondaryLogoLocation'] }}" style="max-height: 16px; max-width: 20px"></th>
+                        <th style="text-align: left; width: 45%"> {{ series_10["bottomTeamTricode"] }} </th>
+                        <th style="text-align: right; width: 25%"> {{ series_10["bottomTeamWins"] }} </th>
                     </tr>
                 </table>
             </td>
@@ -40,15 +43,19 @@
                 <table style="table-layout: fixed; height:100%; width: 100%;" id="series_14_top"
                     [routerLink]="['/series', series_14['seriesId'], year]">
                     <tr>
-                        <th style="text-align: left; width: 90%;"> {{ series_14["topTeamSeed"] }} - {{ series_14["topTeamName"] }} </th>
-                        <th style="text-align: right; width: 11%"> {{ series_14["topTeamWins"] }} </th>
+                        <th style="text-align: left; width: 10%;"> {{ series_14["topTeamSeed"] }} </th>
+                        <th style="width: 20%"><img src="{{ series_14['topTeamSecondaryLogoLocation'] }}" style="max-height: 16px; max-width: 20px"></th>
+                        <th style="text-align: left; width: 45%"> {{ series_14["topTeamTricode"] }} </th>
+                        <th style="text-align: right; width: 25%"> {{ series_14["topTeamWins"] }} </th>
                     </tr>
                 </table>
                 <table style="table-layout: fixed; width: 100%;" id="series_14_bottom"
                     [routerLink]="['/series', series_14['seriesId'], year]">
                     <tr>
-                        <th style="text-align: left; width: 90%;"> {{ series_14["bottomTeamSeed"] }} - {{ series_14["bottomTeamName"] }} </th>
-                        <th style="text-align: right; width: 11%;"> {{ series_14["bottomTeamWins"] }} </th>
+                        <th style="text-align: left; width: 10%;"> {{ series_14["bottomTeamSeed"] }} </th>
+                        <th style="width: 20%"><img src="{{ series_14['bottomTeamSecondaryLogoLocation'] }}" style="max-height: 16px; max-width: 20px"></th>
+                        <th style="text-align: left; width: 45%"> {{ series_14["bottomTeamTricode"] }} </th>
+                        <th style="text-align: right; width: 25%"> {{ series_14["bottomTeamWins"] }} </th>
                     </tr>
                 </table>
             </td>
@@ -60,15 +67,19 @@
                 <table style="table-layout: fixed; height:100%; width: 100%;" id="series_20_top"
                     [routerLink]="['/series', series_20['seriesId'], year]">
                     <tr>
-                        <th style="text-align: left; width: 90%;"> {{ series_20["topTeamName"] }} </th>
-                        <th style="text-align: right; width: 11%"> {{ series_20["topTeamWins"] }} </th>
+                        <th style="text-align: left; width: 10%;"> {{ series_20["topTeamSeed"] }} </th>
+                        <th style="width: 20%"><img src="{{ series_20['topTeamSecondaryLogoLocation'] }}" style="max-height: 16px; max-width: 20px"></th>
+                        <th style="text-align: left; width: 45%"> {{ series_20["topTeamTricode"] }} </th>
+                        <th style="text-align: right; width: 25%"> {{ series_20["topTeamWins"] }} </th>
                     </tr>
                 </table>
                 <table style="table-layout: fixed; width: 100%;" id="series_20_bottom"
                     [routerLink]="['/series', series_20['seriesId'], year]">
                     <tr>
-                        <th style="text-align: left; width: 90%;"> {{ series_20["bottomTeamName"] }} </th>
-                        <th style="text-align: right; width: 11%;"> {{ series_20["bottomTeamWins"] }} </th>
+                        <th style="text-align: left; width: 10%;"> {{ series_20["bottomTeamSeed"] }} </th>
+                        <th style="width: 20%"><img src="{{ series_20['bottomTeamSecondaryLogoLocation'] }}" style="max-height: 16px; max-width: 20px"></th>
+                        <th style="text-align: left; width: 45%"> {{ series_20["bottomTeamTricode"] }} </th>
+                        <th style="text-align: right; width: 25%"> {{ series_20["bottomTeamWins"] }} </th>
                     </tr>
                 </table>
             </td>
@@ -79,15 +90,19 @@
                 <table style="table-layout: fixed; height:100%; width: 100%;" id="series_22_top"
                     [routerLink]="['/series', series_22['seriesId'], year]">
                     <tr>
-                        <th style="text-align: left; width: 90%;"> {{ series_22["topTeamName"] }} </th>
-                        <th style="text-align: right; width: 11%"> {{ series_22["topTeamWins"] }} </th>
+                        <th style="text-align: left; width: 10%;"> {{ series_22["topTeamSeed"] }} </th>
+                        <th style="width: 20%"><img src="{{ series_22['topTeamSecondaryLogoLocation'] }}" style="max-height: 16px; max-width: 20px"></th>
+                        <th style="text-align: left; width: 45%"> {{ series_22["topTeamTricode"] }} </th>
+                        <th style="text-align: right; width: 25%"> {{ series_22["topTeamWins"] }} </th>
                     </tr>
                 </table>
                 <table style="table-layout: fixed; width: 100%;" id="series_22_bottom"
                     [routerLink]="['/series', series_22['seriesId'], year]">
                     <tr>
-                        <th style="text-align: left; width: 90%;"> {{ series_22["bottomTeamName"] }} </th>
-                        <th style="text-align: right; width: 11%;"> {{ series_22["bottomTeamWins"] }} </th>
+                        <th style="text-align: left; width: 10%;"> {{ series_22["bottomTeamSeed"] }} </th>
+                        <th style="width: 20%"><img src="{{ series_22['bottomTeamSecondaryLogoLocation'] }}" style="max-height: 16px; max-width: 20px"></th>
+                        <th style="text-align: left; width: 45%"> {{ series_22["bottomTeamTricode"] }} </th>
+                        <th style="text-align: right; width: 25%"> {{ series_22["bottomTeamWins"] }} </th>
                     </tr>
                 </table>
             </td>
@@ -99,15 +114,19 @@
                 <table style="table-layout: fixed; height:100%; width: 100%;" id="series_11_top"
                     [routerLink]="['/series', series_11['seriesId'], year]">
                     <tr>
-                        <th style="text-align: left; width: 90%;"> {{ series_11["topTeamSeed"] }} - {{ series_11["topTeamName"] }} </th>
-                        <th style="text-align: right; width: 11%"> {{ series_11["topTeamWins"] }} </th>
+                        <th style="text-align: left; width: 10%;"> {{ series_11["topTeamSeed"] }} </th>
+                        <th style="width: 20%"><img src="{{ series_11['topTeamSecondaryLogoLocation'] }}" style="max-height: 16px; max-width: 20px"></th>
+                        <th style="text-align: left; width: 45%"> {{ series_11["topTeamTricode"] }} </th>
+                        <th style="text-align: right; width: 25%"> {{ series_11["topTeamWins"] }} </th>
                     </tr>
                 </table>
                 <table style="table-layout: fixed; width: 100%;" id="series_11_bottom"
                     [routerLink]="['/series', series_11['seriesId'], year]">
                     <tr>
-                        <th style="text-align: left; width: 90%;"> {{ series_11["bottomTeamSeed"] }} - {{ series_11["bottomTeamName"] }} </th>
-                        <th style="text-align: right; width: 11%;"> {{ series_11["bottomTeamWins"] }} </th>
+                        <th style="text-align: left; width: 10%;"> {{ series_11["bottomTeamSeed"] }} </th>
+                        <th style="width: 20%"><img src="{{ series_11['bottomTeamSecondaryLogoLocation'] }}" style="max-height: 16px; max-width: 20px"></th>
+                        <th style="text-align: left; width: 45%"> {{ series_11["bottomTeamTricode"] }} </th>
+                        <th style="text-align: right; width: 25%"> {{ series_11["bottomTeamWins"] }} </th>
                     </tr>
                 </table>
             </td>
@@ -118,15 +137,19 @@
                 <table style="table-layout: fixed; height:100%; width: 100%;" id="series_15_top"
                     [routerLink]="['/series', series_15['seriesId'], year]">
                     <tr>
-                        <th style="text-align: left; width: 90%;"> {{ series_15["topTeamSeed"] }} - {{ series_15["topTeamName"] }} </th>
-                        <th style="text-align: right; width: 11%"> {{ series_15["topTeamWins"] }} </th>
+                        <th style="text-align: left; width: 10%;"> {{ series_15["topTeamSeed"] }} </th>
+                        <th style="width: 20%"><img src="{{ series_15['topTeamSecondaryLogoLocation'] }}" style="max-height: 16px; max-width: 20px"></th>
+                        <th style="text-align: left; width: 45%"> {{ series_15["topTeamTricode"] }} </th>
+                        <th style="text-align: right; width: 25%"> {{ series_15["topTeamWins"] }} </th>
                     </tr>
                 </table>
                 <table style="table-layout: fixed; width: 100%;" id="series_15_bottom"
                     [routerLink]="['/series', series_15['seriesId'], year]">
                     <tr>
-                        <th style="text-align: left; width: 90%;"> {{ series_15["bottomTeamSeed"] }} - {{ series_15["bottomTeamName"] }} </th>
-                        <th style="text-align: right; width: 11%;"> {{ series_15["bottomTeamWins"] }} </th>
+                        <th style="text-align: left; width: 10%;"> {{ series_15["bottomTeamSeed"] }} </th>
+                        <th style="width: 20%"><img src="{{ series_15['bottomTeamSecondaryLogoLocation'] }}" style="max-height: 16px; max-width: 20px"></th>
+                        <th style="text-align: left; width: 45%"> {{ series_15["bottomTeamTricode"] }} </th>
+                        <th style="text-align: right; width: 25%"> {{ series_15["bottomTeamWins"] }} </th>
                     </tr>
                 </table>
             </td>
@@ -141,15 +164,19 @@
                 <table style="table-layout: fixed; height:100%; width: 100%;" id="series_30_top"
                     [routerLink]="['/series', series_30['seriesId'], year]">
                     <tr>
-                        <th style="text-align: left; width: 90%;"> {{ series_30["topTeamName"] }} </th>
-                        <th style="text-align: right; width: 11%"> {{ series_30["topTeamWins"] }} </th>
+                        <th style="text-align: left; width: 10%;"> {{ series_30["topTeamSeed"] }} </th>
+                        <th style="width: 20%"><img src="{{ series_30['topTeamSecondaryLogoLocation'] }}" style="max-height: 16px; max-width: 20px"></th>
+                        <th style="text-align: left; width: 45%"> {{ series_30["topTeamTricode"] }} </th>
+                        <th style="text-align: right; width: 25%"> {{ series_30["topTeamWins"] }} </th>
                     </tr>
                 </table>
                 <table style="table-layout: fixed; width: 100%;" id="series_30_bottom"
                     [routerLink]="['/series', series_30['seriesId'], year]">
                     <tr>
-                        <th style="text-align: left; width: 90%;"> {{ series_30["bottomTeamName"] }} </th>
-                        <th style="text-align: right; width: 11%;"> {{ series_30["bottomTeamWins"] }} </th>
+                        <th style="text-align: left; width: 10%;"> {{ series_30["bottomTeamSeed"] }} </th>
+                        <th style="width: 20%"><img src="{{ series_30['bottomTeamSecondaryLogoLocation'] }}" style="max-height: 16px; max-width: 20px"></th>
+                        <th style="text-align: left; width: 45%"> {{ series_30["bottomTeamTricode"] }} </th>
+                        <th style="text-align: right; width: 25%"> {{ series_30["bottomTeamWins"] }} </th>
                     </tr>
                 </table>
             </td>
@@ -158,15 +185,19 @@
                 <table style="table-layout: fixed; height:100%; width: 100%;" id="series_40_top"
                     [routerLink]="['/series', series_40['seriesId'], year]">
                     <tr>
-                        <th style="text-align: left; width: 90%;"> {{ series_40["topTeamName"] }} </th>
-                        <th style="text-align: right; width: 11%"> {{ series_40["topTeamWins"] }} </th>
+                        <th style="text-align: left; width: 10%;"> {{ series_40["topTeamSeed"] }} </th>
+                        <th style="width: 20%"><img src="{{ series_40['topTeamSecondaryLogoLocation'] }}" style="max-height: 16px; max-width: 20px"></th>
+                        <th style="text-align: left; width: 45%"> {{ series_40["topTeamTricode"] }} </th>
+                        <th style="text-align: right; width: 25%"> {{ series_40["topTeamWins"] }} </th>
                     </tr>
                 </table>
                 <table style="table-layout: fixed; width: 100%;" id="series_40_bottom"
                     [routerLink]="['/series', series_40['seriesId'], year]">
                     <tr>
-                        <th style="text-align: left; width: 90%;"> {{ series_40["bottomTeamName"] }} </th>
-                        <th style="text-align: right; width: 11%;"> {{ series_40["bottomTeamWins"] }} </th>
+                        <th style="text-align: left; width: 10%;"> {{ series_40["bottomTeamSeed"] }} </th>
+                        <th style="width: 20%"><img src="{{ series_40['bottomTeamSecondaryLogoLocation'] }}" style="max-height: 16px; max-width: 20px"></th>
+                        <th style="text-align: left; width: 45%"> {{ series_40["bottomTeamTricode"] }} </th>
+                        <th style="text-align: right; width: 25%"> {{ series_40["bottomTeamWins"] }} </th>
                     </tr>
                 </table>
             </td>
@@ -175,15 +206,19 @@
                 <table style="table-layout: fixed; height:100%; width: 100%;" id="series_31_top"
                     [routerLink]="['/series', series_31['seriesId'], year]">
                     <tr>
-                        <th style="text-align: left; width: 90%;"> {{ series_31["topTeamName"] }} </th>
-                        <th style="text-align: right; width: 11%"> {{ series_31["topTeamWins"] }} </th>
+                        <th style="text-align: left; width: 10%;"> {{ series_31["topTeamSeed"] }} </th>
+                        <th style="width: 20%"><img src="{{ series_31['topTeamSecondaryLogoLocation'] }}" style="max-height: 16px; max-width: 20px"></th>
+                        <th style="text-align: left; width: 45%"> {{ series_31["topTeamTricode"] }} </th>
+                        <th style="text-align: right; width: 25%"> {{ series_31["topTeamWins"] }} </th>
                     </tr>
                 </table>
                 <table style="table-layout: fixed; width: 100%;" id="series_31_bottom"
                     [routerLink]="['/series', series_31['seriesId'], year]">
                     <tr>
-                        <th style="text-align: left; width: 90%;"> {{ series_31["bottomTeamName"] }} </th>
-                        <th style="text-align: right; width: 11%;"> {{ series_31["bottomTeamWins"] }} </th>
+                        <th style="text-align: left; width: 10%;"> {{ series_31["bottomTeamSeed"] }} </th>
+                        <th style="width: 20%"><img src="{{ series_31['bottomTeamSecondaryLogoLocation'] }}" style="max-height: 16px; max-width: 20px"></th>
+                        <th style="text-align: left; width: 45%"> {{ series_31["bottomTeamTricode"] }} </th>
+                        <th style="text-align: right; width: 25%"> {{ series_31["bottomTeamWins"] }} </th>
                     </tr>
                 </table>
             </td>
@@ -197,15 +232,19 @@
                 <table style="table-layout: fixed; height:100%; width: 100%;" id="series_12_top"
                     [routerLink]="['/series', series_12['seriesId'], year]">
                     <tr>
-                        <th style="text-align: left; width: 90%;"> {{ series_12["topTeamSeed"] }} - {{ series_12["topTeamName"] }} </th>
-                        <th style="text-align: right; width: 11%"> {{ series_12["topTeamWins"] }} </th>
+                        <th style="text-align: left; width: 10%;"> {{ series_12["topTeamSeed"] }} </th>
+                        <th style="width: 20%"><img src="{{ series_12['topTeamSecondaryLogoLocation'] }}" style="max-height: 16px; max-width: 20px"></th>
+                        <th style="text-align: left; width: 45%"> {{ series_12["topTeamTricode"] }} </th>
+                        <th style="text-align: right; width: 25%"> {{ series_12["topTeamWins"] }} </th>
                     </tr>
                 </table>
                 <table style="table-layout: fixed; width: 100%;" id="series_12_bottom"
                     [routerLink]="['/series', series_12['seriesId'], year]">
                     <tr>
-                        <th style="text-align: left; width: 90%;"> {{ series_12["bottomTeamSeed"] }} - {{ series_12["bottomTeamName"] }} </th>
-                        <th style="text-align: right; width: 11%;"> {{ series_12["bottomTeamWins"] }} </th>
+                        <th style="text-align: left; width: 10%;"> {{ series_12["bottomTeamSeed"] }} </th>
+                        <th style="width: 20%"><img src="{{ series_12['bottomTeamSecondaryLogoLocation'] }}" style="max-height: 16px; max-width: 20px"></th>
+                        <th style="text-align: left; width: 45%"> {{ series_12["bottomTeamTricode"] }} </th>
+                        <th style="text-align: right; width: 25%"> {{ series_12["bottomTeamWins"] }} </th>
                     </tr>
                 </table>
             </td>
@@ -218,15 +257,19 @@
                 <table style="table-layout: fixed; height:100%; width: 100%;" id="series_16_top"
                     [routerLink]="['/series', series_16['seriesId'], year]">
                     <tr>
-                        <th style="text-align: left; width: 90%;"> {{ series_16["topTeamSeed"] }} - {{ series_16["topTeamName"] }} </th>
-                        <th style="text-align: right; width: 11%"> {{ series_16["topTeamWins"] }} </th>
+                        <th style="text-align: left; width: 10%;"> {{ series_16["topTeamSeed"] }} </th>
+                        <th style="width: 20%"><img src="{{ series_16['topTeamSecondaryLogoLocation'] }}" style="max-height: 16px; max-width: 20px"></th>
+                        <th style="text-align: left; width: 45%"> {{ series_16["topTeamTricode"] }} </th>
+                        <th style="text-align: right; width: 25%"> {{ series_16["topTeamWins"] }} </th>
                     </tr>
                 </table>
                 <table style="table-layout: fixed; width: 100%;" id="series_16_bottom"
                     [routerLink]="['/series', series_16['seriesId'], year]">
                     <tr>
-                        <th style="text-align: left; width: 90%;"> {{ series_16["bottomTeamSeed"] }} - {{ series_16["bottomTeamName"] }} </th>
-                        <th style="text-align: right; width: 11%;"> {{ series_16["bottomTeamWins"] }} </th>
+                        <th style="text-align: left; width: 10%;"> {{ series_16["bottomTeamSeed"] }} </th>
+                        <th style="width: 20%"><img src="{{ series_16['bottomTeamSecondaryLogoLocation'] }}" style="max-height: 16px; max-width: 20px"></th>
+                        <th style="text-align: left; width: 45%"> {{ series_16["bottomTeamTricode"] }} </th>
+                        <th style="text-align: right; width: 25%"> {{ series_16["bottomTeamWins"] }} </th>
                     </tr>
                 </table>
             </td>
@@ -238,15 +281,19 @@
                 <table style="table-layout: fixed; height:100%; width: 100%;" id="series_21_top"
                     [routerLink]="['/series', series_21['seriesId'], year]">
                     <tr>
-                        <th style="text-align: left; width: 90%;"> {{ series_21["topTeamName"] }} </th>
-                        <th style="text-align: right; width: 11%"> {{ series_21["topTeamWins"] }} </th>
+                        <th style="text-align: left; width: 10%;"> {{ series_21["topTeamSeed"] }} </th>
+                        <th style="width: 20%"><img src="{{ series_21['topTeamSecondaryLogoLocation'] }}" style="max-height: 16px; max-width: 20px"></th>
+                        <th style="text-align: left; width: 45%"> {{ series_21["topTeamTricode"] }} </th>
+                        <th style="text-align: right; width: 25%"> {{ series_21["topTeamWins"] }} </th>
                     </tr>
                 </table>
                 <table style="table-layout: fixed; width: 100%;" id="series_21_bottom"
                     [routerLink]="['/series', series_21['seriesId'], year]">
                     <tr>
-                        <th style="text-align: left; width: 90%;"> {{ series_21["bottomTeamName"] }} </th>
-                        <th style="text-align: right; width: 11%;"> {{ series_21["bottomTeamWins"] }} </th>
+                        <th style="text-align: left; width: 10%;"> {{ series_21["bottomTeamSeed"] }} </th>
+                        <th style="width: 20%"><img src="{{ series_21['bottomTeamSecondaryLogoLocation'] }}" style="max-height: 16px; max-width: 20px"></th>
+                        <th style="text-align: left; width: 45%"> {{ series_21["bottomTeamTricode"] }} </th>
+                        <th style="text-align: right; width: 25%"> {{ series_21["bottomTeamWins"] }} </th>
                     </tr>
                 </table>
             </td>
@@ -257,15 +304,19 @@
                 <table style="table-layout: fixed; height:100%; width: 100%;" id="series_23_top"
                     [routerLink]="['/series', series_23['seriesId'], year]">
                     <tr>
-                        <th style="text-align: left; width: 90%;"> {{ series_23["topTeamName"] }} </th>
-                        <th style="text-align: right; width: 11%"> {{ series_23["topTeamWins"] }} </th>
+                        <th style="text-align: left; width: 10%;"> {{ series_23["topTeamSeed"] }} </th>
+                        <th style="width: 20%"><img src="{{ series_23['topTeamSecondaryLogoLocation'] }}" style="max-height: 16px; max-width: 20px"></th>
+                        <th style="text-align: left; width: 45%"> {{ series_23["topTeamTricode"] }} </th>
+                        <th style="text-align: right; width: 25%"> {{ series_23["topTeamWins"] }} </th>
                     </tr>
                 </table>
                 <table style="table-layout: fixed; width: 100%;" id="series_23_bottom"
                     [routerLink]="['/series', series_23['seriesId'], year]">
                     <tr>
-                        <th style="text-align: left; width: 90%;"> {{ series_23["bottomTeamName"] }} </th>
-                        <th style="text-align: right; width: 11%;"> {{ series_23["bottomTeamWins"] }} </th>
+                        <th style="text-align: left; width: 10%;"> {{ series_23["bottomTeamSeed"] }} </th>
+                        <th style="width: 20%"><img src="{{ series_23['bottomTeamSecondaryLogoLocation'] }}" style="max-height: 16px; max-width: 20px"></th>
+                        <th style="text-align: left; width: 45%"> {{ series_23["bottomTeamTricode"] }} </th>
+                        <th style="text-align: right; width: 25%"> {{ series_23["bottomTeamWins"] }} </th>
                     </tr>
                 </table>
             </td>
@@ -277,15 +328,19 @@
                 <table style="table-layout: fixed; height:100%; width: 100%;" id="series_13_top"
                     [routerLink]="['/series', series_13['seriesId'], year]">
                     <tr>
-                        <th style="text-align: left; width: 90%;"> {{ series_13["topTeamSeed"] }} - {{ series_13["topTeamName"] }} </th>
-                        <th style="text-align: right; width: 11%"> {{ series_13["topTeamWins"] }} </th>
+                        <th style="text-align: left; width: 10%;"> {{ series_13["topTeamSeed"] }} </th>
+                        <th style="width: 20%"><img src="{{ series_13['topTeamSecondaryLogoLocation'] }}" style="max-height: 16px; max-width: 20px"></th>
+                        <th style="text-align: left; width: 45%"> {{ series_13["topTeamTricode"] }} </th>
+                        <th style="text-align: right; width: 25%"> {{ series_13["topTeamWins"] }} </th>
                     </tr>
                 </table>
                 <table style="table-layout: fixed; width: 100%;" id="series_13_bottom"
                     [routerLink]="['/series', series_13['seriesId'], year]">
                     <tr>
-                        <th style="text-align: left; width: 90%;"> {{ series_13["bottomTeamSeed"] }} - {{ series_13["bottomTeamName"] }} </th>
-                        <th style="text-align: right; width: 11%;"> {{ series_13["bottomTeamWins"] }} </th>
+                        <th style="text-align: left; width: 10%;"> {{ series_13["bottomTeamSeed"] }} </th>
+                        <th style="width: 20%"><img src="{{ series_13['bottomTeamSecondaryLogoLocation'] }}" style="max-height: 16px; max-width: 20px"></th>
+                        <th style="text-align: left; width: 45%"> {{ series_13["bottomTeamTricode"] }} </th>
+                        <th style="text-align: right; width: 25%"> {{ series_13["bottomTeamWins"] }} </th>
                     </tr>
                 </table>
             </td>
@@ -296,15 +351,19 @@
                 <table style="table-layout: fixed; height:100%; width: 100%;" id="series_17_top"
                     [routerLink]="['/series', series_17['seriesId'], year]">
                     <tr>
-                        <th style="text-align: left; width: 90%;"> {{ series_17["topTeamSeed"] }} - {{ series_17["topTeamName"] }} </th>
-                        <th style="text-align: right; width: 11%"> {{ series_17["topTeamWins"] }} </th>
+                        <th style="text-align: left; width: 10%;"> {{ series_17["topTeamSeed"] }} </th>
+                        <th style="width: 20%"><img src="{{ series_17['topTeamSecondaryLogoLocation'] }}" style="max-height: 16px; max-width: 20px"></th>
+                        <th style="text-align: left; width: 45%"> {{ series_17["topTeamTricode"] }} </th>
+                        <th style="text-align: right; width: 25%"> {{ series_17["topTeamWins"] }} </th>
                     </tr>
                 </table>
                 <table style="table-layout: fixed; width: 100%;" id="series_17_bottom"
                     [routerLink]="['/series', series_17['seriesId'], year]">
                     <tr>
-                        <th style="text-align: left; width: 90%;"> {{ series_17["bottomTeamSeed"] }} - {{ series_17["bottomTeamName"] }} </th>
-                        <th style="text-align: right; width: 11%;"> {{ series_17["bottomTeamWins"] }} </th>
+                        <th style="text-align: left; width: 10%;"> {{ series_17["bottomTeamSeed"] }} </th>
+                        <th style="width: 20%"><img src="{{ series_17['bottomTeamSecondaryLogoLocation'] }}" style="max-height: 16px; max-width: 20px"></th>
+                        <th style="text-align: left; width: 45%"> {{ series_17["bottomTeamTricode"] }} </th>
+                        <th style="text-align: right; width: 25%"> {{ series_17["bottomTeamWins"] }} </th>
                     </tr>
                 </table>
             </td>
@@ -312,10 +371,7 @@
         </tr>
 
         <tr>
-
-            <td colspan="5"></td>
-
-            
+            <td colspan="5"></td>            
         </tr>
     </table>
 </div>

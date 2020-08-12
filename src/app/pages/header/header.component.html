@@ -1,5 +1,7 @@
 <div>
     <a [routerLink]="['/']">Home</a>
+    <span> || </span>
+    <a [routerLink]="['/standings/']">Current Standings</a>
     <form>
         <input style="width: 35%; display: inline-block;" placeholder="Search..." type="text" class="form-control" 
                     name="search" [(ngModel)]="search_query"/>

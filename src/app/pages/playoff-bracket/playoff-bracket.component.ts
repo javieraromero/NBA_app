@@ -53,21 +53,23 @@ export class PlayoffBracketComponent implements OnInit {
 
           var series_data = {
             seriesId: series["seriesId"],
-            isSeriesCompleted: series["isSeriesCompleted"],
-            summaryStatusText: series["summaryStatusText"],
-            gameNumber: series["gameNumber"],
+            //isSeriesCompleted: series["isSeriesCompleted"],
+            //summaryStatusText: series["summaryStatusText"],
+            //gameNumber: series["gameNumber"],
             topTeamId: topTeamId,
-            topTeamName: topTeamAttributes["teamName"],
-            topTeamPrimaryLogoLocation: topTeamAttributes["teamPrimaryLogoLocation"],
+            topTeamTricode: topTeamAttributes["teamTricode"],
+            //topTeamName: topTeamAttributes["teamName"],
+            topTeamSecondaryLogoLocation: topTeamAttributes["teamSecondaryLogoLocation"],
             topTeamSeed: topTeam["seedNum"],
             topTeamWins: topTeam["wins"],
-            topTeam_isSeriesWinner: topTeam["isSeriesWinner"],
+            //topTeam_isSeriesWinner: topTeam["isSeriesWinner"],
             bottomTeamId: bottomTeamId,
-            bottomTeamName: bottomTeamAttributes["teamName"],
-            bottomTeamPrimaryLogoLocation: bottomTeamAttributes["teamPrimaryLogoLocation"],
+            bottomTeamTricode: bottomTeamAttributes["teamTricode"],
+            //bottomTeamName: bottomTeamAttributes["teamName"],
+            bottomTeamSecondaryLogoLocation: bottomTeamAttributes["teamSecondaryLogoLocation"],
             bottomTeamSeed: bottomTeam["seedNum"],
             bottomTeamWins: bottomTeam["wins"],
-            bottomTeam_isSeriesWinner: bottomTeam["isSeriesWinner"],
+            //bottomTeam_isSeriesWinner: bottomTeam["isSeriesWinner"],
           }
 
           if(series["roundNum"] == 1)
@@ -212,13 +214,13 @@ export class PlayoffBracketComponent implements OnInit {
 
     var teamId_int = Number(teamId);
 
-    var teamName;
-    var teamtricode;
-    var teamLocation;
-    var teamSimpleName;
+    //var teamName;
+    var teamTricode;
+    //var teamLocation;
+    //var teamSimpleName;
     var teamPrimaryColor;
     var teamSecondaryColor;
-    var teamPrimaryLogoLocation;
+    //var teamPrimaryLogoLocation;
     var teamSecondaryLogoLocation;
 
     for(let i in team_list)
@@ -226,26 +228,26 @@ export class PlayoffBracketComponent implements OnInit {
       var team = team_list[i];
       if(team["teamId"] == teamId_int)
       {
-        teamName = team["teamName"];
-        teamtricode = team["tricode"];
-        teamLocation = team["location"];
-        teamSimpleName = team["simpleName"];
+        //teamName = team["teamName"];
+        teamTricode = team["tricode"];
+        //teamLocation = team["location"];
+        //teamSimpleName = team["simpleName"];
         teamPrimaryColor = team["primaryColor"];
         teamSecondaryColor = team["secondaryColor"];
-        teamPrimaryLogoLocation = team["primaryLogoLocation"];
+        //teamPrimaryLogoLocation = team["primaryLogoLocation"];
         teamSecondaryLogoLocation = team["secondaryLogoLocation"];
         break;
       }
     }
 
     const team_attributes = {
-      teamName: teamName,
-      teamtricode: teamtricode,
-      teamLocation: teamLocation,
-      teamSimpleName: teamSimpleName,
+      //teamName: teamName,
+      teamTricode: teamTricode,
+      //teamLocation: teamLocation,
+      //teamSimpleName: teamSimpleName,
       teamPrimaryColor: teamPrimaryColor,
       teamSecondaryColor: teamSecondaryColor,
-      teamPrimaryLogoLocation: teamPrimaryLogoLocation,
+      //teamPrimaryLogoLocation: teamPrimaryLogoLocation,
       teamSecondaryLogoLocation: teamSecondaryLogoLocation
     }
 

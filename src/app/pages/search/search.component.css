@@ -39,7 +39,7 @@ h3, button, td, th {
     
     /* Style the tab content */
     .tabcontent {
-      width: 85%;
+      width: 100%;
       margin-left: auto;
       margin-right: auto;
       display: none;
@@ -49,3 +49,11 @@ h3, button, td, th {
       height: 335px;
       overflow: hidden;*/
     }
+
+  table tr:nth-child(even) {
+    background-color: #eee;
+  }
+  
+  table tr:nth-child(odd) {
+     background-color: #fff;
+  }

@@ -41,7 +41,7 @@ export class TeamInfoComponent implements OnInit {
 
     var teamId_int = Number(teamId);
 
-    var teamName, teamtricode, teamLocation, teamSimpleName, teamPrimaryColor,
+    var teamName, teamTricode, teamLocation, teamSimpleName, teamPrimaryColor,
       teamSecondaryColor, teamPrimaryLogoLocation, teamSecondaryLogoLocation, confName,
       divName;
 
@@ -51,7 +51,7 @@ export class TeamInfoComponent implements OnInit {
       if(team["teamId"] == teamId_int)
       {
         teamName = team["teamName"];
-        teamtricode = team["tricode"];
+        teamTricode = team["tricode"];
         teamLocation = team["location"];
         teamSimpleName = team["simpleName"];
         teamPrimaryColor = team["primaryColor"];
@@ -67,7 +67,7 @@ export class TeamInfoComponent implements OnInit {
 
     const team_attributes = {
       teamName: teamName,
-      teamtricode: teamtricode,
+      teamTricode: teamTricode,
       teamLocation: teamLocation,
       teamSimpleName: teamSimpleName,
       teamPrimaryColor: teamPrimaryColor,

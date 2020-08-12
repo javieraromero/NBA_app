@@ -33,7 +33,10 @@ export class DateComponent implements OnInit
     private route: ActivatedRoute,
     private router: Router
   ) {
-    route.params.subscribe(val => this.ngOnInit())
+    route.params.subscribe(val => this.ngOnInit());
+    this.router.routeReuseStrategy.shouldReuseRoute = function () {
+      return false;
+    };
   }
 
   async ngOnInit()

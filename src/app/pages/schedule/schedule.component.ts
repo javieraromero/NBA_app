@@ -64,14 +64,14 @@ export class ScheduleComponent implements OnInit {
             statusNum: game["statusNum"],
             //vTeamId: vTeamId,
             vTeamName: vTeamId == this.teamId ? this.teamName : vTeamAttributes["teamName"],
-            vTeamTricode: vTeamAttributes["teamtricode"],
+            vTeamTricode: vTeamAttributes["teamTricode"],
             vTeamLocation: vTeamAttributes["teamLocation"],
             vTeamSimpleName: vTeamAttributes["teamSimpleName"],
             //vTeamLogoLocation: vTeamId == this.teamId ? this.teamSecondaryLogoLocation : vTeamAttributes["teamSecondaryLogoLocation"],
             //vTeamScore: game["vTeam"]["score"],
             //hTeamId: hTeamId,
             hTeamName: hTeamId == this.teamId ? this.teamName : hTeamAttributes["teamName"],
-            hTeamTricode: hTeamAttributes["teamtricode"],
+            hTeamTricode: hTeamAttributes["teamTricode"],
             hTeamLocation: hTeamAttributes["teamLocation"],
             hTeamSimpleName: hTeamAttributes["teamSimpleName"],
             //hTeamLogoLocation: hTeamId == this.teamId ? this.teamSecondaryLogoLocation : hTeamAttributes["teamSecondaryLogoLocation"],
@@ -152,7 +152,7 @@ export class ScheduleComponent implements OnInit {
     var teamId_int = Number(teamId);
 
     var teamName;
-    var teamtricode;
+    var teamTricode;
     var teamLocation;
     var teamSimpleName;
     var teamPrimaryColor;
@@ -166,7 +166,7 @@ export class ScheduleComponent implements OnInit {
       if(team["teamId"] == teamId_int)
       {
         teamName = team["teamName"];
-        teamtricode = team["tricode"];
+        teamTricode = team["tricode"];
         teamLocation = team["location"];
         teamSimpleName = team["simpleName"];
         teamPrimaryColor = team["primaryColor"];
@@ -179,7 +179,7 @@ export class ScheduleComponent implements OnInit {
 
     const team_attributes = {
       teamName: teamName,
-      teamtricode: teamtricode,
+      teamTricode: teamTricode,
       teamLocation: teamLocation,
       teamSimpleName: teamSimpleName,
       teamPrimaryColor: teamPrimaryColor,

@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 
 import { HttpClient } from '@angular/common/http';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { TeamInfo } from '../../assets/team_info';
 import { MyDate } from 'src/app/assets/date_calculator';
@@ -14,6 +14,7 @@ import { MyDate } from 'src/app/assets/date_calculator';
 export class SearchComponent implements OnInit {
 
   query: String = "";
+  year;
 
   list_of_teams: Object[] = [];
   league_roster: Object[] = [];
@@ -23,15 +24,33 @@ export class SearchComponent implements OnInit {
   constructor(
     private http: HttpClient,
     private teamInfo: TeamInfo,
-    private route: ActivatedRoute
-  ) { }
+    private route: ActivatedRoute,
+    private router: Router
+  )
+  {
+    this.router.routeReuseStrategy.shouldReuseRoute = function () {
+      return false;
+    };
+  }
 
   ngOnInit() {
     this.query = this.route.snapshot.paramMap.get('query');
-    this.getAllTeams();
-    this.getLeagueRoster("2019");
-    this.getCoaches("2019");
-    this.getLeagueSchedule("2019");
+    this.getSeasonYear();
+
+    document.getElementById("players_tab").click();
+  }
+
+  getSeasonYear()
+  {
+    return this.http.get("http://data.nba.net/10s/prod/v1/today.json")
+      .subscribe(response => {
+        this.year = response["teamSitesOnly"]["seasonYear"];
+
+        this.getAllTeams();
+        this.getLeagueRoster(this.year);
+        this.getCoaches(this.year);
+        this.getLeagueSchedule(this.year);
+      });
   }
 
   getAllTeams()
@@ -132,17 +151,55 @@ export class SearchComponent implements OnInit {
           var vTeamAttributes = this.getTeamAttributes(vTeamId);
           var hTeamAttributes = this.getTeamAttributes(hTeamId);
 
+          var nugget = "";
+          if(game["nugget"])
+          {
+            nugget = game["nugget"]["text"];
+          }
+
+          var statusNum = game["statusNum"];
+          var quarters_elapsed = game["period"]["current"];
+          var vTeamScore = game["vTeam"]["score"];
+          var hTeamScore = game["hTeam"]["score"];
+          var statusText = "";
+          var startTimeEastern = game["startTimeEastern"];
+
+          if(statusNum == 1)
+          {
+            statusText = startTimeEastern;
+          }
+          else if(statusNum == 2)
+          {
+            if(quarters_elapsed > 4)
+              statusText = (quarters_elapsed > 5 ? String(quarters_elapsed - 4) : "") + "OT ";
+            else
+              statusText = "Q" + quarters_elapsed + " ";
+          }
+          else
+          {
+            statusText = "Final";
+            if(quarters_elapsed > 4)
+              statusText += " (" + (quarters_elapsed > 5 ? String(quarters_elapsed - 4) : "") + "OT)";
+            statusText += " | " + vTeamScore + " - " + hTeamScore
+          }
+
+          var startDateEastern = game["startDateEastern"];
+
           var game_attributes = {
             gameId: game["gameId"],
-            longDate: this.setLongDate(game["startDateEastern"]),
+            longDate: this.setLongDate(startDateEastern),
+            startDateEastern: startDateEastern,
             vTeamName: vTeamAttributes["teamName"],
-            vTeamTricode: vTeamAttributes["teamtricode"],
+            vTeamTricode: vTeamAttributes["teamTricode"],
             vTeamLocation: vTeamAttributes["teamLocation"],
             vTeamSimpleName: vTeamAttributes["teamSimpleName"],
             hTeamName: hTeamAttributes["teamName"],
-            hTeamTricode: hTeamAttributes["teamtricode"],
+            hTeamTricode: hTeamAttributes["teamTricode"],
             hTeamLocation: hTeamAttributes["teamLocation"],
             hTeamSimpleName: hTeamAttributes["teamSimpleName"],
+            statusNum: statusNum,
+            statusText: statusText,
+            nugget: nugget
           }
 
           temp.push(game_attributes);
@@ -159,7 +216,7 @@ export class SearchComponent implements OnInit {
     var teamId_int = Number(teamId);
 
     var teamName;
-    var teamtricode;
+    var teamTricode;
     var teamLocation;
     var teamSimpleName;
 
@@ -169,7 +226,7 @@ export class SearchComponent implements OnInit {
       if(team["teamId"] == teamId_int)
       {
         teamName = team["teamName"];
-        teamtricode = team["tricode"];
+        teamTricode = team["tricode"];
         teamLocation = team["location"];
         teamSimpleName = team["simpleName"];
         break;
@@ -178,7 +235,7 @@ export class SearchComponent implements OnInit {
 
     const team_attributes = {
       teamName: teamName,
-      teamtricode: teamtricode,
+      teamTricode: teamTricode,
       teamLocation: teamLocation,
       teamSimpleName: teamSimpleName
     }
