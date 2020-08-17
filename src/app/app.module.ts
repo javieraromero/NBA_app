@@ -40,6 +40,7 @@ import { TeamsSearchPipe } from './pipes/teams-search.pipe';
 import { GamesSearchPipe } from './pipes/games-search.pipe';
 import { PlayersSearchPipe } from './pipes/players-search.pipe';
 import { CoachesSearchPipe } from './pipes/coaches-search.pipe';
+import { LeadTrackerComponent } from './pages/lead-tracker/lead-tracker.component';
 
 @NgModule({
   declarations: [
@@ -72,7 +73,8 @@ import { CoachesSearchPipe } from './pipes/coaches-search.pipe';
     TeamsSearchPipe,
     GamesSearchPipe,
     PlayersSearchPipe,
-    CoachesSearchPipe
+    CoachesSearchPipe,
+    LeadTrackerComponent
   ],
   imports: [
     BrowserModule,

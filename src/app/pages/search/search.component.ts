@@ -166,7 +166,15 @@ export class SearchComponent implements OnInit {
 
           if(statusNum == 1)
           {
-            statusText = startTimeEastern;
+            var isStartTimeTBD = game["isStartTimeTBD"];
+            if(isStartTimeTBD)
+            {
+              statusText = "TBD";
+            }
+            else
+            {
+              statusText = startTimeEastern;
+            }
           }
           else if(statusNum == 2)
           {

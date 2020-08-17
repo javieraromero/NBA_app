@@ -8,108 +8,151 @@
     <app-person [personId]="personId" [year]="year"></app-person>
 </div>
 
-<div class="table-wrapper">
-    <span>Career Averages</span>
-    <div id="table-scroll">
-        <table id="player_table">
-            <tr>
-                <th> Season </th>
-                <th> Team </th>
-                <th> PPG </th>
-                <th> RPG </th>
-                <th> APG </th>
-                <th> MPG </th>
-                <th> TOPG </th>
-                <th> SPG </th>
-                <th> BPG </th>
-                <th> AST </th>
-                <th> BLK </th>
-                <th> STL </th>
-                <th> TO </th>
-                <th> OREB </th>
-                <th> DREB </th>
-                <th> REB </th>
-                <th> FGM </th>
-                <th> FGA </th>
-                <th> FG% </th>
-                <th> 3PM </th>
-                <th> 3PA </th>
-                <th> 3P% </th>
-                <th> FTM </th>
-                <th> FTA </th>
-                <th> FT% </th>
-                <th> FOUL </th>
-                <th> PTS </th>
-                <th> GP </th>
-                <th> START </th>
-                <th> +/- </th>
-                <th> MINS </th>
-            </tr>
-            <tr *ngFor="let season of seasons">
-                <td> {{ season["seasonYear"] }} </td>
-                <td> {{ season["seasonTeams"].length > 1 ? season["seasonTeams"][1] + "/" + season["seasonTeams"][0] : season["seasonTeams"][0] }} </td>
-                <td> {{ season["ppg"] }} </td>
-                <td> {{ season["rpg"] }} </td>
-                <td> {{ season["apg"] }} </td>
-                <td> {{ season["mpg"] }} </td>
-                <td> {{ season["topg"] }} </td>
-                <td> {{ season["spg"] }} </td>
-                <td> {{ season["bpg"] }} </td>
-                <td> {{ season["assists"] }} </td>
-                <td> {{ season["blocks"] }} </td>
-                <td> {{ season["steals"] }} </td>
-                <td> {{ season["turnovers"] }} </td>
-                <td> {{ season["offReb"] }} </td>
-                <td> {{ season["defReb"] }} </td>
-                <td> {{ season["totReb"] }} </td>
-                <td> {{ season["fgm"] }} </td>
-                <td> {{ season["fga"] }} </td>
-                <td> {{ season["fgp"] }} </td>
-                <td> {{ season["tpm"] }} </td>
-                <td> {{ season["tpa"] }} </td>
-                <td> {{ season["tpp"] }} </td>
-                <td> {{ season["ftm"] }} </td>
-                <td> {{ season["fta"] }} </td>
-                <td> {{ season["ftp"] }} </td>
-                <td> {{ season["pFouls"] }} </td>
-                <td> {{ season["points"] }} </td>
-                <td> {{ season["gamesPlayed"] }} </td>
-                <td> {{ season["gamesStarted"] }} </td>
-                <td> {{ season["plusMinus"] }} </td>
-                <td> {{ season["min"] }} </td>
-            </tr>
-            <tr>
-                <td colspan="2"> Career </td>
-                <td> {{ careerSummary["ppg"] }} </td>
-                <td> {{ careerSummary["rpg"] }} </td>
-                <td> {{ careerSummary["apg"] }} </td>
-                <td> {{ careerSummary["mpg"] }} </td>
-                <td> {{ careerSummary["topg"] }} </td>
-                <td> {{ careerSummary["spg"] }} </td>
-                <td> {{ careerSummary["bpg"] }} </td>
-                <td> {{ careerSummary["assists"] }} </td>
-                <td> {{ careerSummary["blocks"] }} </td>
-                <td> {{ careerSummary["steals"] }} </td>
-                <td> {{ careerSummary["turnovers"] }} </td>
-                <td> {{ careerSummary["offReb"] }} </td>
-                <td> {{ careerSummary["defReb"] }} </td>
-                <td> {{ careerSummary["totReb"] }} </td>
-                <td> {{ careerSummary["fgm"] }} </td>
-                <td> {{ careerSummary["fga"] }} </td>
-                <td> {{ careerSummary["fgp"] }} </td>
-                <td> {{ careerSummary["tpm"] }} </td>
-                <td> {{ careerSummary["tpa"] }} </td>
-                <td> {{ careerSummary["tpp"] }} </td>
-                <td> {{ careerSummary["ftm"] }} </td>
-                <td> {{ careerSummary["fta"] }} </td>
-                <td> {{ careerSummary["ftp"] }} </td>
-                <td> {{ careerSummary["pFouls"] }} </td>
-                <td> {{ careerSummary["points"] }} </td>
-                <td> {{ careerSummary["gamesPlayed"] }} </td>
-                <td> {{ careerSummary["gamesStarted"] }} </td>
-                <td> {{ careerSummary["plusMinus"] }} </td>
-                <td> {{ careerSummary["min"] }} </td>
-            </tr>
-        </table>
+<br>
+
+<!-- Tab links -->
+<div class="tab">
+    <button class="tablinks" id="bio_tab" (click)="switchTab($event, 'bio')">Bio</button>
+    <button class="tablinks" id="career_averages_tab" (click)="switchTab($event, 'career_averages')">Career Averages</button>
+</div>
+
+<!-- Tab content -->
+<div id="bio" class="tabcontent">
+    <h2 class="small">
+        {{ first_name }} {{ last_name }}
+    </h2>
+    <div *ngIf="bio['twitter']">
+        <span>
+            <a href="http://www.twitter.com/{{ bio['twitter'] }}/" style="text-decoration: none; color: #1DA1F2;"><img src="assets/images/twitter.png" style="max-height: 12px;">@{{ bio["twitter"] }}</a>
+        </span>
+    </div>
+    <br>
+    <div *ngIf="bio['professional']">
+        <h3>Professional</h3>
+        <span innerHTML="{{ bio['professional'] }}">
+        </span>
+    </div>
+    <div *ngIf="bio['college']">
+        <h3>College</h3>
+        <span innerHTML="{{ bio['college'] }}">
+        </span>
+    </div>
+    <div *ngIf="bio['highschool']">
+        <h3>High School</h3>
+        <span innerHTML="{{ bio['highschool'] }}">
+        </span>
+    </div>
+    <div *ngIf="bio['personal']">
+        <h3>Personal</h3>
+        <span innerHTML="{{ bio['personal'] }}">
+        </span>
+    </div>
+</div>
+
+<!-- Tab content -->
+<div id="career_averages" class="tabcontent">
+    <div class="table-wrapper">
+        <div id="table-scroll">
+            <table id="player_table">
+                <tr>
+                    <th> Season </th>
+                    <th> Team </th>
+                    <th> PPG </th>
+                    <th> RPG </th>
+                    <th> APG </th>
+                    <th> MPG </th>
+                    <th> TOPG </th>
+                    <th> SPG </th>
+                    <th> BPG </th>
+                    <th> AST </th>
+                    <th> BLK </th>
+                    <th> STL </th>
+                    <th> TO </th>
+                    <th> OREB </th>
+                    <th> DREB </th>
+                    <th> REB </th>
+                    <th> FGM </th>
+                    <th> FGA </th>
+                    <th> FG% </th>
+                    <th> 3PM </th>
+                    <th> 3PA </th>
+                    <th> 3P% </th>
+                    <th> FTM </th>
+                    <th> FTA </th>
+                    <th> FT% </th>
+                    <th> FOUL </th>
+                    <th> PTS </th>
+                    <th> GP </th>
+                    <th> START </th>
+                    <th> +/- </th>
+                    <th> MINS </th>
+                </tr>
+                <tr *ngFor="let season of seasons">
+                    <td> {{ season["seasonYear"] }} </td>
+                    <td> {{ season["seasonTeams"].length > 1 ? season["seasonTeams"][1] + "/" + season["seasonTeams"][0] : season["seasonTeams"][0] }} </td>
+                    <td> {{ season["ppg"] }} </td>
+                    <td> {{ season["rpg"] }} </td>
+                    <td> {{ season["apg"] }} </td>
+                    <td> {{ season["mpg"] }} </td>
+                    <td> {{ season["topg"] }} </td>
+                    <td> {{ season["spg"] }} </td>
+                    <td> {{ season["bpg"] }} </td>
+                    <td> {{ season["assists"] }} </td>
+                    <td> {{ season["blocks"] }} </td>
+                    <td> {{ season["steals"] }} </td>
+                    <td> {{ season["turnovers"] }} </td>
+                    <td> {{ season["offReb"] }} </td>
+                    <td> {{ season["defReb"] }} </td>
+                    <td> {{ season["totReb"] }} </td>
+                    <td> {{ season["fgm"] }} </td>
+                    <td> {{ season["fga"] }} </td>
+                    <td> {{ season["fgp"] }} </td>
+                    <td> {{ season["tpm"] }} </td>
+                    <td> {{ season["tpa"] }} </td>
+                    <td> {{ season["tpp"] }} </td>
+                    <td> {{ season["ftm"] }} </td>
+                    <td> {{ season["fta"] }} </td>
+                    <td> {{ season["ftp"] }} </td>
+                    <td> {{ season["pFouls"] }} </td>
+                    <td> {{ season["points"] }} </td>
+                    <td> {{ season["gamesPlayed"] }} </td>
+                    <td> {{ season["gamesStarted"] }} </td>
+                    <td> {{ season["plusMinus"] }} </td>
+                    <td> {{ season["min"] }} </td>
+                </tr>
+                <tr>
+                    <td colspan="2"> Career </td>
+                    <td> {{ careerSummary["ppg"] }} </td>
+                    <td> {{ careerSummary["rpg"] }} </td>
+                    <td> {{ careerSummary["apg"] }} </td>
+                    <td> {{ careerSummary["mpg"] }} </td>
+                    <td> {{ careerSummary["topg"] }} </td>
+                    <td> {{ careerSummary["spg"] }} </td>
+                    <td> {{ careerSummary["bpg"] }} </td>
+                    <td> {{ careerSummary["assists"] }} </td>
+                    <td> {{ careerSummary["blocks"] }} </td>
+                    <td> {{ careerSummary["steals"] }} </td>
+                    <td> {{ careerSummary["turnovers"] }} </td>
+                    <td> {{ careerSummary["offReb"] }} </td>
+                    <td> {{ careerSummary["defReb"] }} </td>
+                    <td> {{ careerSummary["totReb"] }} </td>
+                    <td> {{ careerSummary["fgm"] }} </td>
+                    <td> {{ careerSummary["fga"] }} </td>
+                    <td> {{ careerSummary["fgp"] }} </td>
+                    <td> {{ careerSummary["tpm"] }} </td>
+                    <td> {{ careerSummary["tpa"] }} </td>
+                    <td> {{ careerSummary["tpp"] }} </td>
+                    <td> {{ careerSummary["ftm"] }} </td>
+                    <td> {{ careerSummary["fta"] }} </td>
+                    <td> {{ careerSummary["ftp"] }} </td>
+                    <td> {{ careerSummary["pFouls"] }} </td>
+                    <td> {{ careerSummary["points"] }} </td>
+                    <td> {{ careerSummary["gamesPlayed"] }} </td>
+                    <td> {{ careerSummary["gamesStarted"] }} </td>
+                    <td> {{ careerSummary["plusMinus"] }} </td>
+                    <td> {{ careerSummary["min"] }} </td>
+                </tr>
+            </table>
+        </div>
     </div>
 </div>

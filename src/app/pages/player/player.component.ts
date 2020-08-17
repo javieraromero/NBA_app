@@ -16,6 +16,7 @@ export class PlayerComponent implements OnInit {
   personId;
   year;
   careerSummary;
+  bio;
   seasons: Object[] = [];
   first_name;
   last_name;
@@ -35,6 +36,8 @@ export class PlayerComponent implements OnInit {
     this.personId = this.route.snapshot.paramMap.get('personId');
     this.year = this.route.snapshot.paramMap.get('year');
     this.getPlayerData(this.personId, this.year);
+    this.getPlayerBio(this.personId);
+    document.getElementById("bio_tab").click();
   }
 
   getPlayerData(personId: String, year: String)
@@ -180,5 +183,55 @@ export class PlayerComponent implements OnInit {
           this.seasons.push(seasonStats);
         }
     });
+  }
+
+  getPlayerBio(personId: String)
+  {
+    return this.http.get("http://data.nba.net/json/bios/player_" + personId + ".json")
+    .subscribe(response => {
+      
+      var bio = response["Bio"];
+
+      console.log(bio);
+
+      var display_name = bio["display_name"];
+
+      console.log(display_name);
+      var professional = bio["professional"];
+      var college = bio["college"];
+      var highschool = bio["highschool"];
+      var twitter = bio["twitter"].substring(1, );
+      var personal = bio["other_text"];
+
+      this.bio = {
+        display_name: display_name,
+        professional: professional,
+        college: college,
+        highschool: highschool,
+        twitter: twitter,
+        personal: personal
+      }
+    });
+  }
+
+  switchTab(evt, tabName) {
+    // Declare all variables
+    var i, tabcontent, tablinks;
+  
+    // Get all elements with class="tabcontent" and hide them
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+      tabcontent[i].style.display= "none";
+    }
+  
+    // Get all elements with class="tablinks" and remove the class "active"
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+      tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+  
+    // Show the current tab, and add an "active" class to the button that opened the tab
+    document.getElementById(tabName).style.display = "block";
+    evt.currentTarget.className += " active";
   }
 }
