@@ -16,7 +16,15 @@ export class PlayerComponent implements OnInit {
   personId;
   year;
   careerSummary;
-  bio;
+  bio = {
+    display_name: "",
+    professional: "",
+    college: "",
+    highschool: "",
+    twitter: "",
+    personal: ""
+  };
+  has_player_bio: Boolean = true;
   seasons: Object[] = [];
   first_name;
   last_name;
@@ -37,7 +45,6 @@ export class PlayerComponent implements OnInit {
     this.year = this.route.snapshot.paramMap.get('year');
     this.getPlayerData(this.personId, this.year);
     this.getPlayerBio(this.personId);
-    document.getElementById("bio_tab").click();
   }
 
   getPlayerData(personId: String, year: String)
@@ -200,7 +207,7 @@ export class PlayerComponent implements OnInit {
       var professional = bio["professional"];
       var college = bio["college"];
       var highschool = bio["highschool"];
-      var twitter = bio["twitter"].substring(1, );
+      var twitter = bio["twitter"];
       var personal = bio["other_text"];
 
       this.bio = {
@@ -211,6 +218,13 @@ export class PlayerComponent implements OnInit {
         twitter: twitter,
         personal: personal
       }
+
+      this.setDefaultTab(this.has_player_bio);
+    },
+    error =>
+    {
+      console.log("Error fetching player bio");
+      this.setDefaultTab(this.has_player_bio = false);
     });
   }
 
@@ -233,5 +247,13 @@ export class PlayerComponent implements OnInit {
     // Show the current tab, and add an "active" class to the button that opened the tab
     document.getElementById(tabName).style.display = "block";
     evt.currentTarget.className += " active";
+  }
+
+  setDefaultTab(has_player_bio: Boolean)
+  {
+    if(has_player_bio)
+      document.getElementById("bio_tab").click();
+    else
+      document.getElementById("career_averages_tab").click();
   }
 }
