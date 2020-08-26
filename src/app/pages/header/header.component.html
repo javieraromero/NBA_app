@@ -1,81 +1,84 @@
 <div>
-    <a [routerLink]="['/']">Home</a>
-    <span> || </span>
-    <a [routerLink]="['/standings/']">Current Standings</a>
-    <form>
-        <input style="width: 35%; display: inline-block;" placeholder="Search..." type="text" class="form-control" 
-                    name="search" [(ngModel)]="search_query"/>
-                    <input type="submit" style="display: none" (click)="search()"/>
-        <button (click)="search()" [disabled]="disable_buttons"> Go </button>
-    </form>
-    <table style="width: 700px; margin-left: auto; margin-right: auto;">
-        <tr>
-            <th style="width: 25%">
-                <button (click)="gotoPreviousDate()" [disabled]="disable_buttons"> Previous Date </button>
-            </th>
-            <th style="width: 50%">
-                <span> Games for {{ longDate }} </span>
-            </th>
-            <th style="width: 25%">
-                <button (click)="gotoNextDate()" [disabled]="disable_buttons"> Next Date </button>
-            </th>
-    </table>
-</div>
-<div class="scrolling-wrapper">
-    <div *ngIf="games.length === 0; else elseBlock" style="width:100%">
-        <div class="container">
-            <div style="text-align: left;">
-                <h3>No NBA Games Today!</h3>
+    <div>
+        <table style="width: 100%; margin-left: auto; margin-right: auto;">
+            <tr>
+                <th style="width: 10%; text-align: left;">
+                    <div class="dropdown">
+                        <img src="assets/images/menu_icon.png" style="max-height: 35px;">
+                        <div class="dropdown-content">
+                            <app-navbar></app-navbar>
+                        </div>
+                    </div>
+                </th>
+                <th style="width: 20%">
+                    <button (click)="gotoPreviousDate()" [disabled]="disable_buttons"> Prev. Date </button>
+                </th>
+                <th style="width: 40%">
+                    <span> Games for {{ longDate }} </span>
+                </th>
+                <th style="width: 20%">
+                    <button (click)="gotoNextDate()" [disabled]="disable_buttons"> Next Date </button>
+                </th>
+                <th style="width: 10%">
+                </th>
+        </table>
+    </div>
+    <div class="scrolling-wrapper">
+        <div *ngIf="games.length === 0; else elseBlock" style="width:100%">
+            <div class="container">
+                <div style="text-align: left;">
+                    <h3>No NBA Games Today!</h3>
+                </div>
             </div>
         </div>
-    </div>
-    <ng-template #elseBlock>
-        <div class="card" *ngFor="let game of games" style="width:175px">
-            <a [routerLink]="['/date/', date, game['gameId']]" style="text-decoration: none; color: inherit;">
-                <div class="container">
-                    <div>
-                        <table style="width:100%">
-                            <tr>
-                                <img src="assets/images/live_icon.png" *ngIf="game['statusNum'] === 2" style="max-width: 25px">
-                                <td width="50%" style="text-align: left;">{{ game["label"] }}</td>
-                                <td width="50%" style="text-align: right;">
-                                    <div *ngIf="game['broadcastersLabel'] === 'TNT' || 
-                                                game['broadcastersLabel'] === 'NBA TV' || 
-                                                game['broadcastersLabel'] === 'ABC' || 
-                                                game['broadcastersLabel'] === 'ESPN'">
-                                        <img src="{{ game['broadcastersLabel'] == 'TNT' ? 'assets/images/broadcast_icons/tnt_logo.png' : 
-                                                    game['broadcastersLabel'] == 'NBA TV' ? 'assets/images/broadcast_icons/nba_tv_logo.png' : 
-                                                    game['broadcastersLabel'] == 'ABC' ? 'assets/images/broadcast_icons/abc_logo.png' : 
-                                                    'assets/images/broadcast_icons/espn_logo.png' }}" 
-                                                style="max-height: 13px; max-width: 35px">
-                                    </div>
-                                </td>
-                            </tr>
-                        </table>
-                        <table style="width:100%">
-                            <tr>
-                                <th width="30%"></th>
-                                <th width="35%"></th>
-                                <th width="35%"></th>
-                            </tr>
-                            <tr>
-                                <td style="text-align: center;">
-                                    <img src="{{ game['visitingTeamLogoLocation'] }}" height="17px">
-                                </td>
-                                <td> {{ game["visitingTeam"] }} </td>
-                                <td style="text-align: right;"> {{ game["visitingLabel"] }} </td>
-                            </tr>
-                            <tr>
-                                <td style="text-align: center;">
-                                    <img src="{{ game['homeTeamLogoLocation'] }}" height="17px">
-                                </td>
-                                <td> {{ game["homeTeam"] }} </td>
-                                <td style="text-align: right;"> {{ game["homeLabel"] }} </td>
-                            </tr>
-                        </table>
+        <ng-template #elseBlock>
+            <div class="card" *ngFor="let game of games" style="width:175px">
+                <a [routerLink]="['/date/', date, game['gameId']]" style="text-decoration: none; color: inherit;">
+                    <div class="container">
+                        <div>
+                            <table style="width:100%">
+                                <tr>
+                                    <img src="assets/images/live_icon.png" *ngIf="game['statusNum'] === 2" style="max-width: 25px">
+                                    <td width="50%" style="text-align: left;">{{ game["label"] }}</td>
+                                    <td width="50%" style="text-align: right;">
+                                        <div *ngIf="game['broadcastersLabel'] === 'TNT' || 
+                                                    game['broadcastersLabel'] === 'NBA TV' || 
+                                                    game['broadcastersLabel'] === 'ABC' || 
+                                                    game['broadcastersLabel'] === 'ESPN'">
+                                            <img src="{{ game['broadcastersLabel'] == 'TNT' ? 'assets/images/broadcast_icons/tnt_logo.png' : 
+                                                        game['broadcastersLabel'] == 'NBA TV' ? 'assets/images/broadcast_icons/nba_tv_logo.png' : 
+                                                        game['broadcastersLabel'] == 'ABC' ? 'assets/images/broadcast_icons/abc_logo.png' : 
+                                                        'assets/images/broadcast_icons/espn_logo.png' }}" 
+                                                    style="max-height: 13px; max-width: 35px">
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                            <table style="width:100%">
+                                <tr>
+                                    <th width="30%"></th>
+                                    <th width="35%"></th>
+                                    <th width="35%"></th>
+                                </tr>
+                                <tr>
+                                    <td style="text-align: center;">
+                                        <img src="{{ game['visitingTeamLogoLocation'] }}" height="17px">
+                                    </td>
+                                    <td> {{ game["visitingTeam"] }} </td>
+                                    <td style="text-align: right;"> {{ game["visitingLabel"] }} </td>
+                                </tr>
+                                <tr>
+                                    <td style="text-align: center;">
+                                        <img src="{{ game['homeTeamLogoLocation'] }}" height="17px">
+                                    </td>
+                                    <td> {{ game["homeTeam"] }} </td>
+                                    <td style="text-align: right;"> {{ game["homeLabel"] }} </td>
+                                </tr>
+                            </table>
+                        </div>
                     </div>
-                </div>
-            </a>
-        </div>
-    </ng-template>
+                </a>
+            </div>
+        </ng-template>
+    </div>
 </div>

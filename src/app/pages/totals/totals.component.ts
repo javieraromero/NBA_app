@@ -16,9 +16,61 @@ export class TotalsComponent implements OnInit {
   @Input() gameId: string;
   @Input() statusNum: number;
   visiting_team;
-  visiting_team_stats;
+  visiting_team_stats = {
+    fastBreakPoints: "",
+    pointsInPaint: "",
+    secondChancePoints: "",
+    pointsOffTurnovers: "",
+    points: "",
+    fgm: "",
+    fga: "",
+    fgp: "",
+    ftm: "",
+    fta: "",
+    ftp: "",
+    tpm: "",
+    tpa: "",
+    tpp: "",
+    offReb: "",
+    defReb: "",
+    totReb: "",
+    assists: "",
+    pFouls: "",
+    steals: "",
+    turnovers: "",
+    blocks: "",
+    short_timeout_remaining: "",
+    full_timeout_remaining: "",
+    team_fouls: "",
+  };
   home_team;
-  home_team_stats;
+  home_team_stats = {
+    fastBreakPoints: "",
+    pointsInPaint: "",
+    secondChancePoints: "",
+    pointsOffTurnovers: "",
+    points: "",
+    fgm: "",
+    fga: "",
+    fgp: "",
+    ftm: "",
+    fta: "",
+    ftp: "",
+    tpm: "",
+    tpa: "",
+    tpp: "",
+    offReb: "",
+    defReb: "",
+    totReb: "",
+    assists: "",
+    pFouls: "",
+    steals: "",
+    turnovers: "",
+    blocks: "",
+    short_timeout_remaining: "",
+    full_timeout_remaining: "",
+    team_fouls: "",
+  };
 
   private routeSub = this.router.events.subscribe((event) => {
     if(event instanceof NavigationStart) {

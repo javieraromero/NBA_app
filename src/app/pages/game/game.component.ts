@@ -13,11 +13,11 @@ import { MyDate } from 'src/app/assets/date_calculator';
 })
 export class GameComponent implements OnInit {
 
-  date;
-  gameId;
+  date: String = "";
+  gameId: String = "";
   
   game_data;
-  statusNum: Number;
+  statusNum: Number = 0;
   seasonYear;
   visiting_team: String;
   visiting_team_tricode;
@@ -199,11 +199,15 @@ export class GameComponent implements OnInit {
 
           var article = response["paragraphs"];
 
+          var temp_preview: String[] = [];
+
           for(var i = 0; i < article.length; i++)
           {
             var paragraph = article[i]["paragraph"];
-            this.preview.push(paragraph);
+            temp_preview.push(paragraph);
           }
+
+          this.preview = temp_preview;
         },
         error => {
           console.log("Error fetching preview");
@@ -224,11 +228,15 @@ export class GameComponent implements OnInit {
 
           var article = response["paragraphs"];
 
+          var temp_recap: String[] = [];
+
           for(var i = 0; i < article.length; i++)
           {
             var paragraph = article[i]["paragraph"];
-            this.recap.push(paragraph);
+            temp_recap.push(paragraph);
           }
+
+          this.recap = temp_recap;
         },
         error => {
           console.log("Error fetching recap");

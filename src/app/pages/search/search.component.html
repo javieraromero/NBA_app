@@ -90,8 +90,8 @@
                 </th>
             </tr>
             <tr *ngFor="let x of league_roster | playersSearch : query" [routerLink]="['/player/', x['personId'], year]">
-                <td innerHTML="{{ emboldenResult(x['firstName']) }} {{ emboldenResult(x['lastName']) }}" style="text-align: left;">
-                    {{ emboldenResult(x["firstName"]) }} {{ emboldenResult(x["lastName"]) }}
+                <td innerHTML="{{ emboldenResult(x['firstName'] + ' ' + x['lastName']) }}" style="text-align: left;">
+                    {{ emboldenResult(x["firstName"] + " " + x["lastName"]) }}
                 </td>
             </tr>
         </table>
@@ -106,8 +106,8 @@
                 </th>
             </tr>
             <tr *ngFor="let x of list_of_coaches | coachesSearch : query" id="coaches_result">
-                <td innerHTML="{{ emboldenResult(x['firstName']) }} {{ emboldenResult(x['lastName']) }}" style="text-align: left;">
-                    {{ emboldenResult(x["firstName"]) }} {{ emboldenResult(x["lastName"]) }}
+                <td innerHTML="{{ emboldenResult(x['firstName'] + ' ' + x['lastName']) }}" style="text-align: left;">
+                    {{ emboldenResult(x["firstName"] + " " + x["lastName"]) }}
                 </td>
             </tr>
         </table>

@@ -11,12 +11,31 @@ import { TeamInfo } from '../../assets/team_info';
 })
 export class ScoreboardComponent implements OnInit {
 
-  @Input() useSecondaryLogos: boolean;
+  @Input() useSecondaryLogos: boolean = false;
   @Input() date: String;
   @Input() gameId: String;
   @Input() statusNum: number;
 
-  game_data;
+  game_data = {
+    seasonYear: "",
+    isPreseason: undefined,
+    isPlayoffs: undefined,
+    playoff_info: "",
+    vTeamId: "",
+    vTeamName: "",
+    vTeamTricode: "",
+    vTeamLogoLocation: "",
+    vTeamRecord: "",
+    hTeamId: "",
+    hTeamName: "",
+    hTeamTricode: "",
+    hTeamLogoLocation: "",
+    hTeamRecord: "",
+    nugget: "",
+    top_label: "",
+    bottom_label: "",
+    broadcastersLabel: ""
+  };
   private routeSub  = this.router.events.subscribe((event) => {
     if(event instanceof NavigationStart) {
       this.ngOnDestroy();
@@ -45,12 +64,10 @@ export class ScoreboardComponent implements OnInit {
     
     if(this.statusNum == 3)
     {
-      //console.log("statusNum is: " + this.statusNum);
       this.getGameData(this.date, this.gameId);
     }
     else if(this.statusNum == 2)
     {
-      //console.log("statusNum is: " + this.statusNum);
       while(this.statusNum == 2)
       {
         console.log("refreshing scoreboard for gameId: " + this.gameId);

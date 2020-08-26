@@ -113,7 +113,6 @@ export class SeriesComponent implements OnInit {
 
         for(var i = 0; i < list_of_games.length; i++)
         {
-          console.log("i: " + i);
           var game = list_of_games[i];
 
           if(game["seasonStageId"] == 4)
@@ -122,7 +121,6 @@ export class SeriesComponent implements OnInit {
             {
               for(var j = i; j < list_of_games.length; j++)
               {
-                console.log("j: " + j);
                 game = list_of_games[j];
 
                 if(game["vTeam"]["teamId"] != team2_teamId && game["hTeam"]["teamId"] != team2_teamId)

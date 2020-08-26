@@ -41,6 +41,8 @@ import { GamesSearchPipe } from './pipes/games-search.pipe';
 import { PlayersSearchPipe } from './pipes/players-search.pipe';
 import { CoachesSearchPipe } from './pipes/coaches-search.pipe';
 import { LeadTrackerComponent } from './pages/lead-tracker/lead-tracker.component';
+import { PlayoffBracketRedirectComponent } from './pages/playoff-bracket-redirect/playoff-bracket-redirect.component';
+import { NavbarComponent } from './pages/navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -74,7 +76,9 @@ import { LeadTrackerComponent } from './pages/lead-tracker/lead-tracker.componen
     GamesSearchPipe,
     PlayersSearchPipe,
     CoachesSearchPipe,
-    LeadTrackerComponent
+    LeadTrackerComponent,
+    PlayoffBracketRedirectComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,

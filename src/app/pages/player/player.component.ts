@@ -15,7 +15,37 @@ export class PlayerComponent implements OnInit {
 
   personId;
   year;
-  careerSummary;
+  careerSummary = {
+    tpp: "",
+    ftp: "",
+    fgp: "",
+    ppg: "",
+    rpg: "",
+    apg: "",
+    bpg: "",
+    mpg: "",
+    topg: "",
+    spg: "",
+    assists: "",
+    blocks: "",
+    steals: "",
+    turnovers: "",
+    offReb: "",
+    defReb: "",
+    totReb: "",
+    fgm: "",
+    fga: "",
+    tpm: "",
+    tpa: "",
+    ftm: "",
+    fta: "",
+    pFouls: "",
+    points: "",
+    gamesPlayed: "",
+    gamesStarted: "",
+    plusMinus: "",
+    min: ""
+  };
   bio = {
     display_name: "",
     professional: "",
@@ -199,11 +229,8 @@ export class PlayerComponent implements OnInit {
       
       var bio = response["Bio"];
 
-      console.log(bio);
-
       var display_name = bio["display_name"];
-
-      console.log(display_name);
+      
       var professional = bio["professional"];
       var college = bio["college"];
       var highschool = bio["highschool"];

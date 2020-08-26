@@ -22,8 +22,6 @@ export class HeaderComponent implements OnInit {
 
   disable_buttons: boolean = false;
 
-  search_query: String = "";
-
   private routeSub = this.router.events.subscribe((event) => {
     if(event instanceof NavigationStart) {
       this.ngOnDestroy();
@@ -290,10 +288,5 @@ export class HeaderComponent implements OnInit {
   compareDates(date: String)
   {
     return date == this.getDate();
-  }
-
-  search()
-  {
-    this.router.navigate(['/search/' + this.search_query]);
   }
 }

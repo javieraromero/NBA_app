@@ -22,13 +22,13 @@ a {
 table#series_10_top {
     background-color: var(--series_10_top_primary);
     color: var(--series_10_top_secondary);
-    cursor: pointer;
+    
 }
 
 table#series_10_bottom {
     background-color: var(--series_10_bottom_primary);
     color: var(--series_10_bottom_secondary);
-    cursor: pointer;
+    
 }
 
 
@@ -36,26 +36,26 @@ table#series_10_bottom {
 table#series_11_top {
     background-color: var(--series_11_top_primary);
     color: var(--series_11_top_secondary);
-    cursor: pointer;
+    
 }
 
 table#series_11_bottom {
     background-color: var(--series_11_bottom_primary);
     color: var(--series_11_bottom_secondary);
-    cursor: pointer;
+    
 }
 
 
 table#series_12_top {
     background-color: var(--series_12_top_primary);
     color: var(--series_12_top_secondary);
-    cursor: pointer;
+    
 }
 
 table#series_12_bottom {
     background-color: var(--series_12_bottom_primary);
     color: var(--series_12_bottom_secondary);
-    cursor: pointer;
+    
 }
 
 
@@ -63,13 +63,13 @@ table#series_12_bottom {
 table#series_13_top {
     background-color: var(--series_13_top_primary);
     color: var(--series_13_top_secondary);
-    cursor: pointer;
+    
 }
 
 table#series_13_bottom {
     background-color: var(--series_13_bottom_primary);
     color: var(--series_13_bottom_secondary);
-    cursor: pointer;
+    
 }
 
 
@@ -77,26 +77,26 @@ table#series_13_bottom {
 table#series_14_top {
     background-color: var(--series_14_top_primary);
     color: var(--series_14_top_secondary);
-    cursor: pointer;
+    
 }
 
 table#series_14_bottom {
     background-color: var(--series_14_bottom_primary);
     color: var(--series_14_bottom_secondary);
-    cursor: pointer;
+    
 }
 
 
 table#series_15_top {
     background-color: var(--series_15_top_primary);
     color: var(--series_15_top_secondary);
-    cursor: pointer;
+    
 }
 
 table#series_15_bottom {
     background-color: var(--series_15_bottom_primary);
     color: var(--series_15_bottom_secondary);
-    cursor: pointer;
+    
 }
 
 
@@ -104,13 +104,13 @@ table#series_15_bottom {
 table#series_16_top {
     background-color: var(--series_16_top_primary);
     color: var(--series_16_top_secondary);
-    cursor: pointer;
+    
 }
 
 table#series_16_bottom {
     background-color: var(--series_16_bottom_primary);
     color: var(--series_16_bottom_secondary);
-    cursor: pointer;
+    
 }
 
 
@@ -118,13 +118,13 @@ table#series_16_bottom {
 table#series_17_top {
     background-color: var(--series_17_top_primary);
     color: var(--series_17_top_secondary);
-    cursor: pointer;
+    
 }
 
 table#series_17_bottom {
     background-color: var(--series_17_bottom_primary);
     color: var(--series_17_bottom_secondary);
-    cursor: pointer;
+    
 }
 
 
@@ -132,26 +132,26 @@ table#series_17_bottom {
 table#series_20_top {
     background-color: var(--series_20_top_primary);
     color: var(--series_20_top_secondary);
-    cursor: pointer;
+    
 }
 
 table#series_20_bottom {
     background-color: var(--series_20_bottom_primary);
     color: var(--series_20_bottom_secondary);
-    cursor: pointer;
+    
 }
 
 
 table#series_21_top {
     background-color: var(--series_21_top_primary);
     color: var(--series_21_top_secondary);
-    cursor: pointer;
+    
 }
 
 table#series_21_bottom {
     background-color: var(--series_21_bottom_primary);
     color: var(--series_21_bottom_secondary);
-    cursor: pointer;
+    
 }
 
 
@@ -159,13 +159,13 @@ table#series_21_bottom {
 table#series_22_top {
     background-color: var(--series_22_top_primary);
     color: var(--series_22_top_secondary);
-    cursor: pointer;
+    
 }
 
 table#series_22_bottom {
     background-color: var(--series_22_bottom_primary);
     color: var(--series_22_bottom_secondary);
-    cursor: pointer;
+    
 }
 
 
@@ -173,13 +173,13 @@ table#series_22_bottom {
 table#series_23_top {
     background-color: var(--series_23_top_primary);
     color: var(--series_23_top_secondary);
-    cursor: pointer;
+    
 }
 
 table#series_23_bottom {
     background-color: var(--series_23_bottom_primary);
     color: var(--series_23_bottom_secondary);
-    cursor: pointer;
+    
 }
 
 
@@ -187,13 +187,13 @@ table#series_23_bottom {
 table#series_30_top {
     background-color: var(--series_30_top_primary);
     color: var(--series_30_top_secondary);
-    cursor: pointer;
+    
 }
 
 table#series_30_bottom {
     background-color: var(--series_30_bottom_primary);
     color: var(--series_30_bottom_secondary);
-    cursor: pointer;
+    
 }
 
 
@@ -202,13 +202,13 @@ table#series_30_bottom {
 table#series_31_top {
     background-color: var(--series_31_top_primary);
     color: var(--series_31_top_secondary);
-    cursor: pointer;
+    
 }
 
 table#series_31_bottom {
     background-color: var(--series_31_bottom_primary);
     color: var(--series_31_bottom_secondary);
-    cursor: pointer;
+    
 }
 
 
@@ -216,11 +216,11 @@ table#series_31_bottom {
 table#series_40_top {
     background-color: var(--series_40_top_primary);
     color: var(--series_40_top_secondary);
-    cursor: pointer;
+    
 }
 
 table#series_40_bottom {
     background-color: var(--series_40_bottom_primary);
     color: var(--series_40_bottom_secondary);
-    cursor: pointer;
+    
 }

@@ -132,7 +132,6 @@ export class ScheduleComponent implements OnInit {
     this.list_of_games = [];
     this.temp_index = this.temp_index - 5;
     var [beginning_index, end_index] = this.calculateRange(this.temp_index);
-    console.log(beginning_index + " " + end_index);
     this.getRangeOfGames(beginning_index, end_index);
   }
 
@@ -141,7 +140,6 @@ export class ScheduleComponent implements OnInit {
     this.list_of_games = [];
     this.temp_index = this.temp_index + 5;
     var [beginning_index, end_index] = this.calculateRange(this.temp_index);
-    console.log(beginning_index + " " + end_index);
     this.getRangeOfGames(beginning_index, end_index);
   }
 

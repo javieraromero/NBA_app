@@ -5,14 +5,14 @@
 <br>
 
 <div style="width: 75%; margin-left: auto; margin-right: auto;">
-    <app-scoreboard [useSecondaryLogos]="false" [date]="date" [gameId]="game_data['gameId']" [statusNum]="statusNum"></app-scoreboard>
+    <app-scoreboard [date]="date" [gameId]="game_data['gameId']" [statusNum]="statusNum"></app-scoreboard>
 </div>
 
 <br>
 
 <!-- Tab links -->
 <div class="tab">
-    <button class="tablinks" id="preview_tab" (click)="switchTab($event, 'preview')" [hidden]="!isPreviewArticleAvail || statusNum != 1">Preview</button>
+    <button class="tablinks" id="preview_tab" (click)="switchTab($event, 'preview')" [hidden]="!isPreviewArticleAvail || statusNum === 3">Preview</button>
     <button class="tablinks" id="recap_tab" (click)="switchTab($event, 'recap')" [hidden]="!isRecapArticleAvail || statusNum != 3">Recap</button>
     <button class="tablinks" id="game_info_tab" (click)="switchTab($event, 'game_info')">Game Info</button>
     <button class="tablinks" id="series_hub_tab" (click)="switchTab($event, 'series_hub')" [hidden]="!game_data['isPlayoffs']">Series Hub</button>
@@ -84,7 +84,7 @@
     <app-pbp [date]="date" [gameId]="gameId" [statusNum]="statusNum"></app-pbp>
 </div>
 
-<div id="preview" class="tabcontent" [hidden]="!isPreviewArticleAvail || statusNum != 1">
+<div id="preview" class="tabcontent" [hidden]="!isPreviewArticleAvail || statusNum === 3">
     <h3>{{ preview_data["title"] }} </h3>
     <h5 [hidden]="!preview_data['author']">{{ preview_data["author"] }}, {{ preview_data["authorTitle"] }} </h5>
     

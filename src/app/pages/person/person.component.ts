@@ -13,9 +13,29 @@ export class PersonComponent implements OnInit {
 
   @Input() personId: String;
   @Input() year: String;
-  @Input() isCoach: boolean = false;
+  //@Input() isCoach: boolean = false;
 
-  person_attributes;
+  person_attributes = {
+    firstName: "",
+    lastName: "",
+    dob: "",
+    teamId: "",
+    jersey: "",
+    isActive: "",
+    pos: "",
+    posFull: "",
+    heightFeet: "",
+    heightInches: "",
+    weightPounds: "",
+    collegeName: "",
+    country: "",
+    draft_info: {
+      pickNum: "",
+      roundNum: "",
+      seasonYear: "",
+      tricode: "",
+    }
+  }
   teamId;
   headshot_location = "";
   logo_location = "";
@@ -31,14 +51,14 @@ export class PersonComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    if(this.isCoach)
-    {
-      this.getCoachInfo(this.personId, this.year);
-    }
-    else
-    {
+    //if(this.isCoach)
+    //{
+    //  this.getCoachInfo(this.personId, this.year);
+    //}
+    //else
+    //{
       this.getPlayerInfo(this.personId, this.year);
-    }
+    //}
   }
 
   getPlayerInfo(personId: String, year: String)
@@ -83,7 +103,7 @@ export class PersonComponent implements OnInit {
               jersey: player["jersey"],
               isActive: player["isActive"],
               pos: player["pos"],
-              posFull: player["teamSitesOnly"]["posFull"],
+              posFull: player["teamSitesOnly"] ? player["teamSitesOnly"]["posFull"] : "",
               heightFeet: player["heightFeet"],
               heightInches: player["heightInches"],
               weightPounds: player["weightPounds"],
@@ -98,7 +118,7 @@ export class PersonComponent implements OnInit {
       });
   }
 
-  getCoachInfo(personId: String, year: String)
+  /*getCoachInfo(personId: String, year: String)
   {
     return this.http.get("http://data.nba.net/10s/prod/v1/" + year + "/coaches.json")
       .subscribe(response => {
@@ -136,7 +156,7 @@ export class PersonComponent implements OnInit {
           }
         }
       });
-  }
+  }*/
 
   getTeamAttributes(teamId: String)
   {

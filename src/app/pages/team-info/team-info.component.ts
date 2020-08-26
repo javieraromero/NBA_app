@@ -13,8 +13,24 @@ export class TeamInfoComponent implements OnInit {
   @Input() teamId: String;
   @Input() year: String;
 
-  team_attributes;
-  team_data;
+  team_attributes = {
+    teamName: "",
+    teamTricode: "",
+    teamLocation: "",
+    teamSimpleName: "",
+    teamPrimaryColor: "",
+    teamSecondaryColor: "",
+    teamPrimaryLogoLocation: "",
+    teamSecondaryLogoLocation: "",
+    confName: "",
+    divName: "",
+  };
+  team_data = {
+    win: "",
+    loss: "",
+    confRank: "",
+    divRank: ""
+  };
   coaches_list: Object[] = [];
 
   coach_role_names: String[] = ["", "Head Coach", "Assistant Coach", "Trainer", "Assistant Trainer",
@@ -95,9 +111,7 @@ export class TeamInfoComponent implements OnInit {
           if(team["teamId"] != teamId)
             continue;
 
-          console.log(team["teamSitesOnly"]["teamName"]);
-
-          var team_attributes = team["teamSitesOnly"];
+          //var team_attributes = team["teamSitesOnly"];
 
           const team_data = {
             win: team["win"],
@@ -118,7 +132,7 @@ export class TeamInfoComponent implements OnInit {
             //lastTenWin: team["lastTenWin"],
             //lastTenLoss: team["lastTenLoss"],
             //streakText: team_attributes["streakText"],
-          }
+          };
 
           this.team_data = team_data;
         }

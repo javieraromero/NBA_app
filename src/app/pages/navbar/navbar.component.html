@@ -1,0 +1,16 @@
+<div class="navbar">
+    <form autocomplete="off">
+        <input style="width: 70%; display: inline-block;" placeholder="Search..." type="text" class="form-control" 
+                    name="search" [(ngModel)]="search_query"/>
+                    <input type="submit" style="display: none" (click)="search()"/>
+        <button (click)="search()" [disabled]="disable_buttons"> Search </button>
+    </form>
+    
+    <br>
+    
+    <div class="tab">
+        <button class="tablinks" [routerLink]="['/home/']" routerLinkActive="active">Home</button>
+        <button class="tablinks" [routerLink]="['/standings/']" routerLinkActive="active">Current Standings</button>
+        <button class="tablinks" [routerLink]="['/playoff-bracket/']" routerLinkActive="active">Playoff Bracket</button>
+    </div>
+</div>

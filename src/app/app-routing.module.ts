@@ -10,8 +10,12 @@ import { PlayoffBracketComponent } from './pages/playoff-bracket/playoff-bracket
 import { AllStarComponent } from './pages/all-star/all-star.component';
 import { AllStandingsComponent } from './pages/all-standings/all-standings.component';
 import { SearchComponent } from './pages/search/search.component';
+import { PlayoffBracketRedirectComponent } from './pages/playoff-bracket-redirect/playoff-bracket-redirect.component';
 
 const routes: Routes = [
+  {
+    path: 'home', component: HomeComponent
+  },
   {
     path: '', component: HomeComponent
   },
@@ -29,6 +33,9 @@ const routes: Routes = [
   },
   {
     path: 'standings', component: AllStandingsComponent
+  },
+  {
+    path: 'playoff-bracket', component: PlayoffBracketRedirectComponent
   },
   {
     path: 'playoff-bracket/:year', component: PlayoffBracketComponent

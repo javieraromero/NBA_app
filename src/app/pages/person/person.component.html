@@ -1,65 +1,63 @@
-<div *ngIf="!isCoach; else elseBlock">
-    <table style="width:100%">
-        <tr>
-            <td rowspan="2" style="width: 20%">
-                <div class="images">
-                    <img class="img1" src="https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/260x190/{{ personId }}.png">
-                    <img class="img2" src="{{ logo_location }}" >
-                </div>
-            </td>
-            <td style="width: 20%">
-                <span>Name</span>
+<table style="width:100%">
+    <tr>
+        <td rowspan="2" style="width: 20%">
+            <div class="images">
+                <img class="img1" src="https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/260x190/{{ personId }}.png">
+                <img class="img2" src="{{ logo_location }}" >
+            </div>
+        </td>
+        <td style="width: 20%">
+            <span>Name</span>
+            <br>
+            {{ person_attributes["firstName"] }} {{ person_attributes["lastName"] }}
+        </td>
+        <td style="width: 17.5%">
+            <span>Height / Weight</span>
+            <br>
+            {{ person_attributes["heightFeet"] }}'{{ person_attributes["heightInches"] }}", {{ person_attributes["weightPounds"] }} lbs
+        </td>
+        <td style="width: 17.5%">
+            <span>College</span>
+            <br>
+            {{ person_attributes["collegeName"] }}
+        </td>
+        <td style="width: 25%">
+            <div *ngIf="person_attributes['draft_info']['pickNum'] === ''; else elseBlock">
+                <span>Draft</span>
                 <br>
-                {{ person_attributes["firstName"] }} {{ person_attributes["lastName"] }}
-            </td>
-            <td style="width: 17.5%">
-                <span>Height / Weight</span>
+                Undrafted
+            </div>
+            <ng-template #elseBlock>
+                <span>Draft</span>
                 <br>
-                {{ person_attributes["heightFeet"] }}'{{ person_attributes["heightInches"] }}", {{ person_attributes["weightPounds"] }} lbs
-            </td>
-            <td style="width: 17.5%">
-                <span>College</span>
-                <br>
-                {{ person_attributes["collegeName"] }}
-            </td>
-            <td style="width: 25%">
-                <div *ngIf="person_attributes['draft_info']['pickNum'] === ''; else elseBlock">
-                    <span>Draft</span>
-                    <br>
-                    Undrafted
-                </div>
-                <ng-template #elseBlock>
-                    <span>Draft</span>
-                    <br>
-                    {{ person_attributes["draft_info"]["seasonYear"] }} / Round {{ person_attributes["draft_info"]["roundNum"] }}, Pick {{ person_attributes["draft_info"]["pickNum"] }} ({{ person_attributes["draft_info"]["tricode"] }})
-                </ng-template>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <span>#</span>
-                <br>
-                {{ person_attributes["jersey"] }}
-            </td>
-            <td>
-                <span>DOB</span>
-                <br>
-                {{ person_attributes["dob"] }}
-            </td>
-            <td>
-                <span>Country</span>
-                <br>
-                {{ person_attributes["country"] }}
-            </td>
-            <td>
-                <span>Position</span>
-                <br>
-                {{ person_attributes["posFull"] }}
-            </td>
-        </tr>
-    </table>
-</div>
-<ng-template #elseBlock>
+                {{ person_attributes["draft_info"]["seasonYear"] }} / Round {{ person_attributes["draft_info"]["roundNum"] }}, Pick {{ person_attributes["draft_info"]["pickNum"] }} ({{ person_attributes["draft_info"]["tricode"] }})
+            </ng-template>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <span>#</span>
+            <br>
+            {{ person_attributes["jersey"] }}
+        </td>
+        <td>
+            <span>DOB</span>
+            <br>
+            {{ person_attributes["dob"] }}
+        </td>
+        <td>
+            <span>Country</span>
+            <br>
+            {{ person_attributes["country"] }}
+        </td>
+        <td>
+            <span>Position</span>
+            <br>
+            {{ person_attributes["posFull"] }}
+        </td>
+    </tr>
+</table>
+<!--<ng-template #elseBlock>
     <table style="width:100%">
         <tr>
             <td rowspan="3" style="width: 20%">
@@ -83,4 +81,4 @@
             </td>
         </tr>
     </table>
-</ng-template>
+</ng-template>-->
