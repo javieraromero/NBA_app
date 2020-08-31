@@ -4,6 +4,15 @@
 
 <div class="container mt-3" style="width: 75%; margin-left: auto; margin-right: auto;">
 
+    <br>
+
+    <form autocomplete="off">
+        <input style="width: 70%; display: inline-block;" placeholder="Search..." type="text" class="form-control" 
+                    name="search" [(ngModel)]="query"/>
+                    <input type="submit" style="display: none" (click)="search()"/>
+        <button (click)="search()" [disabled]="disable_buttons"> Search </button>
+    </form>
+
     <h3>Search results for "{{ query }}"</h3>
 
     <div class="tab">

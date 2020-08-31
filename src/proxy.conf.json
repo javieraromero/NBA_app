@@ -1,0 +1,7 @@
+{
+    "/api/*": {
+        "target": "http://data.nba.net/",
+        "secure": false,
+        "logLevel": "debug"
+    }
+}

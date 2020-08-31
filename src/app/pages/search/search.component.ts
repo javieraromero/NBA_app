@@ -40,6 +40,11 @@ export class SearchComponent implements OnInit {
     document.getElementById("players_tab").click();
   }
 
+  search()
+  {
+    this.router.navigate(['/search/' + this.query]);
+  }
+
   getSeasonYear()
   {
     return this.http.get("http://data.nba.net/10s/prod/v1/today.json")

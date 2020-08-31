@@ -67,7 +67,8 @@
           },
           "configurations": {
             "production": {
-              "browserTarget": "NBAapp:build:production"
+              "browserTarget": "NBAapp:build:production",
+              "proxyConfig": "src/proxy.conf.json"
             }
           }
         },
