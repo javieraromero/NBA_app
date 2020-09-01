@@ -95,7 +95,7 @@ export class GameComponent implements OnInit {
 
           var isPreviewArticleAvail = basicGameData["isPreviewArticleAvail"];
           this.isPreviewArticleAvail = isPreviewArticleAvail;
-          if(isPreviewArticleAvail && statusNum == 1)
+          if(isPreviewArticleAvail && (statusNum == 1 || statusNum == 2))
             this.getPreview(date, gameId);
 
           var isRecapArticleAvail = basicGameData["isRecapArticleAvail"];
@@ -156,9 +156,20 @@ export class GameComponent implements OnInit {
             }
           }
 
+          var start_time_label;
+          var isStartTimeTBD = basicGameData["isStartTimeTBD"];
+          if(isStartTimeTBD)
+          {
+            start_time_label = "TBD";
+          }
+          else
+          {
+            start_time_label = basicGameData["startTimeEastern"];
+          }
+
           this.game_data = {
             gameId: basicGameData["gameId"],
-            startTime: basicGameData["startTimeEastern"],
+            startTime: start_time_label,
             attendance: basicGameData["attendance"],
             broadcastersNational: broadcastersNational,
             vTeamBroadcasters: vTeamBroadcasters,
