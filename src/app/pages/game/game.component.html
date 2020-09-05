@@ -73,7 +73,7 @@
 </div>
 
 <div id="series_hub" class="tabcontent" [hidden]="!game_data['isPlayoffs']">
-    <app-series [seriesId]="game_data['seriesId']" [year]="seasonYear" [current_gameId]="gameId"></app-series>
+    <app-series [seriesId]="game_data['seriesId']" [visiting_teamId]="visiting_team_id" [home_teamId]="home_team_id" [year]="seasonYear" [current_gameId]="gameId"></app-series>
 </div>
 
 <div id="team_leaders" class="tabcontent" [hidden]="statusNum != 1">
