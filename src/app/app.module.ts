@@ -18,7 +18,6 @@ import { DivisionStandingsComponent } from './pages/division-standings/division-
 import { OverallStandingsComponent } from './pages/overall-standings/overall-standings.component';
 import { SeriesComponent } from './pages/series/series.component';
 import { PlayoffBracketComponent } from './pages/playoff-bracket/playoff-bracket.component';
-import { AllStarComponent } from './pages/all-star/all-star.component';
 import { CalendarComponent } from './pages/calendar/calendar.component';
 import { ScoreboardComponent } from './pages/scoreboard/scoreboard.component';
 import { BoxscoreComponent } from './pages/boxscore/boxscore.component';
@@ -60,7 +59,6 @@ import { NavbarComponent } from './pages/navbar/navbar.component';
     OverallStandingsComponent,
     SeriesComponent,
     PlayoffBracketComponent,
-    AllStarComponent,
     CalendarComponent,
     ScoreboardComponent,
     BoxscoreComponent,

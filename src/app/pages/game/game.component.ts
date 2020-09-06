@@ -16,7 +16,7 @@ export class GameComponent implements OnInit {
   date: String = "";
   gameId: String = "";
   
-  game_data;
+  game_data
   statusNum: Number = 0;
   seasonYear;
   visiting_team: String;

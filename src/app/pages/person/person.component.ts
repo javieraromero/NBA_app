@@ -40,10 +40,10 @@ export class PersonComponent implements OnInit {
   headshot_location = "";
   logo_location = "";
 
-  coach_role_names: String[] = ["", "Head Coach", "Assistant Coach", "Trainer", "Assistant Trainer",
+  /*coach_role_names: String[] = ["", "Head Coach", "Assistant Coach", "Trainer", "Assistant Trainer",
                                 "Strength-and-Conditioning Coach", "", "", "Advance Scout / Assistant Coach",
                                 "Associate Head Coach", "", "", "Assistant Coach for Player Development",
-                                "Lead Assistant Coach"];
+                                "Lead Assistant Coach"];*/
 
   constructor(
     private http: HttpClient,

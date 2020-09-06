@@ -1,6 +1,5 @@
 export class DateCalculator
 {
-    daysOfWeek: String[] = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
     DAYS_IN_MONTH: number[] = [0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 
     buildCalendar(date: MyDate)
