@@ -117,6 +117,27 @@ export class HeaderComponent implements OnInit {
 
           var statusNum = game["statusNum"];
           var start_time = game["startTimeEastern"];
+          var playoff_info;
+          var isPlayoffs = game["seasonStageId"] == 4;
+
+          if(isPlayoffs)
+          {
+            var playoff_stats = game["playoffs"];
+            playoff_info = {
+              roundNum: playoff_stats["roundNum"],
+              //confName: playoff_stats["confName"],
+              //seriesId: playoff_stats["seriesId"],
+              //seriesSummaryText: playoff_stats["seriesSummaryText"],
+              isSeriesCompleted: playoff_stats["isSeriesCompleted"],
+              gameNumInSeries: playoff_stats["gameNumInSeries"],
+              //vTeamSeed: playoff_stats["vTeam"]["seedNum"],
+              vTeamSeriesWins: playoff_stats["vTeam"]["seriesWin"],
+              vTeamIsSeriesWinner: playoff_stats["vTeam"]["isSeriesWinner"],
+              //hTeamSeed: playoff_stats["hTeam"]["seedNum"],
+              hTeamSeriesWins: playoff_stats["hTeam"]["seriesWin"],
+              hTeamIsSeriesWinner: playoff_stats["hTeam"]["isSeriesWinner"],
+            }
+          }
 
           var label = "";
           var visiting_label = "";
@@ -133,9 +154,11 @@ export class HeaderComponent implements OnInit {
             {
               label = start_time;
             }
-            visiting_label = "(" + game["vTeam"]["win"] + "-" + game["vTeam"]["loss"] + ")";
-            home_label = "(" + game["hTeam"]["win"] + "-" + game["hTeam"]["loss"] + ")";
-
+            if(!isPlayoffs)
+            {
+              visiting_label = "(" + game["vTeam"]["win"] + "-" + game["vTeam"]["loss"] + ")";
+              home_label = "(" + game["hTeam"]["win"] + "-" + game["hTeam"]["loss"] + ")";
+            }
           }
           else if(statusNum == 2)
           {
@@ -214,7 +237,9 @@ export class HeaderComponent implements OnInit {
             homeTeamLogoLocation: home_team_logo,
             homeLabel: home_label,
             label: label,
-            broadcastersLabel: broadcastersLabel
+            broadcastersLabel: broadcastersLabel,
+            isPlayoffs: isPlayoffs,
+            playoff_info: playoff_info,
           }
 
           temp.push(game_info);

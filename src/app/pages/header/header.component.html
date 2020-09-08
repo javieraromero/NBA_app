@@ -74,6 +74,21 @@
                                     <td> {{ game["homeTeam"] }} </td>
                                     <td style="text-align: right;"> {{ game["homeLabel"] }} </td>
                                 </tr>
+                                <tr *ngIf="game['isPlayoffs']">
+                                    <td colspan="3" style="font-size: small; text-align: center;">
+                                        <div *ngIf="game['playoff_info']['vTeamIsSeriesWinner'] || game['playoff_info']['hTeamIsSeriesWinner']; else elseBlock">
+                                            R{{ game["playoff_info"]["roundNum"] }}G{{ game["playoff_info"]["gameNumInSeries"] }} |
+                                            {{ game["playoff_info"]["vTeamIsSeriesWinner"] ? game["visitingTeam"] + ' wins ' + game["playoff_info"]["vTeamSeriesWins"] + ' - ' + game["playoff_info"]["hTeamSeriesWins"] :
+                                               game["homeTeam"] + ' wins ' + game["playoff_info"]["hTeamSeriesWins"] + ' - ' + game["playoff_info"]["vTeamSeriesWins"] }}
+                                        </div>
+                                        <ng-template #elseBlock>
+                                            R{{ game["playoff_info"]["roundNum"] }}G{{ game["playoff_info"]["gameNumInSeries"] }} |
+                                            {{ game["playoff_info"]["vTeamSeriesWins"] == game["playoff_info"]["hTeamSeriesWins"] ? 'Tied ' + game["playoff_info"]["vTeamSeriesWins"] + ' - ' + game["playoff_info"]["hTeamSeriesWins"] :
+                                               game["playoff_info"]["vTeamSeriesWins"] > game["playoff_info"]["hTeamSeriesWins"] ? game["visitingTeam"] + ' leads ' + game["playoff_info"]["vTeamSeriesWins"] + ' - ' + game["playoff_info"]["hTeamSeriesWins"] :
+                                               game["homeTeam"] + ' leads ' + game["playoff_info"]["hTeamSeriesWins"] + ' - ' + game["playoff_info"]["vTeamSeriesWins"] }}
+                                        </ng-template>
+                                    </td>
+                                </tr>
                             </table>
                         </div>
                     </div>
