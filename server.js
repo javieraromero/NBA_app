@@ -21,7 +21,12 @@ const app = express();
 app.use(express.static('./src'));
 
 app.get('/*', function(req, res) {
-    res.sendFile('', {root: 'src'}
+    res.sendFile('index.html', {root: 'src'}
+  );
+  });
+
+app.get('/home', function(req, res) {
+    res.sendFile('home', {root: 'src'}
   );
   });
 
