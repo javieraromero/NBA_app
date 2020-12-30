@@ -15,6 +15,8 @@ export class ScheduleComponent implements OnInit {
   @Input() teamId: String;
   @Input() year: String;
 
+  //search;
+
   teamName: String;
   //teamSecondaryLogoLocation: String;
   lastGamePlayedIndex;
